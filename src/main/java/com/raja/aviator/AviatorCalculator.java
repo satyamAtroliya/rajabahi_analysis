@@ -44,38 +44,39 @@ public class AviatorCalculator {
                     if(actualMultiplier>=100)
                         LastHundredBefore.set(0);
                 //System.out.println(String.format("[Round %d] Actual Crash Point: %.2fx", round, actualMultiplier));
+                    synchronized (this) {
+                        // Fetch your custom configuration from the strategy class
+                        BettingStrategy.BetConfig config = BettingStrategy.decideNextBet(history);
 
-                // Fetch your custom configuration from the strategy class
-                BettingStrategy.BetConfig config = BettingStrategy.decideNextBet(history);
+                        if (config.shouldBet) {
+                            totalBet.getAndIncrement();
+                            if (balance < config.amount) {
+                                // System.out.println(String.format("  [SKIPPED] Insufficient balance! Required: Rs. %.2f, Available: Rs. %.2f", config.amount, balance));
+                            } else {
+                                //   System.out.println(String.format("  [BET PLACED] Amount: Rs. %.2f | Target Redeem: %.2fx", config.amount, config.targetMultiplier));
 
-                if (config.shouldBet) {
-                    totalBet.getAndIncrement();
-                    if (balance < config.amount) {
-                       // System.out.println(String.format("  [SKIPPED] Insufficient balance! Required: Rs. %.2f, Available: Rs. %.2f", config.amount, balance));
-                    } else {
-                     //   System.out.println(String.format("  [BET PLACED] Amount: Rs. %.2f | Target Redeem: %.2fx", config.amount, config.targetMultiplier));
+                                // Deduct bet amount upfront
+                                balance -= config.amount;
 
-                        // Deduct bet amount upfront
-                        balance -= config.amount;
-
-                        // Aviator logic: If actual crash point is >= your target, you successfully cashed out
-                        if (actualMultiplier >= config.targetMultiplier) {
-                            double winnings = config.amount * config.targetMultiplier;
-                            balance += winnings;
-                            System.out.println(String.format("  %d 🎉 WON! Cashed out at %.2fx. Won: Rs. %.2f | last100xBefore : %d | New Balance: Rs. %.2f", round ,config.targetMultiplier, winnings,LastHundredBefore.get() , balance));
-                            totalWonBet.getAndIncrement();
+                                // Aviator logic: If actual crash point is >= your target, you successfully cashed out
+                                if (actualMultiplier >= config.targetMultiplier) {
+                                    double winnings = config.amount * config.targetMultiplier;
+                                    balance += winnings;
+                                    System.out.println(String.format("  %d 🎉 WON! Cashed out at %.2fx. Won: Rs. %.2f | last100xBefore : %d | New Balance: Rs. %.2f", round, config.targetMultiplier, winnings, LastHundredBefore.get(), balance));
+                                    totalWonBet.getAndIncrement();
+                                } else {
+                                    //System.out.println(String.format("  %d ❌ LOST! Crashed at %.2fx before reaching %.2fx | last100xBefore : %d | New Balance: Rs. %.2f", round, actualMultiplier, config.targetMultiplier, LastHundredBefore.get(), balance));
+                                }
+                            }
                         } else {
-                           // System.out.println(String.format("  %d ❌ LOST! Crashed at %.2fx before reaching %.2fx | last100xBefore : %d | New Balance: Rs. %.2f", round, actualMultiplier, config.targetMultiplier, LastHundredBefore.get(), balance));
+                            //System.out.println("  [NO BET] Strategy decided to skip this round.");
+                            //System.out.println(String.format("  %d 🌎 Actual Crash Point: %.2fx                      | last100xBefore : %d |", round, actualMultiplier, LastHundredBefore.get()));
                         }
-                    }
-                } else {
-                    //System.out.println("  [NO BET] Strategy decided to skip this round.");
-                 //  System.out.println(String.format("  %d 🌎 Actual Crash Point: %.2fx                      | last100xBefore : %d |", round, actualMultiplier, LastHundredBefore.get()));
-                }
 
-                // Add the current number to history so your strategy can analyze it for the next round
-                history.add(actualMultiplier);
-                round++;
+                        // Add the current number to history so your strategy can analyze it for the next round
+                        history.add(actualMultiplier);
+                        round++;
+                    }
                 //System.out.println("-----------------------------------");
             }
 

@@ -1,6 +1,8 @@
 package com.raja.aviator;
 
 import com.city.detective.model.ButtonController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -9,97 +11,86 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class DecisionMakerNew {
 
-    boolean betButtonStatus = false;
+    private static final double HUNDRED = 100.0;
 
-    int windowStart = Integer.MAX_VALUE; // Start after each 240 occurrence without 100x
-    int wonCount = 0;
+    private int windowStart = 270;
+    private int betOffAfterOccurrence = Integer.MAX_VALUE;
+    private int wonCount = 0;
+    private int balance = 3000;
+    private boolean betButtonStatus = false;
 
-    //Initial value should be something which can't be reach easily (5000), just to avoid button tuned on wrong
-    int betOffAfterOccurrence = Integer.MAX_VALUE;
-    //Turn off button after each 58 round
-    final double HUNDRED = 100;
+    // NEW FLAG: Tracks if the start2 logic has already fired for the current 100x cycle
+    private boolean start2Fired = false;
 
-
-    AtomicInteger LastHundredBefore = new AtomicInteger(0); //0
-    AtomicInteger betOnCounter = new AtomicInteger(0); //0
-
-    ButtonController btn = new ButtonController(false, false);
-
-    boolean start2= false;
+    private final AtomicInteger lastHundredBefore = new AtomicInteger(0);
+    private final AtomicInteger betOnCounter = new AtomicInteger(0);
+    private final ButtonController btn = new ButtonController(false, false);
 
     public boolean decisionMaker(double latestMultiplier) {
+        btn.setAutoBetOn(false);
+        btn.setAutoBetOff(false);
 
-        if (latestMultiplier >= HUNDRED) {
-            start2 = hundredsTrackerDecider(LastHundredBefore.get());
-            LastHundredBefore.set(0);
+        boolean isHighMultiplier = latestMultiplier >= HUNDRED;
+        boolean isTrackerUnder15 = false;
+
+        if (isHighMultiplier) {
+            isTrackerUnder15 = lastHundredBefore.get() < 20;
+            lastHundredBefore.set(0);
+            start2Fired = false; // RESET FLAG: Allow start2 to run again for the NEXT 100x block
+
             if (betButtonStatus) {
                 wonCount++;
             } else {
-                windowStart = 300;
+                windowStart = 270;
             }
         } else {
-            LastHundredBefore.getAndIncrement();
+            lastHundredBefore.getAndIncrement();
         }
 
-        btn.setAutoBetOn(false);//must
-        btn.setAutoBetOff(false);//must
+        int currentTracker = lastHundredBefore.get();
 
-        //Start1
-        //No need to simplify - (auto bet button on logic)
-        if (LastHundredBefore.get() == windowStart) {
-            btn.setAutoBetOn(true);
-            betOnCounter.set(0);
-            betOffAfterOccurrence = 150;
-            wonCount=0;
+        // Trigger Auto Bet On conditions
+        if (currentTracker == windowStart) {
+            triggerBetOn(110);
         }
-
-        //start2
-        //No need to simplify - (auto bet button on logic)
-
-        if (start2 && !betButtonStatus) {
-             btn.setAutoBetOn(true);
-
-            betOnCounter.set(0);
-            betOffAfterOccurrence = 50;
-            wonCount = 0;
+        // FIXED: Added !start2Fired to guarantee it executes exactly once per valid 100x drop
+        else if (isTrackerUnder15 && !betButtonStatus && !start2Fired) {
+            triggerBetOn(45);
+            start2Fired = true; // LOCK FLAG: Blocks this block from executing again
         }
-
-
         betOnCounter.getAndIncrement();
 
-        //No need to simplify (auto bet button off logic)
+        // Trigger Auto Bet Off conditions
         if (betOnCounter.get() == betOffAfterOccurrence) {
             btn.setAutoBetOff(true);
             betOffAfterOccurrence = Integer.MAX_VALUE;
             wonCount = 0;
-            start2=false;
         }
 
-  /*      if (wonCount == 1 && betOnCounter.get()<=30) {
-            wonCount=0;
-            betOnCounter.set(betOffAfterOccurrence - 2);
-        }
-*/
         if (wonCount == 2) {
-            betOnCounter.set(betOffAfterOccurrence - 2);
             wonCount = 0;
+            betOnCounter.set(betOffAfterOccurrence - 1);
         }
 
+        if (wonCount == 1 && betOnCounter.get() == 80) {
+            betOnCounter.set(betOffAfterOccurrence - 1);
+        }
 
         if (btn.isAutoBetOn()) {
             betButtonStatus = true;
-            System.out.println("Auto bet onnnnnnnnn.................");
         }
         if (btn.isAutoBetOff()) {
             betButtonStatus = false;
-            System.out.println("Auto bet offfffffffffffffffff...........");
         }
         return betButtonStatus;
     }
 
-    public boolean hundredsTrackerDecider(int tracker100x) {
-        if(tracker100x<15)return true;
-        return false;
-       }
+    private void triggerBetOn(int duration) {
+        btn.setAutoBetOn(true);
+        betOnCounter.set(0);
+        betOffAfterOccurrence = duration;
+        wonCount = 0;
+    }
 
 }
+

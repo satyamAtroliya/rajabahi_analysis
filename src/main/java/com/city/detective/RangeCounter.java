@@ -11,11 +11,13 @@ public class RangeCounter {
 
         List<Integer> numbers = new ArrayList<>();
         int counter =0;
+        int total =0;
 
         for (Map.Entry<Integer, DataModel> entry : Helper.getDataMap().entrySet()) {
             //System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
+            total++;
             counter++;
-            if(entry.getValue().getMultiplier()>1000){
+            if(entry.getValue().getMultiplier()>100){
                 numbers.add(counter);
                 counter=0;
             }
@@ -23,9 +25,11 @@ public class RangeCounter {
 
         // 2. Define your custom ranges here
         List<Range> ranges = Arrays.asList(
-                new Range(1, 500),
-                new Range(500, 1000),
-                new Range(1000, 1500)
+                new Range(1, 100),
+                new Range(100, 160),
+                new Range(160, 270),
+                new Range(270, 350),
+                new Range(350, 380)
         );
 
         // 3. Initialize the counter map
@@ -52,6 +56,7 @@ public class RangeCounter {
         }
 
         // 5. Print results
+        System.out.println ("Total = "+total);
         System.out.printf("%-15s %-10s %-10s%n", "Range", "Count", "Percentage");
         System.out.println("---------------------------------------");
 
