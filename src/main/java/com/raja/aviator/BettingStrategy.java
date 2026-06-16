@@ -14,7 +14,7 @@ public class BettingStrategy {
      * @return A Config object containing your decision for the NEXT round.
      */
 
-    static DecisionMakerNew dmn= new DecisionMakerNew();
+    static DecisionMakerStart3 dmn= new DecisionMakerStart3();
 
     public static BetConfig decideNextBet(List<Double> history) {
 
@@ -22,10 +22,12 @@ public class BettingStrategy {
 
         boolean shouldBet = false;     // Change to true/false based on your logic
         double betAmount = 10.0;       // Configurable bet amount
-        double targetMultiplier = 100.0; // Configurable target redeem multiplier (e.g., 2.0x, 100.0x)
+        double targetMultiplier = 100; // Configurable target redeem multiplier (e.g., 2.0x, 100.0x)
 
         if(history.size()>2)
             shouldBet=dmn.decisionMaker(history.get(history.size()-1));
+
+        //targetMultiplier= dmn.getTargetMul();
 
         // --- END OF YOUR CUSTOM LOGIC SPACE ---
         return new BetConfig(shouldBet, betAmount, targetMultiplier);

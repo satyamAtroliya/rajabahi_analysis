@@ -12,7 +12,7 @@ public class DataOrganizer {
     public static void main(String[] args) {
         // Change these to your actual folder and file paths
         String inputFolderPath = "inputfiles";
-        String masterOutputPath = "mon_14_Jun_co.txt";
+        String masterOutputPath = "mon_16_Jun_co.txt";
 
         try {
             mergeAllFiles(inputFolderPath, masterOutputPath);
