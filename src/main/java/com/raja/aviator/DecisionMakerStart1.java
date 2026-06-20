@@ -41,7 +41,7 @@ public class DecisionMakerStart1 {
             if (betButtonStatus) {
                 wonCount++;
             } else {
-                windowStart = 300;
+                windowStart = 1;
             }
         } else {
             lastHundredBefore.getAndIncrement();
@@ -51,7 +51,7 @@ public class DecisionMakerStart1 {
 
         // Trigger Auto Bet On conditions
         if (currentTracker == windowStart) {
-            triggerBetOn(150);
+            triggerBetOn(35);
         }
         // FIXED: Added !start2Fired to guarantee it executes exactly once per valid 100x drop
         /*else if (isTrackerUnder15 && !betButtonStatus && !start2Fired) {
@@ -67,14 +67,14 @@ public class DecisionMakerStart1 {
             wonCount = 0;
         }
 
-        if (wonCount == 2) {
+        if (wonCount == 1) {
             wonCount = 0;
             betOnCounter.set(betOffAfterOccurrence - 1);
         }
 
-        if (wonCount == 1 && betOnCounter.get() == 80) {
-            betOnCounter.set(betOffAfterOccurrence - 1);
-        }
+     //   if (wonCount == 1 && betOnCounter.get() == 80) {
+      //      betOnCounter.set(betOffAfterOccurrence - 1);
+      //  }
 
         if (btn.isAutoBetOn()) {
             betButtonStatus = true;

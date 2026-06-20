@@ -7,7 +7,7 @@ public class Main {
         AviatorCalculator calculator = new AviatorCalculator(10000);
 
         // Path to your test file containing the source numbers
-        String testFilePath = "./dataSource/all_new.txt";
+        String testFilePath = "./dataSource/mon_3_Jun_co.txt";
 
         calculator.processSimulation(testFilePath);
     }

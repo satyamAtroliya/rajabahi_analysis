@@ -21,7 +21,13 @@ public class DecisionMakerStart3 {
     private final AtomicInteger betOnCounter = new AtomicInteger(0);
     private final ButtonController btn = new ButtonController(false, false);
     private int wonCount = 0;
-    private int wonTimes = 2;
+    private int hold100hand = 0;
+
+    private double target=100;
+
+    public double getTargetMultiplier(){
+        return  target;
+    }
 
     double lastMulti = 0;
     public boolean decisionMaker(double latestMultiplier) {
@@ -29,7 +35,7 @@ public class DecisionMakerStart3 {
         btn.setAutoBetOff(false);
 
         boolean isHighMultiplier = latestMultiplier >= HUNDRED;
-
+        hold100hand=lastHundredBefore.get();
         if (isHighMultiplier) {
             lastHundredBefore.set(0);
             start2Fired = false; // RESET FLAG: Allow start2 to run again for the NEXT 100x block
@@ -41,7 +47,7 @@ public class DecisionMakerStart3 {
         }
 
         // Trigger Auto Bet On conditions
-        if (isHighMultiplier && !betButtonStatus && !start2Fired) {
+        if (isHighMultiplier && !betButtonStatus && !start2Fired && hold100hand >=145) {
             triggerBetOn(65);
             start2Fired = true; // LOCK FLAG: Blocks this block from executing again
         }
@@ -54,9 +60,15 @@ public class DecisionMakerStart3 {
             betOffAfterOccurrence = Integer.MAX_VALUE;
         }
 
-        if (wonCount == wonTimes) {
+        if (wonCount == 1 && betOnCounter.get()<=35) {
             wonCount = 0;
             betOnCounter.set(betOffAfterOccurrence - 1);
+        }
+
+        if (wonCount == 2) {
+            wonCount = 0;
+            betOnCounter.set(betOffAfterOccurrence - 1);
+
         }
 
         lastMulti=latestMultiplier;

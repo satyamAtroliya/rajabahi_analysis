@@ -27,6 +27,8 @@ public class BettingStrategy {
         if(history.size()>2)
             shouldBet=dmn.decisionMaker(history.get(history.size()-1));
 
+        targetMultiplier=dmn.getTargetMultiplier();
+
         //targetMultiplier= dmn.getTargetMul();
 
         // --- END OF YOUR CUSTOM LOGIC SPACE ---

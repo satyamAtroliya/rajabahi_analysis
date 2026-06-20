@@ -26,8 +26,7 @@ public class RangeCounter {
         // 2. Define your custom ranges here
         List<Range> ranges = Arrays.asList(
                 new Range(1, 65),
-                new Range(65, 80),
-                new Range(80, 120),
+                new Range(65, 120),
                 new Range(120, 350),
                 new Range(350, 380),
                 new Range(450, 600)
