@@ -21,9 +21,11 @@ public class DecisionMakerStart3 {
     private final AtomicInteger betOnCounter = new AtomicInteger(0);
     private final ButtonController btn = new ButtonController(false, false);
     private int wonCount = 0;
+
     private int hold100hand = 0;
 
     private double target=100;
+    private TurnTracker tt = new TurnTracker();
 
     public double getTargetMultiplier(){
         return  target;
@@ -47,7 +49,7 @@ public class DecisionMakerStart3 {
         }
 
         // Trigger Auto Bet On conditions
-        if (isHighMultiplier && !betButtonStatus && !start2Fired && hold100hand >=145) {
+        if (tt.addTurnAndGetScore(latestMultiplier) >= 0.95 && isHighMultiplier && !betButtonStatus && !start2Fired && hold100hand >=200) {
             triggerBetOn(65);
             start2Fired = true; // LOCK FLAG: Blocks this block from executing again
         }
@@ -60,15 +62,15 @@ public class DecisionMakerStart3 {
             betOffAfterOccurrence = Integer.MAX_VALUE;
         }
 
-        if (wonCount == 1 && betOnCounter.get()<=35) {
-            wonCount = 0;
-            betOnCounter.set(betOffAfterOccurrence - 1);
+        if (wonCount == 1) {
+            betOffAfterOccurrence=85;
         }
-
         if (wonCount == 2) {
+            betOffAfterOccurrence=125;
+        }
+        if (wonCount == 3) {
             wonCount = 0;
             betOnCounter.set(betOffAfterOccurrence - 1);
-
         }
 
         lastMulti=latestMultiplier;
