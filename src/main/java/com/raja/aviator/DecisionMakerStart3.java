@@ -22,22 +22,24 @@ public class DecisionMakerStart3 {
     private final ButtonController btn = new ButtonController(false, false);
     private int wonCount = 0;
 
-    private int hold100hand = 0;
+    private int lastHundredBeforeHolder = 0;
+    private double target = 100;
 
-    private double target=100;
+
     private TurnTracker tt = new TurnTracker();
 
-    public double getTargetMultiplier(){
-        return  target;
+    public double getTargetMultiplier() {
+        return target;
     }
 
     double lastMulti = 0;
+
     public boolean decisionMaker(double latestMultiplier) {
         btn.setAutoBetOn(false);
         btn.setAutoBetOff(false);
 
         boolean isHighMultiplier = latestMultiplier >= HUNDRED;
-        hold100hand=lastHundredBefore.get();
+        lastHundredBeforeHolder = lastHundredBefore.get();
         if (isHighMultiplier) {
             lastHundredBefore.set(0);
             start2Fired = false; // RESET FLAG: Allow start2 to run again for the NEXT 100x block
@@ -48,11 +50,13 @@ public class DecisionMakerStart3 {
             lastHundredBefore.getAndIncrement();
         }
 
-        // Trigger Auto Bet On conditions
-        if (tt.addTurnAndGetScore(latestMultiplier) >= 0.95 && isHighMultiplier && !betButtonStatus && !start2Fired && hold100hand >=200) {
-            triggerBetOn(65);
+        double score = tt.addTurnAndGetScore(latestMultiplier);
+        //Start 1 : Most profitable
+        if (score >= 0 && isHighMultiplier && !betButtonStatus && !start2Fired && lastHundredBeforeHolder >= 200) {
+            triggerBetOn(80);
             start2Fired = true; // LOCK FLAG: Blocks this block from executing again
         }
+
 
         betOnCounter.getAndIncrement();
 
@@ -62,18 +66,34 @@ public class DecisionMakerStart3 {
             betOffAfterOccurrence = Integer.MAX_VALUE;
         }
 
-        if (wonCount == 1) {
-            betOffAfterOccurrence=85;
+        if (wonCount == 1 && score >= 5) {
+            betOffAfterOccurrence = 130;
+        } else if (wonCount == 1) {
+            betOffAfterOccurrence = 95;
         }
-        if (wonCount == 2) {
-            betOffAfterOccurrence=125;
+
+        if (wonCount == 2 && score >= 4) {
+            betOffAfterOccurrence = 155;
         }
+
+        if (wonCount == 1 && betOnCounter.get() <= 10) {
+            wonCount = 0;
+            betOnCounter.set(betOffAfterOccurrence - 1);
+        }
+
+        if (wonCount == 2 && betOnCounter.get() <= 30) {
+            wonCount = 0;
+            betOnCounter.set(betOffAfterOccurrence - 1);
+        }
+
+
         if (wonCount == 3) {
             wonCount = 0;
             betOnCounter.set(betOffAfterOccurrence - 1);
         }
 
-        lastMulti=latestMultiplier;
+
+        lastMulti = latestMultiplier;
 
         if (btn.isAutoBetOn()) {
             betButtonStatus = true;

@@ -25,13 +25,10 @@ public class RangeCounter {
 
         // 2. Define your custom ranges here
         List<Range> ranges = Arrays.asList(
-                new Range(1, 65),
-                new Range(65, 100),
+                new Range(1, 85),
+                new Range(85, 100),
                 new Range(100, 150),
-                new Range(150, 200),
-                new Range(200, 250),
-                new Range(250, 380),
-                new Range(380, 600)
+                new Range(150, 210)
         );
 
         // 3. Initialize the counter map
