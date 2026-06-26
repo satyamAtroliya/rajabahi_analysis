@@ -62,7 +62,7 @@ public class AviatorCalculator {
                                 if (actualMultiplier >= config.targetMultiplier) {
                                     double winnings = config.amount * config.targetMultiplier;
                                     balance += winnings;
-                                    System.out.println(String.format("  %d 🎉 WON! Cashed out at %.2fx. Won: Rs. %.2f | last100xBefore : %d | New Balance: Rs. %.2f", round, config.targetMultiplier, winnings, LastHundredBefore.get(), balance));
+                                    //System.out.println(String.format("  %d 🎉 WON! Cashed out at %.2fx. Won: Rs. %.2f | last100xBefore : %d | New Balance: Rs. %.2f", round, config.targetMultiplier, winnings, LastHundredBefore.get(), balance));
                                     totalWonBet.getAndIncrement();
                                 } else {
                                    // System.out.println(String.format("  %d ❌ LOST! Crashed at %.2fx before reaching %.2fx | last100xBefore : %d | New Balance: Rs. %.2f", round, actualMultiplier, config.targetMultiplier, LastHundredBefore.get(), balance));
@@ -84,10 +84,11 @@ public class AviatorCalculator {
             System.err.println("Error reading the test file: " + e.getMessage());
         }
 
-        System.out.println("=== Simulation Ended ===");
-        System.out.println("Final Account Balance: Rs. " + balance+" | TotalBet : "+ totalBet+" | total Won Bet : "+totalWonBet);
+
+        System.out.println("Final Account Balance: Rs. " + (balance -10000)+" | TotalBet : "+ totalBet+" | total Won Bet : "+totalWonBet);
         float successRate = (float) (totalWonBet.get() * 100) /totalBet.get();
 
         System.out.println(  "Success rate : " +successRate+" , Expected Losses before a win  "+ 1/(successRate/100));
+        System.out.println("=== Simulation Ended ===");
     }
 }
