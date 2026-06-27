@@ -29,7 +29,6 @@ public class DecisionMakerStart3 {
     private int occurrencesRemainingToWait = 0;
 
     private int wonCount = 0;
-    private int lossCounter = 0;
     private int lastHundredBeforeHolder = 0;
 
     private final AtomicInteger lastHundredBefore = new AtomicInteger(0);
@@ -52,7 +51,6 @@ public class DecisionMakerStart3 {
         lastHundredBeforeHolder = lastHundredBefore.get();
 
         if (isHighMultiplier) {
-            //System.out.println(".............Highreeee........at "+lastHundredBefore.get()+"  || multiplier..."+latestMultiplier);
             lastHundredBefore.set(0);
             start2Fired = false;
             if (betButtonStatus) wonCount++;
@@ -73,22 +71,19 @@ public class DecisionMakerStart3 {
                 triggerBetOn(76, 1);
                 start2Fired = true;
                 currentState = StrategyState.START1_ACTIVE;
-                //System.out.println("iiinnnnn start11======"+lastHundredBeforeHolder);
             }
             // Strategy 2: Runs once if Strategy 1 lost (Starts after 50 occurrences pass)
             else if (currentState == StrategyState.START2_READY && lastHundredBeforeHolder <= 199) {
                 triggerBetOn(35, 90);
                 start2Fired = true;
                 currentState = StrategyState.START2_DELAYED;
-                //System.out.println("iiinnnnn start22 (queued with 50 delay)======"+lastHundredBeforeHolder);
             }
             // Strategy 3: Runs once after Strategy 2 completes (Starts after 50 occurrences pass)
             else if (currentState == StrategyState.START3_READY && lastHundredBeforeHolder <= 199) {
                 triggerBetOn(35, 35);
                 start2Fired = true;
                 currentState = StrategyState.START3_DELAYED;
-                //System.out.println("iiinnnnn start33 (queued with 50 delay)======"+lastHundredBeforeHolder);
-            }
+             }
         }
 
         betOnCounter.getAndIncrement();
@@ -98,11 +93,6 @@ public class DecisionMakerStart3 {
             btn.setAutoBetOff(true);
             betOffAfterOccurrence = Integer.MAX_VALUE;
 
-            if (wonCount == 0) {
-                lossCounter++;
-                //System.out.println("losttt..." + lossCounter);
-            }
-
             // State resolution router
             if (currentState == StrategyState.START1_ACTIVE) {
                 currentState = (wonCount > 0) ? StrategyState.WAITING_FOR_START1 : StrategyState.START2_READY;
@@ -111,7 +101,7 @@ public class DecisionMakerStart3 {
             } else if (currentState == StrategyState.START3_ACTIVE) {
                 currentState = StrategyState.WAITING_FOR_START1;
             }
-            System.out.println(" Won count at closer =  "+wonCount);
+            //System.out.println(" Won count at closer =  "+wonCount);
             wonCount = 0;
         }
 

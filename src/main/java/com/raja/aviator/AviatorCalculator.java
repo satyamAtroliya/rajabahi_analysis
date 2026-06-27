@@ -62,7 +62,7 @@ public class AviatorCalculator {
                                 if (actualMultiplier >= config.targetMultiplier) {
                                     double winnings = config.amount * config.targetMultiplier;
                                     balance += winnings;
-                                   System.out.println(String.format("  %d 🎉 WON! Multiplier %.2fx. Won: Rs. %.2f | last100xBefore : %d | New Balance: Rs. %.2f", round, actualMultiplier, winnings, LastHundredBefore.get(), balance));
+                                   //System.out.println(String.format("  %d 🎉 WON! Multiplier %.2fx. Won: Rs. %.2f | last100xBefore : %d | New Balance: Rs. %.2f", round, actualMultiplier, winnings, LastHundredBefore.get(), balance));
                                     totalWonBet.getAndIncrement();
                                 } else {
                                    // System.out.println(String.format("  %d ❌ LOST! Crashed at %.2fx before reaching %.2fx | last100xBefore : %d | New Balance: Rs. %.2f", round, actualMultiplier, config.targetMultiplier, LastHundredBefore.get(), balance));
