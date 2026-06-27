@@ -70,7 +70,7 @@ public class DecisionMakerStart3 {
 
             // Strategy 1: Highest priority, starts immediately (0 delay)
             if (score >= 0 && lastHundredBeforeHolder >= 200) {
-                triggerBetOn(75, 1);
+                triggerBetOn(76, 1);
                 start2Fired = true;
                 currentState = StrategyState.START1_ACTIVE;
                 //System.out.println("iiinnnnn start11======"+lastHundredBeforeHolder);
@@ -111,7 +111,7 @@ public class DecisionMakerStart3 {
             } else if (currentState == StrategyState.START3_ACTIVE) {
                 currentState = StrategyState.WAITING_FOR_START1;
             }
-            //System.out.println("------------ offf-----------------   ");
+            System.out.println(" Won count at closer =  "+wonCount);
             wonCount = 0;
         }
 
@@ -123,12 +123,16 @@ public class DecisionMakerStart3 {
                 betOffAfterOccurrence = 155;
             }
 
-            if ((wonCount == 1 && betOnCounter.get() <= 15) ||
-                    (wonCount == 2 && betOnCounter.get() <= 40) ||
-                    (wonCount == 3)) {
+            if ((wonCount == 1 && betOnCounter.get() <= 15) || (wonCount == 2 && betOnCounter.get() <= 40) || (wonCount == 3)) {
+                betOnCounter.set(betOffAfterOccurrence - 1);
+            }
+            if (wonCount == 2 && score <= 1){
                 betOnCounter.set(betOffAfterOccurrence - 1);
             }
             if (wonCount == 2 && currentState == StrategyState.START2_ACTIVE){
+                betOnCounter.set(betOffAfterOccurrence - 1);
+            }
+            if (wonCount == 2 && currentState == StrategyState.START3_ACTIVE){
                 betOnCounter.set(betOffAfterOccurrence - 1);
             }
 

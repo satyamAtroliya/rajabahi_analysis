@@ -10,7 +10,7 @@ public class Main {
         // Initialize the calculator with a starting balance of Rs. 5000
 
 
-        // Path to your test file containing the source numbers
+        /* Path to your test file containing the source numbers
         String path = "./dataSource/";
         List<String> names = getFileNames(path);
         for(String name : names){
@@ -18,9 +18,10 @@ public class Main {
             AviatorCalculator calculator = new AviatorCalculator(10000);
             calculator.processSimulation(testFilePath);
         }
-
+*/
        // Individual Testing
-       // calculator.processSimulation("./dataSource/all_new.txt");
+        AviatorCalculator calculator = new AviatorCalculator(10000);
+       calculator.processSimulation("./dataSource/all_new.txt");
 
 
     }
