@@ -60,7 +60,7 @@ public class DecisionMakerStart3 {
         double score = tt.addTurnAndGetScore(latestMultiplier);
 
         //if (isHighMultiplier && score <= -1) //allowed -1, -1.2, -2
-           System.out.println("score " + score);// it won me
+         //  System.out.println("score " + score);// it won me
 
        // if (isHighMultiplier && score >= -1) //allows + values 1 , 2 , 3 0
            // System.out.println("score11 " + score); i wou you
@@ -75,22 +75,22 @@ public class DecisionMakerStart3 {
         }
 
         //Start 2 : Most profitable
-        if (startAndWin == 0 && score <= -3 && isHighMultiplier && !betButtonStatus && !start2Fired) {
+        if (startAndWin == 0 && isHighMultiplier && !betButtonStatus && !start2Fired) {
             triggerBetOn(76);
             start2Fired = true; // LOCK FLAG: Blocks this block from executing again
             startAndWin = 0;
             System.out.println("............Start2 "+ score );
         }
 
-    /*    //Under testing
+        //Under testing
         if (isHighMultiplier && !betButtonStatus && !start2Fired && lastHundredBeforeHolder <= 30) {
-            triggerBetOn(40);
+            triggerBetOn(65);
             start2Fired = true; // LOCK FLAG: Blocks this block from executing again
-            //System.out.println("............Start3");
+            System.out.println("............Start3");
             startAndWin = 0;
             state = State.START3;
         }
-*/
+
 
         betOnCounter.getAndIncrement();
 

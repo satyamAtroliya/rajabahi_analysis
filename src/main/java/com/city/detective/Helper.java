@@ -8,7 +8,7 @@ import java.util.*;
 
 
 public class Helper {
-    private static final String filePath = "C:/WorkSpace/datafiles/consolidated_data/all_new.txt";
+    private static final String filePath = "C:/WorkSpace/multipliers/yearly/year_2026.txt";
 
     public static Map<Integer, DataModel> getDataMap() {
         return dataMap;
