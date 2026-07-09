@@ -11,8 +11,8 @@ public class DataOrganizer {
 
     public static void main(String[] args) {
         // Change these to your actual folder and file paths
-        String inputFolderPath = "inputfiles";
-        String masterOutputPath = "mon_25_Jun_co.txt";
+        String inputFolderPath = "C:/WorkSpace/datafiles/collected_data/";
+        String masterOutputPath = "C:/WorkSpace/datafiles/consolidated_data/mon_07_July_co.txt";
 
         try {
             mergeAllFiles(inputFolderPath, masterOutputPath);
@@ -26,11 +26,6 @@ public class DataOrganizer {
     public static void mergeAllFiles(String folderPath, String outputPathStr) throws IOException {
         Path inputDir = Paths.get(folderPath);
         Path outputPath = Paths.get(outputPathStr);
-
-        // Create output directories if they do not exist
-        if (outputPath.getParent() != null) {
-            Files.createDirectories(outputPath.getParent());
-        }
 
         // Open the master output file for writing
         try (BufferedWriter writer = Files.newBufferedWriter(outputPath);

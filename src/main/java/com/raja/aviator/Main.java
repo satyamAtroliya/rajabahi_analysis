@@ -6,22 +6,22 @@ import java.util.List;
 
 // Save as Main.java
 public class Main {
+
+
     public static void main(String[] args) {
         // Initialize the calculator with a starting balance of Rs. 5000
+        String FILE_SOURCE = "./dataSource/";
 
-
-        // Path to your test file containing the source numbers
-        String path = "./dataSource/";
-        List<String> names = getFileNames(path);
+        List<String> names = getFileNames(FILE_SOURCE);
         for(String name : names){
-            String testFilePath = "./dataSource/"+name;
-            AviatorCalculator calculator = new AviatorCalculator(10000);
-            calculator.processSimulation(testFilePath);
+            String testFilePath = FILE_SOURCE+name;
+          //  AviatorCalculator calculator = new AviatorCalculator(10000);
+           //calculator.processSimulation(testFilePath);
         }
 
         // Individual Testing
-        // calculator.processSimulation("./dataSource/all_new.txt");
-
+        AviatorCalculator calculator = new AviatorCalculator(10000);
+         calculator.processSimulation(FILE_SOURCE+"mon_21_jun_CO.txt");
 
     }
 
