@@ -17,7 +17,8 @@ public class RangeCounter {
             //System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
             total++;
             counter++;
-            if(entry.getValue().getMultiplier()>50){
+            if(entry.getValue().getMultiplier()>100){
+                System.out.print(" ,"+counter);
                 numbers.add(counter);
                 counter=0;
             }
@@ -25,7 +26,13 @@ public class RangeCounter {
 
         // 2. Define your custom ranges here
         List<Range> ranges = Arrays.asList(
-                new Range(1, 10000)
+                new Range(1, 10),
+                new Range(10, 15),
+                new Range(15, 20),
+                new Range(20, 25),
+                new Range(25, 30),
+                new Range(30, 35),
+                new Range(35, 40)
         );
 
         // 3. Initialize the counter map

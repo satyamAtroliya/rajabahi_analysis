@@ -21,7 +21,7 @@ public class Main {
 
         // Individual Testing
         AviatorCalculator calculator = new AviatorCalculator(10000);
-         calculator.processSimulation(FILE_SOURCE+"mon_11_Jun_CO.txt");
+         calculator.processSimulation(FILE_SOURCE+"all_new.txt");
 
     }
 

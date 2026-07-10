@@ -14,7 +14,7 @@ public class BettingStrategy {
      * @return A Config object containing your decision for the NEXT round.
      */
 
-    static DecisionMakerStart3 dmn= new DecisionMakerStart3();
+    static DecisionMakerStart4 dmn= new DecisionMakerStart4();
 
     public static BetConfig decideNextBet(List<Double> history) {
 
@@ -26,8 +26,6 @@ public class BettingStrategy {
 
         if(history.size()>2)
             shouldBet=dmn.decisionMaker(history.get(history.size()-1));
-
-        targetMultiplier=dmn.getTargetMultiplier();
 
         //targetMultiplier= dmn.getTargetMul();
 
