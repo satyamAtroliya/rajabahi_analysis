@@ -53,8 +53,6 @@ public class DecisionMakerStart3 {
             betOnCounter = betOffAfterOccurrence - 1;
         }
 
-
-
         return betButtonStatus;
     }
 

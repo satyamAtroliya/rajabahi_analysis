@@ -18,7 +18,7 @@ public class DecisionMakerStart4 {
     private static final double HUNDRED = 100.0;
 
     private boolean betButtonStatus = false;
-    private int lastHundredBefore = 0;
+    private int lastHundredBefore = Integer.MAX_VALUE;
 
     // Initialize with three dummy 3-digit numbers to prevent IndexOutOfBounds exceptions
     // and prevent false-positive pattern matches on startup.
