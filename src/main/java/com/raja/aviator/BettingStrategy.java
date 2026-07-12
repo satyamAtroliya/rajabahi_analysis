@@ -1,9 +1,7 @@
 package com.raja.aviator;
 
 // Save as BettingStrategy.java
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class BettingStrategy {
 
@@ -14,7 +12,7 @@ public class BettingStrategy {
      * @return A Config object containing your decision for the NEXT round.
      */
 
-    static DecisionMaker5 dmn= new DecisionMaker5();
+    static DecisionMaker dmn= new DecisionMaker();
 
     public static BetConfig decideNextBet(List<Double> history) {
 
@@ -25,9 +23,9 @@ public class BettingStrategy {
         double targetMultiplier = 100; // Configurable target redeem multiplier (e.g., 2.0x, 100.0x)
 
         if(history.size()>2)
-            shouldBet=dmn.decisionMaker(history.get(history.size()-1));
+            shouldBet=dmn.decisionMaker(history.get(history.size()-1), "100");
 
-        betAmount = dmn.getBetAmount();
+        //betAmount = dmn.getBetAmount();
 
         //targetMultiplier= dmn.getTargetMul();
 
