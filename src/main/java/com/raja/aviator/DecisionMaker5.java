@@ -22,7 +22,7 @@ public class DecisionMaker5 {
         boolean isDm4Betting = dm4.decisionMaker(latestMultiplier);
 
         if (isDm3Betting && isDm4Betting) {
-            betAmount = 20;
+            betAmount = 10;
             return true;
         } else if (isDm3Betting || isDm4Betting) {
             // Note: If only one is true, betAmount remains whatever it was previously (10 or 20).
