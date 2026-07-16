@@ -44,7 +44,7 @@ public class DecisionMaker {
         }
 
         // 3. Consult strategies for the NEXT round
-        boolean isDm3Betting = stretegy200.decisionMaker(latestMultiplier);
+        boolean isDm3Betting = false;//stretegy200.decisionMaker(latestMultiplier);
         boolean isDm4Betting = stretegyTwoDigit.decisionMaker(latestMultiplier);
 
         // Variables to determine next state
@@ -53,7 +53,7 @@ public class DecisionMaker {
 
         // Logic to determine bet status, amount, and which strategy triggered it
         if (isDm3Betting && isDm4Betting) {
-            betAmount = 20;
+            betAmount = 10;
             nextBetStatus = true;
             activeStrategy = "BOTH Strategy200 & "+System.getProperty("STRATEGY");
         } else if (isDm3Betting) {
