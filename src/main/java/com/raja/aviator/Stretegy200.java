@@ -28,10 +28,11 @@ public class Stretegy200 {
         }
 
         // 2. Start Betting Logic
-        if (isHighMultiplier && !betButtonStatus && !start2Fired && previousLastHundred >= 200) {
+        if (isHighMultiplier && !betButtonStatus && !start2Fired && previousLastHundred >= 200 && previousLastHundred <= 402) {
             triggerBetOn(76);
             start2Fired = true;
         }
+
 
         // 3. Process Active Betting Logic & Auto-Stop
         betOnCounter++;
@@ -43,11 +44,11 @@ public class Stretegy200 {
         }
 
         // 4. Adjust Future Durations and Early Stop Triggers based on Wins
-        if (wonCount == 1) {
+       if (wonCount == 1) {
             betOffAfterOccurrence = 85;
             if (betOnCounter <= 20) betOnCounter = betOffAfterOccurrence - 1;
         } else if (wonCount == 2) {
-            betOffAfterOccurrence = 120;
+            betOffAfterOccurrence = 135;
             if (betOnCounter <= 40) betOnCounter = betOffAfterOccurrence - 1;
         } else if (wonCount >= 3) {
             betOnCounter = betOffAfterOccurrence - 1;

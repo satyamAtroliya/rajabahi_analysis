@@ -32,6 +32,7 @@ public class StretegyTwoDigit {
     // and prevent false-positive pattern matches on startup.
     private List<Integer> list = new ArrayList<>(List.of(150, 150, 150));
     boolean flag = false;
+    int round = 0;
 
     public boolean decisionMaker(double latestMultiplier) {
         boolean isHighMultiplier = latestMultiplier >= HUNDRED;
@@ -53,6 +54,9 @@ public class StretegyTwoDigit {
                     state = State.SEARCHING_PATTERN;
                     break;
                 case BETTING_A1:
+
+                   // if(lastHundredBefore<=10)
+                     //   flag=false;
                     // Step 5: 100x found during bet, move to next waiting phase (Step 6)
                     state = State.SEARCHING_PATTERN;
                     break;
@@ -88,14 +92,22 @@ public class StretegyTwoDigit {
                 int secondLast = list.get(size - 2);
                 int last = list.get(size - 1);
 
-                if (last < 90 && last >= 0){
+                if (secondLast < 90 && last < 90 & flag){
                     state = State.WAITING_A1; // Trigger Step 3
                     System.setProperty("STRATEGY","STRATEGY_TD_A1");
+                    round++;
+                    if(round==4)
+                        flag=false;
+                }
+
+                if(last>100) {
+                    flag = true;
+                    round=0;
                 }
                 // Higher Precedence
                 // Step 1 & 2: 3-digit (>= 100) followed by two 2-digit (< 100)
                 if (thirdLast >= 100 && secondLast < 100 && last < 100) {
-                    state = State.WAITING_B1; // Trigger Step 3
+                   // state = State.WAITING_B1; // Trigger Step 3
                     System.setProperty("STRATEGY","STRATEGY_TD_B1");
                 }
             }
@@ -116,14 +128,14 @@ public class StretegyTwoDigit {
                 case BETTING_A1:
                     // Step 5 alternative: 20 wait + 70 bet = 90 total.
                     // If we reach 90 and no 100x was found, reset everything.
-                    if (lastHundredBefore == 10) {
+                    if (lastHundredBefore == 40) {
                         state = State.WAITING_A2;
                         betButtonStatus = false;
                     }
                     break;
                 case WAITING_A2:
                     // Step 6: Wait until count 20
-                    if (lastHundredBefore == 15) {
+                    if (lastHundredBefore == 60) {
                         state = State.BETTING_A2;
                         // if(flag)
                         betButtonStatus = true; // Turn bet ON
@@ -131,21 +143,21 @@ public class StretegyTwoDigit {
                     break;
                 case BETTING_A2:
                     // Step 7 alternative: 20 wait + 70 bet = 90 total. Reset when done.
-                    if (lastHundredBefore == 25) {
+                    if (lastHundredBefore == 85) {
                         state = State.WAITING_A3;
                         betButtonStatus = false;
                     }
                     break;
                 case WAITING_A3:
                     // Step 6: Wait until count 20
-                    if (lastHundredBefore == 30) {
+                    if (lastHundredBefore == 120) {
                         state = State.BETTING_A3;
                         betButtonStatus = true; // Turn bet ON
                     }
                     break;
                 case BETTING_A3:
                     // Step 7 alternative: 20 wait + 70 bet = 90 total. Reset when done.
-                    if (lastHundredBefore == 35) {
+                    if (lastHundredBefore == 160) {
                         state = State.SEARCHING_PATTERN;
                         betButtonStatus = false;
                     }
