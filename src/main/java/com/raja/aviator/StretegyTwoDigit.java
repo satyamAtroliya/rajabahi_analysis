@@ -7,19 +7,15 @@ public class StretegyTwoDigit {
 
     // Define explicit states for each step of your requirements
     public enum State {
-        SEARCHING_PATTERN, // Looking for [>=100, <100, <100] (Steps 1 & 2)
-        WAITING_A1,         // Step 3: Waiting for 20 counts
-        BETTING_A1,         // Step 4: Betting for 70 counts
-        WAITING_A2,         // Step 6: Waiting for 20 counts after a win
-        BETTING_A2,          // Step 7: Betting for 70 counts,         // Step 4: Betting for 70 counts
-        WAITING_A3,         // Step 6: Waiting for 20 counts after a win
-        BETTING_A3,          // Step 7: Betting for 70 counts,         // Step 4: Betting for 70 counts
-        WAITING_B1,         // Step 6: Waiting for 20 counts after a win
-        BETTING_B1,          // Step 7: Betting for 70 counts,         // Step 4: Betting for 70 counts
-        WAITING_B2,         // Step 6: Waiting for 20 counts after a win
-        BETTING_B2,              // Step 7: Betting for 70 counts,         // Step 4: Betting for 70 counts
-        WAITING_B3,         // Step 6: Waiting for 20 counts after a win
-        BETTING_B3          // Step 7: Betting for 70 counts,              // Step 7: Betting for 70 counts,         // Step 4: Betting for 70 counts
+        SEARCHING_PATTERN,
+        WAITING_A1,
+        BETTING_A1,
+        WAITING_A2,
+        BETTING_A2,
+        WAITING_A3,
+        BETTING_A3,
+        WAITING_B1,
+        BETTING_B1
     }
 
     private static State state = State.SEARCHING_PATTERN;
@@ -46,38 +42,21 @@ public class StretegyTwoDigit {
             // Handle State transitions based on the 100x hit
             switch (state) {
                 case WAITING_A1:
-                    // If 100x hits during Step 3 or 6, reset everything
                     state = State.SEARCHING_PATTERN;
                     break;
                 case WAITING_A2:
-                    // If 100x hits during Step 3 or 6, reset everything
                     state = State.SEARCHING_PATTERN;
                     break;
                 case BETTING_A1:
-
-                   // if(lastHundredBefore<=10)
-                     //   flag=false;
-                    // Step 5: 100x found during bet, move to next waiting phase (Step 6)
                     state = State.SEARCHING_PATTERN;
                     break;
                 case BETTING_A2:
-                    // Step 7: 100x found during bet cycle, cycle is over, reset
                     state = State.SEARCHING_PATTERN;
                     break;
                 case BETTING_A3:
-                    // Step 7: 100x found during bet cycle, cycle is over, reset
                     state = State.SEARCHING_PATTERN;
                     break;
                 case BETTING_B1:
-                    // Step 7: 100x found during bet cycle, cycle is over, reset
-                    state = State.SEARCHING_PATTERN;
-                    break;
-                case BETTING_B2:
-                    // Step 7: 100x found during bet cycle, cycle is over, reset
-                    state = State.SEARCHING_PATTERN;
-                    break;
-                case BETTING_B3:
-                    // Step 7: 100x found during bet cycle, cycle is over, reset
                     state = State.SEARCHING_PATTERN;
                     break;
                 case SEARCHING_PATTERN:
@@ -92,123 +71,80 @@ public class StretegyTwoDigit {
                 int secondLast = list.get(size - 2);
                 int last = list.get(size - 1);
 
-                if (secondLast < 90 && last < 90 && flag){
-                    state = State.WAITING_A1; // Trigger Step 3
-                    System.setProperty("STRATEGY","STRATEGY_TD_A1");
+                if (secondLast < 90 && last < 90 && flag) {
+                    state = State.WAITING_A1;
+                    System.setProperty("STRATEGY", "STRATEGY_TD_A1");
                     round++;
-                    if(round==4)
-                        flag=false;
+                    if (round == 4)
+                        flag = false;
                 }
 
-                if(last>100) {
+                if (last > 100) {
                     flag = true;
-                    round=0;
+                    round = 0;
                 }
                 // Higher Precedence
-                // Step 1 & 2: 3-digit (>= 100) followed by two 2-digit (< 100)
-                if (thirdLast >= 100 && secondLast < 100 && last < 100) {
-                   // state = State.WAITING_B1; // Trigger Step 3
-                    System.setProperty("STRATEGY","STRATEGY_TD_B1");
+                if (last > 100 && last < 160) {
+                    state = State.WAITING_B1;
+                    System.setProperty("STRATEGY", "STRATEGY_TD_B1");
                 }
             }
         } else {
             // Normal tick (multiplier < 100)
             lastHundredBefore++;
-
             // Process tick durations for current state
             switch (state) {
                 case WAITING_A1:
                     // Step 3: Wait until count 20
                     if (lastHundredBefore == 1) {
                         state = State.BETTING_A1;
-                        betButtonStatus = true; // Turn bet ON
+                        betButtonStatus = true;
                     }
                     break;
                 case BETTING_A1:
-                    // Step 5 alternative: 20 wait + 70 bet = 90 total.
-                    // If we reach 90 and no 100x was found, reset everything.
                     if (lastHundredBefore == 40) {
                         state = State.WAITING_A2;
                         betButtonStatus = false;
                     }
                     break;
                 case WAITING_A2:
-                    // Step 6: Wait until count 20
                     if (lastHundredBefore == 60) {
                         state = State.BETTING_A2;
-                        // if(flag)
-                        betButtonStatus = true; // Turn bet ON
+                        betButtonStatus = true;
                     }
                     break;
                 case BETTING_A2:
-                    // Step 7 alternative: 20 wait + 70 bet = 90 total. Reset when done.
                     if (lastHundredBefore == 90) {
                         state = State.WAITING_A3;
                         betButtonStatus = false;
                     }
                     break;
                 case WAITING_A3:
-                    // Step 6: Wait until count 20
                     if (lastHundredBefore == 125) {
                         state = State.BETTING_A3;
-                        betButtonStatus = true; // Turn bet ON
+                        betButtonStatus = true;
                     }
                     break;
                 case BETTING_A3:
-                    // Step 7 alternative: 20 wait + 70 bet = 90 total. Reset when done.
                     if (lastHundredBefore == 180) {
                         state = State.SEARCHING_PATTERN;
                         betButtonStatus = false;
                     }
                     break;
                 case WAITING_B1: // independent condition
-                    // Step 6: Wait until count 20
-                    if (lastHundredBefore == 20) {
+                    if (lastHundredBefore == 150) {
                         state = State.BETTING_B1;
-                        // if(flag)
-                        betButtonStatus = true; // Turn bet ON
+                        betButtonStatus = true;
                     }
                     break;
                 case BETTING_B1:
-                    // Step 7 alternative: 20 wait + 70 bet = 90 total. Reset when done.
-                    if (lastHundredBefore == 40) {
-                        state = State.WAITING_B2;
-                        betButtonStatus = false;
-                    }
-                    break;
-                case WAITING_B2:
-                    // Step 6: Wait until count 20
-                    if (lastHundredBefore == 125) {
-                        state = State.BETTING_B2;
-                        // if(flag)
-                        betButtonStatus = true; // Turn bet ON
-                    }
-                    break;
-                case BETTING_B2:
-                    // Step 7 alternative: 20 wait + 70 bet = 90 total. Reset when done.
-                    if (lastHundredBefore == 130) {
-                        state = State.WAITING_B3;
-                        betButtonStatus = false;
-                    }
-                    break;
-                case WAITING_B3:
-                    // Step 6: Wait until count 20
-                    if (lastHundredBefore == 150) {
-                        state = State.BETTING_B3;
-                        // if(flag)
-                        betButtonStatus = true; // Turn bet ON
-                    }
-                    break;
-                case BETTING_B3:
-                    // Step 7 alternative: 20 wait + 70 bet = 90 total. Reset when done.
-                    if (lastHundredBefore == 170) {
+                    if (lastHundredBefore == 165) {
                         state = State.SEARCHING_PATTERN;
                         betButtonStatus = false;
                     }
                     break;
                 case SEARCHING_PATTERN:
                 default:
-                    // Ensure bets are strictly off while searching
                     betButtonStatus = false;
                     break;
             }
