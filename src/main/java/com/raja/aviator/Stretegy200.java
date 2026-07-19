@@ -6,7 +6,6 @@ public class Stretegy200 {
 
     private int betOffAfterOccurrence = Integer.MAX_VALUE;
     private boolean betButtonStatus = false;
-    private boolean start2Fired = false;
 
     private int lastHundredBefore = 0;
     private int betOnCounter = 0;
@@ -19,7 +18,6 @@ public class Stretegy200 {
         // 1. Process Multiplier and Track Hits
         if (isHighMultiplier) {
             lastHundredBefore = 0;
-            start2Fired = false;
             if (betButtonStatus) {
                 wonCount++;
             }
@@ -28,9 +26,8 @@ public class Stretegy200 {
         }
 
         // 2. Start Betting Logic
-        if (isHighMultiplier && !betButtonStatus && !start2Fired && previousLastHundred >= 200 && previousLastHundred <= 402) {
+        if (isHighMultiplier && !betButtonStatus && previousLastHundred >= 200 && previousLastHundred <= 402) {
             triggerBetOn(76);
-            start2Fired = true;
         }
 
 

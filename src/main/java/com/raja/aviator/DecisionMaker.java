@@ -18,18 +18,20 @@ public class DecisionMaker {
 
     // Tracker for how many ticks/games have passed since the last 100x hit
     private int ticksSinceLastHundred = 0;
+    double heigest = 0.0;
 
     public boolean decisionMaker(double latestMultiplier, String balance) {
-
+        heigest = Math.max(heigest,balance_profit);
         // 1. Resolve the PREVIOUS round's bet based on the newly received multiplier
         if (betButtonStatus) {
             if (latestMultiplier >= HUNDRED) {
                 // If won, calculate balance by multiplying betAmount by 99
                 double profit = betAmount * 99;
                 balance_profit += profit;
-                log.info("");
+            //    log.info("");
+                log.info("Lose from Last: {}", heigest-balance_profit);
                 log.info("💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {}", latestMultiplier, profit, balance_profit);
-                log.info("");
+              //  log.info("");
             } else {
                 // If lost, deduct the bet amount
                 balance_profit -= betAmount;
@@ -71,13 +73,13 @@ public class DecisionMaker {
 
         // 4. Highlight significant state changes (Turning ON or OFF)
         if (!betButtonStatus && nextBetStatus) {
-          log.info("");
-            log.info("🟢🟢🟢 BETS TURNED ON! Triggered by: {} | Amount: {} | Ticks since last 100x: {}", activeStrategy, betAmount, ticksSinceLastHundred);
-            log.info("");
+         // log.info("");
+        //    log.info("🟢🟢🟢 BETS TURNED ON! Triggered by: {} | Amount: {} | Ticks since last 100x: {}", activeStrategy, betAmount, ticksSinceLastHundred);
+           // log.info("");
         } else if (betButtonStatus && !nextBetStatus) {
-            log.info("");
-            log.info("🔴🔴🔴 BETS TURNED OFF! Ticks since last 100x: {}", ticksSinceLastHundred);
-            log.info("");
+            //log.info("");
+          //  log.info("🔴🔴🔴 BETS TURNED OFF! Ticks since last 100x: {}", ticksSinceLastHundred);
+            //log.info("");
         }
 
         // 5. Standard tick logging for every method call
@@ -99,8 +101,8 @@ public class DecisionMaker {
         }
 
 
-        log.info("📊 Tick:  {}  | Strategy:  {}  |  Balance:  {}  | Last 100x ago  {}  | Bet is  {}  | Profit:  {}",
-                tick, activeStrategy, balance ,ticksSinceLastHundred, statusString, balance_profit);
+    //    log.info("📊 Tick:  {}  | Strategy:  {}  |  Balance:  {}  | Last 100x ago  {}  | Bet is  {}  | Profit:  {}",
+      //          tick, activeStrategy, balance ,ticksSinceLastHundred, statusString, balance_profit);
 
         // System property update
         System.setProperty("BET_BTN_STATUS", statusString);

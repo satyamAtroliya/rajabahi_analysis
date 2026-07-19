@@ -92,7 +92,7 @@ public class StretegyTwoDigit {
                 int secondLast = list.get(size - 2);
                 int last = list.get(size - 1);
 
-                if (secondLast < 90 && last < 90 & flag){
+                if (secondLast < 90 && last < 90 && flag){
                     state = State.WAITING_A1; // Trigger Step 3
                     System.setProperty("STRATEGY","STRATEGY_TD_A1");
                     round++;
@@ -111,7 +111,6 @@ public class StretegyTwoDigit {
                     System.setProperty("STRATEGY","STRATEGY_TD_B1");
                 }
             }
-
         } else {
             // Normal tick (multiplier < 100)
             lastHundredBefore++;
@@ -143,21 +142,21 @@ public class StretegyTwoDigit {
                     break;
                 case BETTING_A2:
                     // Step 7 alternative: 20 wait + 70 bet = 90 total. Reset when done.
-                    if (lastHundredBefore == 85) {
+                    if (lastHundredBefore == 90) {
                         state = State.WAITING_A3;
                         betButtonStatus = false;
                     }
                     break;
                 case WAITING_A3:
                     // Step 6: Wait until count 20
-                    if (lastHundredBefore == 120) {
+                    if (lastHundredBefore == 125) {
                         state = State.BETTING_A3;
                         betButtonStatus = true; // Turn bet ON
                     }
                     break;
                 case BETTING_A3:
                     // Step 7 alternative: 20 wait + 70 bet = 90 total. Reset when done.
-                    if (lastHundredBefore == 160) {
+                    if (lastHundredBefore == 180) {
                         state = State.SEARCHING_PATTERN;
                         betButtonStatus = false;
                     }

@@ -22,9 +22,9 @@ public class Main {
         // Individual Testing
         AviatorCalculator calculator = new AviatorCalculator(10000);
          //calculator.processSimulation(FILE_SOURCE+"mon_19_jun_CO.txt");
-        //calculator.processSimulation("C:/WorkSpace/multipliers/daily/daily_183.txt");
-         calculator.processSimulation("C:/WorkSpace/multipliers/yearly/year_2026.txt");
-         //calculator.processSimulation("C:/WorkSpace/multipliers/weekly/weekly_29.txt");
+        //calculator.processSimulation("C:/WorkSpace/multipliers/daily/daily_199.txt");
+         //calculator.processSimulation("C:/WorkSpace/multipliers/yearly/year_2026.txt");
+         calculator.processSimulation("C:/WorkSpace/multipliers/weekly/weekly_29.txt");
 
     }
 
