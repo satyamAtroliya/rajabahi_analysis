@@ -26,7 +26,7 @@ public class Stretegy200 {
         }
 
         // 2. Start Betting Logic
-        if (isHighMultiplier && !betButtonStatus && previousLastHundred >= 200 && previousLastHundred <= 402) {
+        if (isHighMultiplier && !betButtonStatus && previousLastHundred >= 200 && previousLastHundred <= 400) {
             triggerBetOn(76);
         }
 

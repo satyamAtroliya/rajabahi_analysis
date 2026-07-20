@@ -46,8 +46,8 @@ public class DecisionMaker {
         }
 
         // 3. Consult strategies for the NEXT round
-        boolean isDm3Betting = stretegy200.decisionMaker(latestMultiplier);
-        boolean isDm4Betting = stretegyTwoDigit.decisionMaker(latestMultiplier);
+        boolean isDm3Betting =  stretegy200.decisionMaker(latestMultiplier); // 22k profit in 8.5k bets
+        boolean isDm4Betting = stretegyTwoDigit.decisionMaker(latestMultiplier);// More profitable 30k in 3k bets
 
         // Variables to determine next state
         boolean nextBetStatus = false;
