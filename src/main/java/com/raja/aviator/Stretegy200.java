@@ -30,6 +30,10 @@ public class Stretegy200 {
             triggerBetOn(76);
         }
 
+        if (isHighMultiplier && !betButtonStatus && previousLastHundred >= 60 && previousLastHundred <= 85) {
+            triggerBetOn(35);
+        }
+
 
         // 3. Process Active Betting Logic & Auto-Stop
         betOnCounter++;

@@ -96,7 +96,7 @@ public class StretegyTwoDigit {
             switch (state) {
                 case WAITING_A1:
                     // Step 3: Wait until count 20
-                    if (lastHundredBefore == 39) {
+                    if (lastHundredBefore == 30) {
                         state = State.BETTING_A1;
                         betButtonStatus = true;
                     }
@@ -108,7 +108,7 @@ public class StretegyTwoDigit {
                     }
                     break;
                 case WAITING_A2:
-                    if (lastHundredBefore ==89) {
+                    if (lastHundredBefore ==70) {
                         state = State.BETTING_A2;
                         betButtonStatus = true;
                     }
