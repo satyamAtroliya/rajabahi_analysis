@@ -9,6 +9,8 @@ public class DecisionMaker {
 
     private Stretegy200 stretegy200 = new Stretegy200();
     private StretegyTwoDigit stretegyTwoDigit = new StretegyTwoDigit();
+    private Stretegy100 stretegy100 = new Stretegy100();
+    private Stretegy10 stretegy10 = new Stretegy10();
 
     private boolean betButtonStatus = false;
     private static final double HUNDRED = 100.0;
@@ -48,6 +50,8 @@ public class DecisionMaker {
         // 3. Consult strategies for the NEXT round
         boolean isDm3Betting = stretegy200.decisionMaker(latestMultiplier); // 22k profit in 8.5k bets
         boolean isDm4Betting = stretegyTwoDigit.decisionMaker(latestMultiplier);// More profitable 30k in 3k bets
+        boolean isDm5Betting = stretegy100.decisionMaker(latestMultiplier);// More profitable 30k in 3k bets
+        boolean isDm6Betting = stretegy10.decisionMaker(latestMultiplier);// More profitable 30k in 3k bets
 
         // Variables to determine next state
         boolean nextBetStatus = false;
@@ -58,7 +62,7 @@ public class DecisionMaker {
             betAmount = 10;
             nextBetStatus = true;
             activeStrategy = "BOTH Strategy200 & "+System.getProperty("STRATEGY");
-        } else if (isDm3Betting) {
+        } else if (isDm3Betting || isDm5Betting || isDm6Betting || isDm4Betting) {
             betAmount = 10;
             nextBetStatus = true;
             activeStrategy = "Strategy200";
