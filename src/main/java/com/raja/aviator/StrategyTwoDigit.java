@@ -3,7 +3,7 @@ package com.raja.aviator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StretegyTwoDigit {
+public class StrategyTwoDigit {
 
     // Define explicit states for each step of your requirements
     public enum State {

@@ -1,6 +1,6 @@
 package com.raja.aviator;
 
-public class Stretegy200 {
+public class Strategy200 {
 
     private static final double HUNDRED = 100.0;
 

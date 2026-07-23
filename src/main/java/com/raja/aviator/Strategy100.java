@@ -3,13 +3,15 @@ package com.raja.aviator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Stretegy10 {
+public class Strategy100 {
 
     // Define explicit states for each step of your requirements
     public enum State {
         SEARCHING_PATTERN,
         WAITING_A1,
-        BETTING_A1
+        BETTING_A1,
+        WAITING_B1,
+        BETTING_B1
     }
 
     private static State state = State.SEARCHING_PATTERN;
@@ -26,7 +28,6 @@ public class Stretegy10 {
         boolean isHighMultiplier = latestMultiplier >= HUNDRED;
 
         if (isHighMultiplier) {
-            // A 100x multiplier hit!
             list.add(lastHundredBefore);
             lastHundredBefore = 0; // Reset counter
             betButtonStatus = false; // Always stop betting immediately on 100x
@@ -36,7 +37,7 @@ public class Stretegy10 {
                 case WAITING_A1:
                     state = State.SEARCHING_PATTERN;
                     break;
-                case BETTING_A1:
+                case BETTING_B1:
                     state = State.SEARCHING_PATTERN;
                     break;
                 case SEARCHING_PATTERN:
@@ -51,11 +52,15 @@ public class Stretegy10 {
                 int secondLast = list.get(size - 2);
                 int last = list.get(size - 1);
 
-                if (last > 25 && last < 70) {
+                if (last > 100 && last < 200 && secondLast > 100 && secondLast < 200) {
                     state = State.WAITING_A1;
-                    System.setProperty("STRATEGY", "STRATEGY_10");
+                    System.setProperty("STRATEGY", "STRATEGY_100A");
                 }
 
+                if (last > 50 && last < 100 && secondLast > 50 && secondLast < 100) {
+                    state = State.WAITING_B1;
+                    System.setProperty("STRATEGY", "STRATEGY_100B");
+                }
             }
         } else {
             // Normal tick (multiplier < 100)
@@ -64,13 +69,25 @@ public class Stretegy10 {
             switch (state) {
                 case WAITING_A1:
                     // Step 3: Wait until count 20
-                    if (lastHundredBefore == 2) {
+                    if (lastHundredBefore == 150) {
                         state = State.BETTING_A1;
                         betButtonStatus = true;
                     }
                     break;
                 case BETTING_A1:
-                    if (lastHundredBefore == 12) {
+                    if (lastHundredBefore == 200) {
+                        state = State.SEARCHING_PATTERN;
+                        betButtonStatus = false;
+                    }
+                    break;
+                case WAITING_B1:
+                    if (lastHundredBefore == 50) {
+                        state = State.BETTING_B1;
+                        betButtonStatus = true;
+                    }
+                    break;
+                case BETTING_B1:
+                    if (lastHundredBefore == 80) {
                         state = State.SEARCHING_PATTERN;
                         betButtonStatus = false;
                     }

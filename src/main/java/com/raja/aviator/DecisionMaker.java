@@ -7,10 +7,10 @@ public class DecisionMaker {
 
     private static final Logger log = LoggerFactory.getLogger(DecisionMaker.class);
 
-    private Stretegy200 stretegy200 = new Stretegy200();
-    private StretegyTwoDigit stretegyTwoDigit = new StretegyTwoDigit();
-    private Stretegy100 stretegy100 = new Stretegy100();
-    private Stretegy10 stretegy10 = new Stretegy10();
+    private Strategy200 stretegy200 = new Strategy200();
+    private StrategyTwoDigit stretegyTwoDigit = new StrategyTwoDigit();
+    private Strategy100 stretegy100 = new Strategy100();
+    private Strategy10 stretegy10 = new Strategy10();
 
     private boolean betButtonStatus = false;
     private static final double HUNDRED = 100.0;
