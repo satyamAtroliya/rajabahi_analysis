@@ -3,6 +3,8 @@ package com.raja.aviator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static com.raja.aviator.Constants.*;
+
 public class DecisionMaker {
 
     private static final Logger log = LoggerFactory.getLogger(DecisionMaker.class);
@@ -17,7 +19,7 @@ public class DecisionMaker {
     private static final double HUNDRED = 100.0;
 
     private double balance_profit = 0;
-    private int allBet  = 0;
+    private int allBet = 0;
     private double betAmount = 10.0;
 
     // Tracker for how many ticks/games have passed since the last 100x hit
@@ -31,8 +33,8 @@ public class DecisionMaker {
                 // If won, calculate balance by multiplying betAmount by 99
                 double profit = betAmount * 99;
                 balance_profit += profit;
-                log.info("");
-                log.info(allBet+" 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {}", latestMultiplier, profit, balance_profit);
+
+                log.info(allBet + " 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {}", latestMultiplier, profit, balance_profit);
                 log.info("");
             } else {
                 // If lost, deduct the bet amount
@@ -49,65 +51,62 @@ public class DecisionMaker {
 
         // 3. Consult strategies for the NEXT round
 
+        boolean isBetting10 = false;
+        boolean isBetting100 = false;
+        boolean isBetting150 = false;
+        boolean isBetting200 = false;
+        boolean isBettingTD = false;
 
-        boolean isBetting10 = strategy10.decisionMaker(latestMultiplier);
-        boolean isBetting100 = strategy100.decisionMaker(latestMultiplier);
-        boolean isBetting200 = strategy200.decisionMaker(latestMultiplier);
-        boolean isBettingTD = strategyTwoDigit.decisionMaker(latestMultiplier);
+
+        isBetting10 = strategy10.decisionMaker(latestMultiplier);
+        isBetting100 = strategy100.decisionMaker(latestMultiplier);
+        isBetting150 = strategy150.decisionMaker(latestMultiplier);
+        isBetting200 = strategy200.decisionMaker(latestMultiplier);
+        isBettingTD = strategyTwoDigit.decisionMaker(latestMultiplier);
+
 
         // Variables to determine next state
         boolean nextBetStatus = false;
-        String activeStrategy = "None";
+        String activeStrategy = "";
 
-        // Logic to determine bet status, amount, and which strategy triggered it
-       /* if (isDm3Betting && isDm4Betting) {
+        if (isBetting10 || isBetting100 || isBetting150 || isBetting200 || isBettingTD) {
             betAmount = 10;
             nextBetStatus = true;
-            activeStrategy = "BOTH Strategy200 & "+System.getProperty("STRATEGY");
-        } else if (isDm3Betting) {
-            betAmount = 10;
-            nextBetStatus = true;
-            activeStrategy = "Strategy200";
-        } else if (isDm4Betting) {
-            betAmount = 10;
-            nextBetStatus = true;
-            activeStrategy = System.getProperty("STRATEGY");
-        }else if (isDm5Betting) {
-            betAmount = 10;
-            nextBetStatus = true;
-            activeStrategy = System.getProperty("STRATEGY");
-        }else if (isDm4Betting) {
-            betAmount = 10;
-            nextBetStatus = true;
-            activeStrategy = System.getProperty("STRATEGY");
         } else {
-            betAmount = 10;
-            nextBetStatus = false;
-        }*/
+            activeStrategy = "None";
+        }
 
-        if(isBetting10 || isBetting100 || isBetting200 || isBettingTD){
-            betAmount = 10;
-            nextBetStatus = true;
-            activeStrategy = System.getProperty("STRATEGY");
-        }else{
-            betAmount = 10;
-            nextBetStatus = false;
+        if (!isBetting10 && !isBetting100 && !isBetting150 && !isBetting200 && !isBettingTD) {
+            activeStrategy = "None";
+        }
+
+        if (isBetting10) {
+            activeStrategy = System.getProperty(STRATEGY_10, "");
+        }
+        if (isBetting100) {
+            activeStrategy = activeStrategy + " " + System.getProperty(STRATEGY_100, "");
+        }
+        if (isBetting150) {
+            activeStrategy = activeStrategy + " " + System.getProperty(STRATEGY_150, "");
+        }
+        if (isBetting200) {
+            activeStrategy = activeStrategy + " " + System.getProperty(STRATEGY_200A, "") + " " + System.getProperty(STRATEGY_200B, "");
+        }
+        if (isBettingTD) {
+            activeStrategy = activeStrategy + " " + System.getProperty(STRATEGY_TD_A1, "") + " " + System.getProperty(STRATEGY_TD_B1, "");
+
         }
 
         // 4. Highlight significant state changes (Turning ON or OFF)
         if (!betButtonStatus && nextBetStatus) {
-            log.info("");
             log.info("🟢🟢🟢 BETS TURNED ON! Triggered by: {} | Amount: {} | Ticks since last 100x: {}", activeStrategy, betAmount, ticksSinceLastHundred);
-            log.info("");
         } else if (betButtonStatus && !nextBetStatus) {
-            log.info("");
             log.info("🔴🔴🔴 BETS TURNED OFF! Ticks since last 100x: {}", ticksSinceLastHundred);
-            log.info("");
         }
 
         // 5. Standard tick logging for every method call
         String statusString = nextBetStatus ? "ON" : "OFF";
-        String tick= String.valueOf(latestMultiplier);
+        String tick = String.valueOf(latestMultiplier);
         switch (tick.length()) {
             case 3:
                 tick = tick + "x  ";
@@ -123,15 +122,15 @@ public class DecisionMaker {
                 break;
         }
 
-        log.info(allBet+" 📊 Tick:  {}  | Strategy:  {}  |  Balance:  {}  | Last 100x ago  {}  | Bet is  {}  | Profit:  {}",
-                tick, activeStrategy, balance ,ticksSinceLastHundred, statusString, balance_profit);
+        log.info(allBet + " 📊 Tick:  {}  | Strategy:  {}  |  Balance:  {}  | Last 100x ago  {}  | Bet is  {}  | Profit:  {}",
+                tick, activeStrategy, balance, ticksSinceLastHundred, statusString, balance_profit);
 
         // System property update
         System.setProperty("BET_BTN_STATUS", statusString);
 
         // Save current bet status for the next tick
         betButtonStatus = nextBetStatus;
-        System.setProperty("BET_AMOUNT",String.valueOf(betAmount));
+        System.setProperty("BET_AMOUNT", String.valueOf(betAmount));
 
         return betButtonStatus;
     }

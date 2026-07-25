@@ -1,9 +1,15 @@
 package com.raja.aviator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.raja.aviator.Constants.STRATEGY_150;
+
 public class Strategy150 implements Strategy {
+    private static final Logger log = LoggerFactory.getLogger(Strategy150.class);
 
     // Define explicit states for each step of your requirements
     public enum State {
@@ -54,7 +60,9 @@ public class Strategy150 implements Strategy {
 
                 if (last > 100 && last < 150) {
                     state = State.WAITING_A1;
-                    System.setProperty("STRATEGY", "STRATEGY_100A");
+                    System.setProperty(STRATEGY_150, STRATEGY_150);
+                    log.warn(" ------------ 100 < (LH) '{}' < 150 --------------- ", last);
+                    log.warn("------- STRATEGY_150 ------- BETS will Start from next {  130 to 150 } Round ");
                 }
             }
         } else {
@@ -73,18 +81,7 @@ public class Strategy150 implements Strategy {
                     if (lastHundredBefore == 150) {
                         state = State.SEARCHING_PATTERN;
                         betButtonStatus = false;
-                    }
-                    break;
-                case WAITING_B1:
-                    if (lastHundredBefore == 50) {
-                        state = State.BETTING_B1;
-                        betButtonStatus = true;
-                    }
-                    break;
-                case BETTING_B1:
-                    if (lastHundredBefore == 80) {
-                        state = State.SEARCHING_PATTERN;
-                        betButtonStatus = false;
+                        log.warn(" ------------ STRATEGY_150 ( 130 to 150 ) ------ TURNED OFF");
                     }
                     break;
                 case SEARCHING_PATTERN:

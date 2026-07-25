@@ -1,9 +1,16 @@
 package com.raja.aviator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Strategy10 {
+import static com.raja.aviator.Constants.STRATEGY_10;
+
+public class Strategy10 implements Strategy {
+    private static final Logger log = LoggerFactory.getLogger(Strategy10.class);
+
 
     // Define explicit states for each step of your requirements
     public enum State {
@@ -53,7 +60,9 @@ public class Strategy10 {
 
                 if (last > 25 && last < 70) {
                     state = State.WAITING_A1;
-                    System.setProperty("STRATEGY", "STRATEGY_10");
+                    System.setProperty(STRATEGY_10, STRATEGY_10);
+                    log.warn(" ------------ 25 < (LH) '{}' < 75 ----- ", last);
+                    log.warn("----- STRATEGY_10 ------ Bets will remain ON till next { 12 } Round");
                 }
 
             }
@@ -64,7 +73,7 @@ public class Strategy10 {
             switch (state) {
                 case WAITING_A1:
                     // Step 3: Wait until count 20
-                    if (lastHundredBefore == 2) {
+                    if (lastHundredBefore == 1) {
                         state = State.BETTING_A1;
                         betButtonStatus = true;
                     }
@@ -73,6 +82,7 @@ public class Strategy10 {
                     if (lastHundredBefore == 12) {
                         state = State.SEARCHING_PATTERN;
                         betButtonStatus = false;
+                        log.warn(" ------------ STRATEGY_10 ( 2 to 12 ) ------ TURNED OFF");
                     }
                     break;
                 case SEARCHING_PATTERN:

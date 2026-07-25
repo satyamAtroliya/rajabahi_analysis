@@ -1,17 +1,21 @@
 package com.raja.aviator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Strategy100 {
+import static com.raja.aviator.Constants.STRATEGY_100;
+
+public class Strategy100 implements Strategy {
+    private static final Logger log = LoggerFactory.getLogger(Strategy100.class);
 
     // Define explicit states for each step of your requirements
     public enum State {
         SEARCHING_PATTERN,
         WAITING_A1,
-        BETTING_A1,
-        WAITING_B1,
-        BETTING_B1
+        BETTING_A1
     }
 
     private static State state = State.SEARCHING_PATTERN;
@@ -37,9 +41,6 @@ public class Strategy100 {
                 case WAITING_A1:
                     state = State.SEARCHING_PATTERN;
                     break;
-                case BETTING_B1:
-                    state = State.SEARCHING_PATTERN;
-                    break;
                 case SEARCHING_PATTERN:
                     // Stay in searching mode
                     break;
@@ -52,14 +53,11 @@ public class Strategy100 {
                 int secondLast = list.get(size - 2);
                 int last = list.get(size - 1);
 
-                if (last > 100 && last < 200 && secondLast > 100 && secondLast < 200) {
-                    state = State.WAITING_A1;
-                    System.setProperty("STRATEGY", "STRATEGY_100A");
-                }
-
                 if (last > 50 && last < 100 && secondLast > 50 && secondLast < 100) {
-                    state = State.WAITING_B1;
-                    System.setProperty("STRATEGY", "STRATEGY_100B");
+                    state = State.WAITING_A1;
+                    System.setProperty(STRATEGY_100, STRATEGY_100);
+                    log.warn(" ------------ 50 < (LH) '{}' < 100 AND 50 < (SLH) '{}' < 100 ----- ", last, secondLast);
+                    log.warn("------- STRATEGY_100 ------- BETS will Start from next { 50 to 80 } Round ");
                 }
             }
         } else {
@@ -69,27 +67,16 @@ public class Strategy100 {
             switch (state) {
                 case WAITING_A1:
                     // Step 3: Wait until count 20
-                    if (lastHundredBefore == 150) {
+                    if (lastHundredBefore == 50) {
                         state = State.BETTING_A1;
                         betButtonStatus = true;
                     }
                     break;
                 case BETTING_A1:
-                    if (lastHundredBefore == 200) {
-                        state = State.SEARCHING_PATTERN;
-                        betButtonStatus = false;
-                    }
-                    break;
-                case WAITING_B1:
-                    if (lastHundredBefore == 50) {
-                        state = State.BETTING_B1;
-                        betButtonStatus = true;
-                    }
-                    break;
-                case BETTING_B1:
                     if (lastHundredBefore == 80) {
                         state = State.SEARCHING_PATTERN;
                         betButtonStatus = false;
+                        log.warn(" ------------ STRATEGY_100 ( 50 to 80 ) ------ TURNED OFF");
                     }
                     break;
                 case SEARCHING_PATTERN:

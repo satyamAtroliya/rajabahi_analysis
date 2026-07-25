@@ -1,9 +1,16 @@
 package com.raja.aviator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class StrategyTwoDigit {
+import static com.raja.aviator.Constants.STRATEGY_TD_A1;
+import static com.raja.aviator.Constants.STRATEGY_TD_B1;
+
+public class StrategyTwoDigit implements Strategy {
+    private static final Logger log = LoggerFactory.getLogger(StrategyTwoDigit.class);
 
     // Define explicit states for each step of your requirements
     public enum State {
@@ -73,7 +80,9 @@ public class StrategyTwoDigit {
 
                 if (secondLast < 90 && last < 90 && flag) {
                     state = State.WAITING_A1;
-                    System.setProperty("STRATEGY", "STRATEGY_TD_A1");
+                    System.setProperty(STRATEGY_TD_A1, STRATEGY_TD_A1);
+                    log.warn("----- (SLH) '{}' < 90 AND (LH) '{}' < 90  ", secondLast, last);
+                    log.warn("------- STRATEGY_TD_A1 ------- BETS will ON from next {30 to 40} , {70 to 90} , {125 to 180} Round");
                     round++;
                     if (round == 4)
                         flag = false;
@@ -86,7 +95,9 @@ public class StrategyTwoDigit {
                 // Higher Precedence
                 if (last > 100 && last < 160) {
                     state = State.WAITING_B1;
-                    System.setProperty("STRATEGY", "STRATEGY_TD_B1");
+                    System.setProperty(STRATEGY_TD_B1, STRATEGY_TD_B1);
+                    log.warn(" ------------ 100 < (LH) '{}' < 160 ----- ", last);
+                    log.warn("------- STRATEGY_TD_B1 ------- BETS will ON from next { 150 to 165 } Rounf");
                 }
             }
         } else {
@@ -105,10 +116,12 @@ public class StrategyTwoDigit {
                     if (lastHundredBefore == 40) {
                         state = State.WAITING_A2;
                         betButtonStatus = false;
+                        log.warn(" ------------ STRATEGY_TD_A1 ( 30 to 40 ) ------ TURNED OFF");
+                        System.setProperty(STRATEGY_TD_A1, "");
                     }
                     break;
                 case WAITING_A2:
-                    if (lastHundredBefore ==70) {
+                    if (lastHundredBefore == 70) {
                         state = State.BETTING_A2;
                         betButtonStatus = true;
                     }
@@ -117,6 +130,8 @@ public class StrategyTwoDigit {
                     if (lastHundredBefore == 90) {
                         state = State.WAITING_A3;
                         betButtonStatus = false;
+                        log.warn(" ------------ STRATEGY_TD_A1 ( 70 to 90 ) ------ TURNED OFF");
+                        System.setProperty(STRATEGY_TD_A1, "");
                     }
                     break;
                 case WAITING_A3:
@@ -129,6 +144,8 @@ public class StrategyTwoDigit {
                     if (lastHundredBefore == 180) {
                         state = State.SEARCHING_PATTERN;
                         betButtonStatus = false;
+                        log.warn(" ------------ STRATEGY_TD_A1 ( 125 to 180 ) ------ TURNED OFF");
+                        System.setProperty(STRATEGY_TD_A1, "");
                     }
                     break;
                 case WAITING_B1: // independent condition
@@ -141,6 +158,8 @@ public class StrategyTwoDigit {
                     if (lastHundredBefore == 165) {
                         state = State.SEARCHING_PATTERN;
                         betButtonStatus = false;
+                        log.warn(" ------------ STRATEGY_TD_B1 ( 150 to 165 ) ------ TURNED OFF");
+                        System.setProperty(STRATEGY_TD_B1, "");
                     }
                     break;
                 case SEARCHING_PATTERN:
