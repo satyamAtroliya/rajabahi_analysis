@@ -19,9 +19,9 @@ public class RangeCounter {
             counter++;
             if(entry.getValue().getMultiplier()>100){
                 if(counter>=200)
-               System.out.println("================= "+counter);
-                else if(counter<=120 && counter>=80)
-               System.out.println("============== "+counter);
+               System.out.println("=================== "+counter);
+                else if(counter<=200 && counter>=100)
+               System.out.println("=============== "+counter);
                 else
                     System.out.println("========= "+counter);
 
