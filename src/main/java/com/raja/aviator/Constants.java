@@ -3,6 +3,7 @@ package com.raja.aviator;
 public class Constants {
 
     public final static String  STRATEGY_10 = "STRATEGY_10";
+    public final static String  STRATEGYO10 = "STRATEGYO10";
     public final static String  STRATEGY_100 = "STRATEGY_100";
     public final static String  STRATEGY_150 = "STRATEGY_150";
     public final static String  STRATEGY_TD_A1 = "STRATEGY_TD_A1";

@@ -11,13 +11,6 @@ import static com.raja.aviator.Constants.STRATEGY_100;
 public class Strategy100 implements Strategy {
     private static final Logger log = LoggerFactory.getLogger(Strategy100.class);
 
-    // Define explicit states for each step of your requirements
-    public enum State {
-        SEARCHING_PATTERN,
-        WAITING_A1,
-        BETTING_A1
-    }
-
     private static State state = State.SEARCHING_PATTERN;
     private static final double HUNDRED = 100.0;
 

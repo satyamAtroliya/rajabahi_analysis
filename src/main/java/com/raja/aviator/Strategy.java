@@ -1,5 +1,18 @@
 package com.raja.aviator;
 
 public interface Strategy {
+    // Define explicit states for each step of your requirements
+    public enum State {
+        SEARCHING_PATTERN,
+        WAITING_A1,
+        BETTING_A1,
+        WAITING_A2,
+        BETTING_A2,
+        WAITING_A3,
+        BETTING_A3,
+        WAITING_B1,
+        BETTING_B1
+    }
+
     boolean decisionMaker(double latestMultiplier);
 }
