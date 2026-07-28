@@ -12,7 +12,6 @@ public class Strategy10 implements Strategy {
     private static final Logger log = LoggerFactory.getLogger(Strategy10.class);
 
     private static State state = State.SEARCHING_PATTERN;
-    private static final double HUNDRED = 100.0;
 
     private boolean betButtonStatus = false;
     private int lastHundredBefore = Integer.MAX_VALUE;

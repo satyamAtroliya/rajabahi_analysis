@@ -13,7 +13,6 @@ public class StrategyTwoDigit implements Strategy {
     private static final Logger log = LoggerFactory.getLogger(StrategyTwoDigit.class);
 
     private static State state = State.SEARCHING_PATTERN;
-    private static final double HUNDRED = 100.0;
 
     private boolean betButtonStatus = false;
     private int lastHundredBefore = Integer.MAX_VALUE;

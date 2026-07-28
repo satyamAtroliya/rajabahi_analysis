@@ -1,6 +1,8 @@
 package com.raja.aviator;
 
 public interface Strategy {
+
+    static final double HUNDRED = 100;
     // Define explicit states for each step of your requirements
     public enum State {
         SEARCHING_PATTERN,

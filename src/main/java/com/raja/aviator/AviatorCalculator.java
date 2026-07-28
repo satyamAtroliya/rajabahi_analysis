@@ -86,9 +86,9 @@ public class AviatorCalculator {
 
 
         System.out.println("Final Account Balance: Rs. " + (balance -10000)+" | TotalBet : "+ totalBet+" | total Won Bet : "+totalWonBet);
-        float successRate = (float) (totalWonBet.get() * 100) /totalBet.get();
+        float successRate = (float) (totalWonBet.get() * 49) /totalBet.get();
 
-        System.out.println(  "Success rate : " +successRate+" , Expected Losses before a win  "+ 1/(successRate/100));
+        System.out.println(  "Success rate : " +successRate+" , Expected Losses before a win  "+ 1/(successRate/49));
         System.out.println("=== Simulation Ended ===");
     }
 }

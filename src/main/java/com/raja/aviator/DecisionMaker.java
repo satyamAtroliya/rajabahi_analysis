@@ -78,11 +78,11 @@ public class DecisionMaker {
 
 
         isBetting10 = strategy10.decisionMaker(latestMultiplier);
-        isBettingO10 = strategyO10.decisionMaker(latestMultiplier);
+       // isBettingO10 = strategyO10.decisionMaker(latestMultiplier);
         isBetting100 = strategy100.decisionMaker(latestMultiplier);
         isBetting150 = strategy150.decisionMaker(latestMultiplier);
-        //isBetting200 = strategy200.decisionMaker(latestMultiplier);
-        isBettingTD = strategyTwoDigit.decisionMaker(latestMultiplier);
+        isBetting200 = strategy200.decisionMaker(latestMultiplier);
+      isBettingTD = strategyTwoDigit.decisionMaker(latestMultiplier);
 
 
         // Variables to determine next state
@@ -158,8 +158,8 @@ public class DecisionMaker {
                 break;
         }
 
-        log.info(allBet + " 📊 Tick:  {}  | Strategy:  {}  |  Balance:  {}  | Last 100x ago  {}  | Bet is  {}  | Profit:  {}",
-                tick, activeStrategy, balance, ticksSinceLastHundred, statusString, balance_profit);
+     //   log.info(allBet + " 📊 Tick:  {}  | Strategy:  {}  |  Balance:  {}  | Last 100x ago  {}  | Bet is  {}  | Profit:  {}",
+       //         tick, activeStrategy, balance, ticksSinceLastHundred, statusString, balance_profit);
 
         // System property update
         System.setProperty("BET_BTN_STATUS", statusString);
