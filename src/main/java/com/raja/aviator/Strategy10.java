@@ -49,7 +49,7 @@ public class Strategy10 implements Strategy {
                 int secondLast = list.get(size - 2);
                 int last = list.get(size - 1);
 
-                if (last > 25 && last < 70) {
+                if (last > 25 && last < 85) {
                     state = State.WAITING_A1;
                     System.setProperty(STRATEGY_10, STRATEGY_10);
                     log.warn(" ------------ 25 < (LH) '{}' < 75 ----- ", last);
@@ -64,13 +64,13 @@ public class Strategy10 implements Strategy {
             switch (state) {
                 case WAITING_A1:
                     // Step 3: Wait until count 20
-                    if (lastHundredBefore == 1) {
+                    if (lastHundredBefore == 2) {
                         state = State.BETTING_A1;
                         betButtonStatus = true;
                     }
                     break;
                 case BETTING_A1:
-                    if (lastHundredBefore == 12) {
+                    if (lastHundredBefore == 10) {
                         state = State.SEARCHING_PATTERN;
                         betButtonStatus = false;
                         log.warn(" ------------ STRATEGY_10 ( 2 to 12 ) ------ TURNED OFF");
