@@ -19,8 +19,8 @@ public class BettingStrategy {
         // --- START OF YOUR CUSTOM LOGIC SPACE ---
 
         boolean shouldBet = false;     // Change to true/false based on your logic
-        double betAmount = 30.0;       // Configurable bet amount
-        double targetMultiplier = 32; // Configurable target redeem multiplier (e.g., 2.0x, 100.0x)
+        double betAmount = 10.0;       // Configurable bet amount
+        double targetMultiplier = 100; // Configurable target redeem multiplier (e.g., 2.0x, 100.0x)
 
         if(history.size()>2)
             shouldBet=dmn.decisionMaker(history.get(history.size()-1), "100");

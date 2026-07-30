@@ -78,11 +78,11 @@ public class DecisionMaker {
 
 
         isBetting10 = strategy10.decisionMaker(latestMultiplier);
-       // isBettingO10 = strategyO10.decisionMaker(latestMultiplier);
+        //isBettingO10 = strategyO10.decisionMaker(latestMultiplier);
         isBetting100 = strategy100.decisionMaker(latestMultiplier);
         isBetting150 = strategy150.decisionMaker(latestMultiplier);
-        isBetting200 = strategy200.decisionMaker(latestMultiplier);
-      isBettingTD = strategyTwoDigit.decisionMaker(latestMultiplier);
+        //isBetting200 = strategy200.decisionMaker(latestMultiplier);
+        isBettingTD = strategyTwoDigit.decisionMaker(latestMultiplier);
 
 
         // Variables to determine next state
