@@ -3,6 +3,8 @@ package com.raja.aviator;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
+import static com.raja.aviator.Constants.STRATEGY_SS_70;
+
 public class StrategySentiment implements Strategy {
 
     private static final int WINDOW_SIZE = 10;
@@ -91,9 +93,11 @@ public class StrategySentiment implements Strategy {
              * Start betting on the NEXT 10 rounds.
              */
             bettingRoundsRemaining = BET_ROUNDS;
-
+            System.setProperty(STRATEGY_SS_70, STRATEGY_SS_70);
             return true;
         }
+        else
+            System.setProperty(STRATEGY_SS_70, "");
 
         return false;
     }
