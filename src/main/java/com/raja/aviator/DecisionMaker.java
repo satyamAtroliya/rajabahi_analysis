@@ -31,8 +31,22 @@ public class DecisionMaker {
     // Tracker for how many ticks/games have passed since the last 100x hit
     private int ticksSinceLastHundred = 0;
 
+    int tracker_bal = 10000;
 
     public boolean decisionMaker(double latestMultiplier, String balance) {
+
+        // this was pattern proven in 10 times to keep graph linier
+        if (tracker_bal < 3000) {
+            betAmount = 20;
+        }
+        if (tracker_bal > 7500) {
+            betAmount = 10;
+        }
+        if (tracker_bal > 10000) {
+            betAmount = 10;
+            tracker_bal = 10000;
+        }
+
         allBet++;
         // 1. Resolve the PREVIOUS round's bet based on the newly received multiplier
         if (betButtonStatus) {
@@ -40,12 +54,15 @@ public class DecisionMaker {
                 // If won, calculate balance by multiplying betAmount by 99
                 double profit = betAmount * 99;
                 balance_profit += profit;
+                tracker_bal += profit;
 
                 log.info(allBet + " 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {}", latestMultiplier, profit, balance_profit);
                 log.info("");
+                // System.out.println(balance_profit);
             } else {
                 // If lost, deduct the bet amount
                 balance_profit -= betAmount;
+                tracker_bal -= betAmount;
             }
         }
 
@@ -54,12 +71,15 @@ public class DecisionMaker {
                 // If won, calculate balance by multiplying betAmount by 99
                 double profit = betAmount * 9;
                 balance_profit += profit;
+                tracker_bal += profit;
 
-                log.info(allBet + " 💰💰💰 WIN! "+STRATEGYO10+" Multiplier: {}x | Profit: +{} | New Balance: {}", latestMultiplier, profit, balance_profit);
+                log.info(allBet + " 💰💰💰 WIN! " + STRATEGYO10 + " Multiplier: {}x | Profit: +{} | New Balance: {}", latestMultiplier, profit, balance_profit);
                 log.info("");
+                //   System.out.println(balance_profit);
             } else {
                 // If lost, deduct the bet amount
                 balance_profit -= betAmount;
+                tracker_bal -= betAmount;
             }
         }
 
@@ -68,12 +88,15 @@ public class DecisionMaker {
                 // If won, calculate balance by multiplying betAmount by 99
                 double profit = betAmount * 69;
                 balance_profit += profit;
+                tracker_bal += profit;
 
-                log.info(allBet + " 💰💰💰 WIN! "+STRATEGY_SS_70+" Multiplier: {}x | Profit: +{} | New Balance: {}", latestMultiplier, profit, balance_profit);
+                log.info(allBet + " 💰💰💰 WIN! " + STRATEGY_SS_70 + " Multiplier: {}x | Profit: +{} | New Balance: {}", latestMultiplier, profit, balance_profit);
                 log.info("");
+                //  System.out.println(balance_profit);
             } else {
                 // If lost, deduct the bet amount
                 balance_profit -= betAmount;
+                tracker_bal -= betAmount;
             }
         }
 
@@ -96,7 +119,7 @@ public class DecisionMaker {
 
 
         isBetting10 = strategy10.decisionMaker(latestMultiplier);
-        isBettingO10 = strategyO10.decisionMaker(latestMultiplier);
+        //isBettingO10 = strategyO10.decisionMaker(latestMultiplier);
         isBetting100 = strategy100.decisionMaker(latestMultiplier);
         isBetting150 = strategy150.decisionMaker(latestMultiplier);
         isBetting200 = strategy200.decisionMaker(latestMultiplier);
@@ -111,7 +134,6 @@ public class DecisionMaker {
         String activeStrategy = "";
 
         if (isBetting10 || isBetting100 || isBetting150 || isBetting200 || isBettingTD) {
-            betAmount = 10;
             nextBetStatus = true;
         } else {
             activeStrategy = "None";
@@ -138,11 +160,11 @@ public class DecisionMaker {
         }
         if (isBettingO10) {
             activeStrategy = activeStrategy + " " + System.getProperty(STRATEGYO10, "");
-            nextBetStatus10=true;
+            nextBetStatus10 = true;
         }
         if (isBettingSS70) {
             activeStrategy = activeStrategy + " " + System.getProperty(STRATEGY_SS_70, "");
-            nextBetStatusSS70=true;
+            nextBetStatusSS70 = true;
         }
 
         // 4. Highlight significant state changes (Turning ON or OFF)
