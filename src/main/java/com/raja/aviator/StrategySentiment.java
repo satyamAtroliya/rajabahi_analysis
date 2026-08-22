@@ -7,8 +7,8 @@ import static com.raja.aviator.Constants.STRATEGY_SS_70;
 
 public class StrategySentiment implements Strategy {
 
-    private static final int WINDOW_SIZE = 10;
-    private static final int BET_ROUNDS = 11;
+    private static final int WINDOW_SIZE = 8;
+    private static final int BET_ROUNDS = 7;
 
     private static final double BIG_THRESHOLD = 10.0;
     private static final double VERY_BIG_THRESHOLD = 29.0;

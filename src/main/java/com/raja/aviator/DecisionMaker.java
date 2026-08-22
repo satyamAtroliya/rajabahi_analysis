@@ -19,10 +19,8 @@ public class DecisionMaker {
 
     private boolean betButtonStatus = false;
     private boolean betButtonStatus10 = false;
-    private boolean betButtonStatus70 = false;
     private static final double HUNDRED = 100.0;
     private static final double TEN = 10.0;
-    private static final double SEVENTY = 70.0;
 
     private double balance_profit = 0;
     private int allBet = 0;
@@ -83,23 +81,6 @@ public class DecisionMaker {
             }
         }
 
-        if (betButtonStatus70) {
-            if (latestMultiplier >= SEVENTY) {
-                // If won, calculate balance by multiplying betAmount by 99
-                double profit = betAmount * 69;
-                balance_profit += profit;
-                tracker_bal += profit;
-
-                log.info(allBet + " 💰💰💰 WIN! " + STRATEGY_SS_70 + " Multiplier: {}x | Profit: +{} | New Balance: {}", latestMultiplier, profit, balance_profit);
-                log.info("");
-                //  System.out.println(balance_profit);
-            } else {
-                // If lost, deduct the bet amount
-                balance_profit -= betAmount;
-                tracker_bal -= betAmount;
-            }
-        }
-
         // 2. Update the tracker for the last 100x multiplier
         if (latestMultiplier >= HUNDRED) {
             ticksSinceLastHundred = 0;
@@ -118,22 +99,21 @@ public class DecisionMaker {
         boolean isBettingSS70 = false;
 
 
-        isBetting10 = strategy10.decisionMaker(latestMultiplier);
-        //isBettingO10 = strategyO10.decisionMaker(latestMultiplier);
-        isBetting100 = strategy100.decisionMaker(latestMultiplier);
-        isBetting150 = strategy150.decisionMaker(latestMultiplier);
-        isBetting200 = strategy200.decisionMaker(latestMultiplier);
-        isBettingTD = strategyTwoDigit.decisionMaker(latestMultiplier);
-        isBettingSS70 = strategySS70.decisionMaker(latestMultiplier);
+         isBetting10 = strategy10.decisionMaker(latestMultiplier);
+         isBettingO10 = strategyO10.decisionMaker(latestMultiplier);
+         isBetting100 = strategy100.decisionMaker(latestMultiplier);
+         isBetting150 = strategy150.decisionMaker(latestMultiplier);
+         isBetting200 = strategy200.decisionMaker(latestMultiplier);
+         isBettingTD = strategyTwoDigit.decisionMaker(latestMultiplier);
+         isBettingSS70 = strategySS70.decisionMaker(latestMultiplier);
 
 
         // Variables to determine next state
         boolean nextBetStatus = false;
         boolean nextBetStatus10 = false;
-        boolean nextBetStatusSS70 = false;
         String activeStrategy = "";
 
-        if (isBetting10 || isBetting100 || isBetting150 || isBetting200 || isBettingTD) {
+        if (isBetting10 || isBetting100 || isBetting150 || isBetting200 || isBettingTD || isBettingSS70) {
             nextBetStatus = true;
         } else {
             activeStrategy = "None";
@@ -164,7 +144,6 @@ public class DecisionMaker {
         }
         if (isBettingSS70) {
             activeStrategy = activeStrategy + " " + System.getProperty(STRATEGY_SS_70, "");
-            nextBetStatusSS70 = true;
         }
 
         // 4. Highlight significant state changes (Turning ON or OFF)
@@ -201,7 +180,6 @@ public class DecisionMaker {
         // Save current bet status for the next tick
         betButtonStatus = nextBetStatus;
         betButtonStatus10 = nextBetStatus10;
-        betButtonStatus70 = nextBetStatusSS70;
         System.setProperty("BET_AMOUNT", String.valueOf(betAmount));
 
         return betButtonStatus;
