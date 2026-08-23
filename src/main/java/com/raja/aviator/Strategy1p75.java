@@ -3,13 +3,10 @@ package com.raja.aviator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static com.raja.aviator.Constants.STRATEGY_10;
 
-public class Strategy10 implements Strategy {
-    private static final Logger log = LoggerFactory.getLogger(Strategy10.class);
+public class Strategy1p75 implements Strategy {
+    private static final Logger log = LoggerFactory.getLogger(Strategy1p75.class);
 
     private static State state = State.SEARCHING_PATTERN;
 
@@ -69,7 +66,7 @@ public class Strategy10 implements Strategy {
                     if (lastHundredBefore == 2) {
                         state = State.SEARCHING_PATTERN;
                         betButtonStatus = false;
-                        log.warn(" ------------ STRATEGY_10 ( 2 to 12 ) ------ TURNED OFF");
+                       // log.warn(" ------------ STRATEGY_10 ( 2 to 12 ) ------ TURNED OFF");
                     }
                     break;
                 case SEARCHING_PATTERN:

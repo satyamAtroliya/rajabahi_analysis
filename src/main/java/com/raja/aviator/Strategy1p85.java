@@ -3,13 +3,10 @@ package com.raja.aviator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static com.raja.aviator.Constants.STRATEGY_10;
 
-public class Strategy10 implements Strategy {
-    private static final Logger log = LoggerFactory.getLogger(Strategy10.class);
+public class Strategy1p85 implements Strategy {
+    private static final Logger log = LoggerFactory.getLogger(Strategy1p85.class);
 
     private static State state = State.SEARCHING_PATTERN;
 
@@ -47,7 +44,7 @@ public class Strategy10 implements Strategy {
             // If we are in SEARCHING_PATTERN, check if the newly updated list matches the trigger
             if (state == State.SEARCHING_PATTERN) {
 
-                if (f1<=1.75 && f2<=1.75 && f3<=1.75 ) {
+                if (f1<=1.85 && f2<=1.85 ) {
                     state = State.WAITING_A1;
                     System.setProperty(STRATEGY_10, STRATEGY_10);
                 }
@@ -60,16 +57,16 @@ public class Strategy10 implements Strategy {
             switch (state) {
                 case WAITING_A1:
                     // Step 3: Wait until count 20
-                    if (lastHundredBefore == 1) {
+                    if (lastHundredBefore == 2) {
                         state = State.BETTING_A1;
                         betButtonStatus = true;
                     }
                     break;
                 case BETTING_A1:
-                    if (lastHundredBefore == 2) {
+                    if (lastHundredBefore == 3) {
                         state = State.SEARCHING_PATTERN;
                         betButtonStatus = false;
-                        log.warn(" ------------ STRATEGY_10 ( 2 to 12 ) ------ TURNED OFF");
+                        // log.warn(" ------------ STRATEGY_10 ( 2 to 12 ) ------ TURNED OFF");
                     }
                     break;
                 case SEARCHING_PATTERN:

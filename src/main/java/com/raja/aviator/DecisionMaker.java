@@ -16,6 +16,8 @@ public class DecisionMaker {
     private StrategyO10 strategyO10 = new StrategyO10();
     private Strategy150 strategy150 = new Strategy150();
     private StrategySentiment strategySS70 = new StrategySentiment();
+    private Strategy1p85 strategy1p85 = new Strategy1p85();
+    private Strategy1p75 strategy1p75 = new Strategy1p75();
 
     private boolean betButtonStatus = false;
     private boolean betButtonStatus10 = false;
@@ -35,7 +37,7 @@ public class DecisionMaker {
 
         // this was pattern proven in 10 times to keep graph linier
         if (tracker_bal < 3000) {
-            betAmount = 20;
+         //   betAmount = 20;
         }
         if (tracker_bal > 7500) {
             betAmount = 10;
@@ -97,6 +99,8 @@ public class DecisionMaker {
         boolean isBetting200 = false;
         boolean isBettingTD = false;
         boolean isBettingSS70 = false;
+        boolean isBetting1p75 = false;
+        boolean isBetting1p85 = false;
 
 
          isBetting10 = strategy10.decisionMaker(latestMultiplier);
@@ -106,6 +110,8 @@ public class DecisionMaker {
          isBetting200 = strategy200.decisionMaker(latestMultiplier);
          isBettingTD = strategyTwoDigit.decisionMaker(latestMultiplier);
          isBettingSS70 = strategySS70.decisionMaker(latestMultiplier);
+         isBetting1p75 = strategy1p75.decisionMaker(latestMultiplier);
+         isBetting1p85 = strategy1p85.decisionMaker(latestMultiplier);
 
 
         // Variables to determine next state
@@ -113,13 +119,13 @@ public class DecisionMaker {
         boolean nextBetStatus10 = false;
         String activeStrategy = "";
 
-        if (isBetting10 || isBetting100 || isBetting150 || isBetting200 || isBettingTD || isBettingSS70) {
+        if (isBetting10 || isBetting100 || isBetting150 || isBetting200 || isBettingTD || isBettingSS70 || isBetting1p75 || isBetting1p85) {
             nextBetStatus = true;
         } else {
             activeStrategy = "None";
         }
 
-        if (!isBetting10 && !isBetting100 && !isBetting150 && !isBetting200 && !isBettingTD && !isBettingO10 && !isBettingSS70) {
+        if (!isBetting10 && !isBetting100 && !isBetting150 && !isBetting200 && !isBettingTD && !isBettingO10 && !isBettingSS70 && !isBetting1p75 && !isBetting1p85) {
             activeStrategy = "None";
         }
 
@@ -148,9 +154,9 @@ public class DecisionMaker {
 
         // 4. Highlight significant state changes (Turning ON or OFF)
         if (!betButtonStatus && nextBetStatus) {
-            log.info("🟢🟢🟢 BETS TURNED ON! Triggered by: {} | Amount: {} | Ticks since last 100x: {}", activeStrategy, betAmount, ticksSinceLastHundred);
+          //  log.info("🟢🟢🟢 BETS TURNED ON! Triggered by: {} | Amount: {} | Ticks since last 100x: {}", activeStrategy, betAmount, ticksSinceLastHundred);
         } else if (betButtonStatus && !nextBetStatus) {
-            log.info("🔴🔴🔴 BETS TURNED OFF! Ticks since last 100x: {}", ticksSinceLastHundred);
+            //log.info("🔴🔴🔴 BETS TURNED OFF! Ticks since last 100x: {}", ticksSinceLastHundred);
         }
 
         // 5. Standard tick logging for every method call
