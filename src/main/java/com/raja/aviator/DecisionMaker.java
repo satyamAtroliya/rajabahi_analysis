@@ -3,6 +3,9 @@ package com.raja.aviator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.raja.aviator.Constants.*;
 
 public class DecisionMaker {
@@ -37,7 +40,7 @@ public class DecisionMaker {
 
         // this was pattern proven in 10 times to keep graph linier
         if (tracker_bal < 3000) {
-         //   betAmount = 20;
+            //   betAmount = 20;
         }
         if (tracker_bal > 7500) {
             betAmount = 10;
@@ -103,58 +106,40 @@ public class DecisionMaker {
         boolean isBetting1p85 = false;
 
 
-         isBetting10 = strategy10.decisionMaker(latestMultiplier);
-         isBettingO10 = strategyO10.decisionMaker(latestMultiplier);
-         isBetting100 = strategy100.decisionMaker(latestMultiplier);
-         isBetting150 = strategy150.decisionMaker(latestMultiplier);
-         isBetting200 = strategy200.decisionMaker(latestMultiplier);
-         isBettingTD = strategyTwoDigit.decisionMaker(latestMultiplier);
-         isBettingSS70 = strategySS70.decisionMaker(latestMultiplier);
-         isBetting1p75 = strategy1p75.decisionMaker(latestMultiplier);
-         isBetting1p85 = strategy1p85.decisionMaker(latestMultiplier);
+        isBetting10 = strategy10.decisionMaker(latestMultiplier);
+        isBettingO10 = strategyO10.decisionMaker(latestMultiplier);
+        isBetting100 = strategy100.decisionMaker(latestMultiplier);
+        isBetting150 = strategy150.decisionMaker(latestMultiplier);
+        isBetting200 = strategy200.decisionMaker(latestMultiplier);
+        isBettingTD = strategyTwoDigit.decisionMaker(latestMultiplier);
+        isBettingSS70 = strategySS70.decisionMaker(latestMultiplier);
+        isBetting1p75 = strategy1p75.decisionMaker(latestMultiplier);
+        isBetting1p85 = strategy1p85.decisionMaker(latestMultiplier);
 
 
         // Variables to determine next state
         boolean nextBetStatus = false;
         boolean nextBetStatus10 = false;
-        String activeStrategy = "";
 
         if (isBetting10 || isBetting100 || isBetting150 || isBetting200 || isBettingTD || isBettingSS70 || isBetting1p75 || isBetting1p85) {
             nextBetStatus = true;
-        } else {
-            activeStrategy = "None";
         }
 
-        if (!isBetting10 && !isBetting100 && !isBetting150 && !isBetting200 && !isBettingTD && !isBettingO10 && !isBettingSS70 && !isBetting1p75 && !isBetting1p85) {
-            activeStrategy = "None";
-        }
 
-        if (isBetting10) {
-            activeStrategy = System.getProperty(STRATEGY_10, "");
-        }
-        if (isBetting100) {
-            activeStrategy = activeStrategy + " " + System.getProperty(STRATEGY_100, "");
-        }
-        if (isBetting150) {
-            activeStrategy = activeStrategy + " " + System.getProperty(STRATEGY_150, "");
-        }
-        if (isBetting200) {
-            activeStrategy = activeStrategy + " " + System.getProperty(STRATEGY_200A, "") + " " + System.getProperty(STRATEGY_200B, "");
-        }
-        if (isBettingTD) {
-            activeStrategy = activeStrategy + " " + System.getProperty(STRATEGY_TD_A1, "") + " " + System.getProperty(STRATEGY_TD_B1, "");
-        }
-        if (isBettingO10) {
-            activeStrategy = activeStrategy + " " + System.getProperty(STRATEGYO10, "");
-            nextBetStatus10 = true;
-        }
-        if (isBettingSS70) {
-            activeStrategy = activeStrategy + " " + System.getProperty(STRATEGY_SS_70, "");
-        }
+        List<String> as = new ArrayList<>();
+        if (isBetting10) as.add(STRATEGY_10);
+        if (isBetting100) as.add(STRATEGY_100);
+        if (isBetting150) as.add(STRATEGY_150);
+        if (isBetting200) as.add(STRATEGY_200A);
+        if (isBettingTD) as.add(STRATEGY_TD_A1);
+        if (isBettingO10) as.add(STRATEGYO10);
+        if (isBettingSS70) as.add(STRATEGY_SS_70);
+        if (isBetting1p75) as.add(STRATEGY1P75);
+        if (isBetting1p85) as.add(STRATEGY1P85);
 
         // 4. Highlight significant state changes (Turning ON or OFF)
         if (!betButtonStatus && nextBetStatus) {
-          //  log.info("🟢🟢🟢 BETS TURNED ON! Triggered by: {} | Amount: {} | Ticks since last 100x: {}", activeStrategy, betAmount, ticksSinceLastHundred);
+            //  log.info("🟢🟢🟢 BETS TURNED ON! Triggered by: {} | Amount: {} | Ticks since last 100x: {}", activeStrategy, betAmount, ticksSinceLastHundred);
         } else if (betButtonStatus && !nextBetStatus) {
             //log.info("🔴🔴🔴 BETS TURNED OFF! Ticks since last 100x: {}", ticksSinceLastHundred);
         }
@@ -178,7 +163,7 @@ public class DecisionMaker {
         }
 
         log.info(allBet + " 📊 Tick:  {}  | Strategy:  {}  |  Balance:  {}  | Last 100x ago  {}  | Bet is  {}  | Profit:  {}",
-                tick, activeStrategy, balance, ticksSinceLastHundred, statusString, balance_profit);
+                tick, as, balance, ticksSinceLastHundred, statusString, balance_profit);
 
         // System property update
         System.setProperty("BET_BTN_STATUS", statusString);
