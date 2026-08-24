@@ -1,20 +1,12 @@
 package com.raja.aviator;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+public class Strategy10x implements Strategy {
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.raja.aviator.Constants.STRATEGY_10;
-
-public class Strategy10 implements Strategy {
-
-    private static final double TRIGGER = 60.0;
+    private static final double TRIGGER = 10.0;
 
     // After a 20x+ trigger:
-    private static final int WAIT_ROUNDS = 62;
-    private static final int BET_ROUNDS = 7;
+    private static final int WAIT_ROUNDS = 24;
+    private static final int BET_ROUNDS = 10;
 
     private int waitCount = 0;
     private int betCount = 0;
@@ -72,7 +64,7 @@ public class Strategy10 implements Strategy {
         // No active setup
         // Look for starting 20x+
         // -----------------------------------------
-        if (multip >= TRIGGER) {
+        if (multip >= TRIGGER && multip <= 20) {
             waiting = true;
             waitCount = 0;
             betCount = 0;
