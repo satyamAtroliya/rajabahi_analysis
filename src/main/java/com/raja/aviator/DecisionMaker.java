@@ -21,15 +21,9 @@ public class DecisionMaker {
     private StrategySentiment strategySS70 = new StrategySentiment();
     private Strategy1p85 strategy1p85 = new Strategy1p85();
     private Strategy1p75 strategy1p75 = new Strategy1p75();
-    private Strategy10x strategy10x = new Strategy10x();
-    private Strategy20x strategy20x = new Strategy20x();
     private Strategy30x strategy30x = new Strategy30x();
-    private Strategy40x strategy40x = new Strategy40x();
     private Strategy50x strategy50x = new Strategy50x();
     private Strategy60x strategy60x = new Strategy60x();
-    private Strategy70x strategy70x = new Strategy70x();
-    private Strategy80x strategy80x = new Strategy80x();
-    private Strategy90x strategy90x = new Strategy90x();
 
     private boolean betButtonStatus = false;
     private boolean betButtonStatus10 = false;
@@ -66,11 +60,11 @@ public class DecisionMaker {
         allBet++;
         // 1. Resolve the PREVIOUS round's bet based on the newly received multiplier
         if (betButtonStatus) {
-            if (latestMultiplier >= target) {
+            if (latestMultiplier >= HUNDRED) {
                 // If won, calculate balance by multiplying betAmount by 99
-                double profit = betAmount * target;
+                double profit = betAmount * HUNDRED;
                 balance_profit += profit;
-                balance_profit -= betAmount;;
+                balance_profit -= betAmount;
                 tracker_bal += profit;
 
                 log.info(allBet + " 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {}", latestMultiplier, profit, balance_profit);
@@ -84,10 +78,11 @@ public class DecisionMaker {
         }
 
         if (betButtonStatus10) {
-            if (latestMultiplier >= TEN) {
+            if (latestMultiplier >= target) {
                 // If won, calculate balance by multiplying betAmount by 99
-                double profit = betAmount * 9;
+                double profit = betAmount * target;
                 balance_profit += profit;
+                balance_profit -= betAmount;
                 tracker_bal += profit;
 
                 log.info(allBet + " 💰💰💰 WIN! " + STRATEGYO10 + " Multiplier: {}x | Profit: +{} | New Balance: {}", latestMultiplier, profit, balance_profit);
@@ -118,35 +113,23 @@ public class DecisionMaker {
         boolean isBettingSS70 = false;
         boolean isBetting1p75 = false;
         boolean isBetting1p85 = false;
-        boolean isBetting10x = false;
-        boolean isBetting20x = false;
         boolean isBetting30x = false;
-        boolean isBetting40x = false;
         boolean isBetting50x = false;
         boolean isBetting60x = false;
-        boolean isBetting70x = false;
-        boolean isBetting80x = false;
-        boolean isBetting90x = false;
 
 
-       // isBetting10 = strategy10.decisionMaker(latestMultiplier);
-          isBettingO10 = strategyO10.decisionMaker(latestMultiplier);
-      //  isBetting100 = strategy100.decisionMaker(latestMultiplier);
-      //  isBetting150 = strategy150.decisionMaker(latestMultiplier);
-      //  isBetting200 = strategy200.decisionMaker(latestMultiplier);
-      //  isBettingTD = strategyTwoDigit.decisionMaker(latestMultiplier);
-      //  isBettingSS70 = strategySS70.decisionMaker(latestMultiplier);
-      //  isBetting1p75 = strategy1p75.decisionMaker(latestMultiplier);
-      //  isBetting1p85 = strategy1p85.decisionMaker(latestMultiplier);
-//          isBetting10x = strategy10x.decisionMaker(latestMultiplier);
- //         isBetting20x = strategy20x.decisionMaker(latestMultiplier);
- //         isBetting30x = strategy30x.decisionMaker(latestMultiplier);
-  //        isBetting40x = strategy40x.decisionMaker(latestMultiplier);
-     //     isBetting50x = strategy50x.decisionMaker(latestMultiplier);
- //         isBetting60x = strategy60x.decisionMaker(latestMultiplier);
-//          isBetting70x = strategy70x.decisionMaker(latestMultiplier);
-//          isBetting80x = strategy80x.decisionMaker(latestMultiplier);// W62B7=(T83)->P17790
-//          isBetting90x = strategy90x.decisionMaker(latestMultiplier);
+        isBetting10 = strategy10.decisionMaker(latestMultiplier);
+        isBettingO10 = strategyO10.decisionMaker(latestMultiplier);
+        isBetting100 = strategy100.decisionMaker(latestMultiplier);
+        isBetting150 = strategy150.decisionMaker(latestMultiplier);
+        isBetting200 = strategy200.decisionMaker(latestMultiplier);
+        isBettingTD = strategyTwoDigit.decisionMaker(latestMultiplier);
+        isBettingSS70 = strategySS70.decisionMaker(latestMultiplier);
+        isBetting1p75 = strategy1p75.decisionMaker(latestMultiplier);
+        //isBetting1p85 = strategy1p85.decisionMaker(latestMultiplier);
+          isBetting30x = strategy30x.decisionMaker(latestMultiplier);
+          isBetting50x = strategy50x.decisionMaker(latestMultiplier); // fixed done
+          isBetting60x = strategy60x.decisionMaker(latestMultiplier);
 
 
         // Variables to determine next state
@@ -157,8 +140,9 @@ public class DecisionMaker {
             nextBetStatus = true;
         }
 
-        if(isBetting10x || isBetting20x || isBetting30x || isBetting40x || isBetting50x || isBetting60x || isBetting70x || isBetting80x || isBetting90x)
-            nextBetStatus = true;
+        if(isBettingO10 || isBetting30x || isBetting50x || isBetting60x)
+        {   nextBetStatus10 = true;
+        }
 
 
         List<String> as = new ArrayList<>();
@@ -172,15 +156,11 @@ public class DecisionMaker {
         if (isBetting1p75) as.add(STRATEGY1P75);
         if (isBetting1p85) as.add(STRATEGY1P85);
 
-        if(isBetting10x) target=15;
-        if(isBetting20x) target=23;
-        if(isBetting30x) target=33;
-        if(isBetting40x) target=43;
-        if(isBetting50x) target=63;// will keep active
-        if(isBetting60x) target=63;//think about it
-        if(isBetting70x) target=73;
-        if(isBetting80x) target=83;
-        if(isBetting90x) target=93;
+
+        if(isBettingO10) target=15;
+        if(isBetting30x) target=80; //Final
+        if(isBetting50x) target=62;// will keep active
+        if(isBetting60x) target=90;//think about it
 
         // 4. Highlight significant state changes (Turning ON or OFF)
         if (!betButtonStatus && nextBetStatus) {

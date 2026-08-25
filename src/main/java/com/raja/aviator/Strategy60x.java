@@ -6,70 +6,70 @@ public class Strategy60x implements Strategy {
 
     // After a 20x+ trigger:
     private static final int WAIT_ROUNDS = 2;
-    private static final int BET_ROUNDS = 17;
+    private static final int BET_ROUNDS = 3;
 
     private int waitCount = 0;
     private int betCount = 0;
     private boolean waiting = false;
     private boolean betting = false;
 
-        public boolean decisionMaker(double multip) {
+    public boolean decisionMaker(double multip) {
 
-            // -----------------------------------------
-            // Currently in betting window
-            // -----------------------------------------
-            if (betting) {
+        // -----------------------------------------
+        // Currently in betting window
+        // -----------------------------------------
+        if (betting) {
 
-                // Bet on this round
-                betCount++;
+            // Bet on this round
+            betCount++;
 
-                if (betCount >= BET_ROUNDS) {
-                    betting = false;
-                    betCount = 0;
-                }
-
-                return true;
+            if (betCount >= BET_ROUNDS) {
+                betting = false;
+                betCount = 0;
             }
 
-            // -----------------------------------------
-            // Currently in waiting window
-            // -----------------------------------------
-            if (waiting) {
+            return true;
+        }
 
-                // If another 20x+ appears during waiting:
-                // cancel this setup and use this new 20x+
-                // as the new starting point.
-                if (multip >= TRIGGER) {
-                    waitCount = 0;
-                    betCount = 0;
+        // -----------------------------------------
+        // Currently in waiting window
+        // -----------------------------------------
+        if (waiting) {
 
-                    // Start a fresh 67-round waiting period
-                    waiting = true;
-                    return false;
-                }
+            // If another 20x+ appears during waiting:
+            // cancel this setup and use this new 20x+
+            // as the new starting point.
+            if (multip >= TRIGGER) {
+                waitCount = 0;
+                betCount = 0;
 
-                waitCount++;
-
-                // Waiting completed
-                if (waitCount >= WAIT_ROUNDS) {
-                    waiting = false;
-                    betting = true;
-                    betCount = 0;
-                }
-
+                // Start a fresh 67-round waiting period
+                waiting = true;
                 return false;
             }
 
-            // -----------------------------------------
-            // No active setup
-            // Look for starting 20x+
-            // -----------------------------------------
-            if (multip >= TRIGGER && multip <= 70) {
-                waiting = true;
-                waitCount = 0;
+            waitCount++;
+
+            // Waiting completed
+            if (waitCount >= WAIT_ROUNDS) {
+                waiting = false;
+                betting = true;
                 betCount = 0;
             }
 
             return false;
         }
+
+        // -----------------------------------------
+        // No active setup
+        // Look for starting 20x+
+        // -----------------------------------------
+        if (multip >= TRIGGER && multip <= 100) {
+            waiting = true;
+            waitCount = 0;
+            betCount = 0;
+        }
+
+        return false;
     }
+}
