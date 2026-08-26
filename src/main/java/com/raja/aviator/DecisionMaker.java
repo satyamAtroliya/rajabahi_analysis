@@ -33,7 +33,6 @@ public class DecisionMaker {
     private static double target = 15.0;
 
 
-
     private double balance_profit = 0;
     private int allBet = 0;
     private double betAmount = 10.0;
@@ -138,22 +137,22 @@ public class DecisionMaker {
         boolean nextBetStatus = false;
         boolean nextBetStatus10 = false;
 
-        if(isBetting30x || isBetting50x || isBetting60x)
-        {   nextBetStatus = true;
+        if (isBetting30x || isBetting50x || isBetting60x) {
+            nextBetStatus = true;
         }
 
-        if(isBettingO10) target=15;
-        if(isBetting30x) target=80; //Final
-        if(isBetting50x) target=62;// will keep active
-        if(isBetting60x) target=90;//think about it
+        if (isBettingO10) target = 15;
+        if (isBetting30x) target = 80; //Final
+        if (isBetting50x) target = 62;// will keep active
+        if (isBetting60x) target = 90;//think about it
 
         if (isBetting10 || isBetting100 || isBetting150 || isBetting200 || isBettingTD || isBettingSS70 || isBetting1p75 || isBetting1p85) {
             nextBetStatus = true;
-            target=100;
+            target = 100;
         }
 
-        if(isBettingO10)
-        {   nextBetStatus10 = true;
+        if (isBettingO10) {
+            nextBetStatus10 = true;
         }
 
 
@@ -201,8 +200,14 @@ public class DecisionMaker {
         System.setProperty("BET_BTN_STATUS", statusString);
 
         // Save current bet status for the next tick
-        betButtonStatus = nextBetStatus;
-        betButtonStatus10 = nextBetStatus10;
+        if (ticksSinceLastHundred < 170) {
+            betButtonStatus = nextBetStatus;
+            betButtonStatus10 = nextBetStatus10;
+        } else {
+            betButtonStatus = false;
+            betButtonStatus10 = false;
+        }
+
         System.setProperty("BET_AMOUNT", String.valueOf(betAmount));
 
         return betButtonStatus;
