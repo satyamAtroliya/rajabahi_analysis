@@ -41,34 +41,40 @@ public class DecisionMaker {
     private int ticksSinceLastHundred = 0;
 
     int tracker_bal = 10000;
+    int high_bal = 10;
+    double invested = 0;
+    boolean lossCountFlag = true;
+    private List<Integer> list = new ArrayList<>();
 
     public boolean decisionMaker(double latestMultiplier, String balance) {
 
-        // this was pattern proven in 10 times to keep graph linier
-        if (tracker_bal < 3000) {
-            //   betAmount = 20;
+        high_bal = Math.max(high_bal, tracker_bal);
+        if (tracker_bal < (high_bal - 1600)) {
+            return false;
         }
-        if (tracker_bal > 7500) {
-            betAmount = 10;
+        if ((invested - balance_profit) > 1000 && lossCountFlag) {
+            list.add(1);
+            lossCountFlag = false;
         }
-        if (tracker_bal > 10000) {
-            betAmount = 10;
-            tracker_bal = 10000;
-        }
+        if (list.size() == 3)
+            return false;
+
 
         allBet++;
         // 1. Resolve the PREVIOUS round's bet based on the newly received multiplier
         if (betButtonStatus) {
             if (latestMultiplier >= target) {
                 // If won, calculate balance by multiplying betAmount by 99
+                lossCountFlag = true;
+                System.out.println("Invested before a win"+(invested - balance_profit));
                 double profit = betAmount * target;
                 balance_profit += profit;
                 balance_profit -= betAmount;
                 tracker_bal += profit;
-
+                invested = balance_profit;
                 log.info(allBet + " 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {}", latestMultiplier, profit, balance_profit);
                 log.info("");
-                // System.out.println(balance_profit);
+                System.out.println("Balance " + balance_profit);
             } else {
                 // If lost, deduct the bet amount
                 balance_profit -= betAmount;
