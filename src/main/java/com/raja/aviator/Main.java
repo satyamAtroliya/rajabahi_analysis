@@ -1,6 +1,7 @@
 package com.raja.aviator;
 
 import java.io.File;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,9 +24,14 @@ public class Main {
         AviatorCalculator calculator = new AviatorCalculator(10000);
          //calculator.processSimulation(FILE_SOURCE+"mon_19_jun_CO.txt");
         //calculator.processSimulation("C:/WorkSpace/multipliers/daily/daily_239.txt");
-         calculator.processSimulation("C:/WorkSpace/multipliers/yearly/year_2026.txt");
+       //  calculator.processSimulation("C:/WorkSpace/multipliers/yearly/year_2026.txt");
          //calculator.processSimulation("C:/WorkSpace/multipliers/monthly/monthly_6.txt");
        //  calculator.processSimulation("C:/WorkSpace/multipliers/weekly/weekly_35.txt");
+
+        LocalDateTime from = LocalDateTime.of(2026, 8, 16, 0, 0, 0);
+        LocalDateTime to = LocalDateTime.of(2026, 8, 16, 23, 59, 59);
+        calculator.processSimulationDataFromDB(from, to);
+
     }
 
 
