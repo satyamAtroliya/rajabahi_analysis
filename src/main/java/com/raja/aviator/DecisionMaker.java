@@ -32,7 +32,6 @@ public class DecisionMaker {
 
     private static double target = 15.0;
 
-
     private double balance_profit = 0;
     private int allBet = 0;
     private double betAmount = 10.0;
@@ -46,35 +45,52 @@ public class DecisionMaker {
     boolean lossCountFlag = true;
     private List<Integer> list = new ArrayList<>();
 
+    int acb = 0;
+
+    double totalBet = 0;
+
     public boolean decisionMaker(double latestMultiplier, String balance) {
 
-        high_bal = Math.max(high_bal, tracker_bal);
-        if (tracker_bal < (high_bal - 1600)) {
-            return false;
+        double ivst = invested - balance_profit;
+        if (ivst > 500) {
+            // Calculates how many steps of 100 have passed beyond 1000
+            int extraSteps = (int) ((ivst - 501) / 100);
+            betAmount = 11 + extraSteps;
+        } else {
+            betAmount = 10;
         }
-        if ((invested - balance_profit) > 1000 && lossCountFlag) {
-            list.add(1);
-            lossCountFlag = false;
+        if (betAmount > 30)
+            betAmount = 30;
+
+        if (ivst > 2900) {
+        // System.out.println(" Stop Playing today, Aviator is in looting mood, chess more till invested amount became 3600 Play tomorrow start with bet "+betAmount);
+          //return false;
         }
-        if (list.size() == 3)
-            return false;
+        if (ivst > 3600) {
+        //     return false;
+        }
 
 
         allBet++;
         // 1. Resolve the PREVIOUS round's bet based on the newly received multiplier
         if (betButtonStatus) {
             if (latestMultiplier >= target) {
+
                 // If won, calculate balance by multiplying betAmount by 99
                 lossCountFlag = true;
-                System.out.println("Invested before a win"+(invested - balance_profit));
+
+                //if(invested - balance_profit>3600)
+                System.out.println(" bet amount == " + betAmount + " , active bet " + acb + " Invested before a win " + (invested - balance_profit));
                 double profit = betAmount * target;
                 balance_profit += profit;
                 balance_profit -= betAmount;
                 tracker_bal += profit;
                 invested = balance_profit;
+                acb = 0;
+                //  invested = Math.max(invested, balance_profit);
                 log.info(allBet + " 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {}", latestMultiplier, profit, balance_profit);
                 log.info("");
-                System.out.println("Balance " + balance_profit);
+                System.out.println("Balance " + balance_profit +"  totatol get "+(balance_profit+totalBet)+"  total invested "+totalBet);
             } else {
                 // If lost, deduct the bet amount
                 balance_profit -= betAmount;
@@ -85,6 +101,8 @@ public class DecisionMaker {
         if (betButtonStatus10) {
             if (latestMultiplier >= 15) {
                 // If won, calculate balance by multiplying betAmount by 99
+                // if(invested - balance_profit>10000)
+                //   System.out.println(" 15X BALA bet amount == "+betAmount+" , Invested before a win "+(invested - balance_profit));
                 double profit = betAmount * 15;
                 balance_profit += profit;
                 balance_profit -= betAmount;
@@ -92,7 +110,7 @@ public class DecisionMaker {
 
                 log.info(allBet + " 💰💰💰 WIN! " + STRATEGYO10 + " Multiplier: {}x | Profit: +{} | New Balance: {}", latestMultiplier, profit, balance_profit);
                 log.info("");
-                //   System.out.println(balance_profit);
+                //System.out.println("Balance " + balance_profit +"  totatol get "+(balance_profit+totalBet)+"   10x");
             } else {
                 // If lost, deduct the bet amount
                 balance_profit -= betAmount;
@@ -216,6 +234,10 @@ public class DecisionMaker {
 
         System.setProperty("BET_AMOUNT", String.valueOf(betAmount));
 
+        if (betButtonStatus || betButtonStatus10) {
+            totalBet += betAmount;
+            acb++;
+        }
         return betButtonStatus;
     }
 }

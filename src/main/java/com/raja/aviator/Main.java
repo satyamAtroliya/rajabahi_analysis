@@ -24,13 +24,13 @@ public class Main {
         AviatorCalculator calculator = new AviatorCalculator(10000);
          //calculator.processSimulation(FILE_SOURCE+"mon_19_jun_CO.txt");
         //calculator.processSimulation("C:/WorkSpace/multipliers/daily/daily_239.txt");
-       //  calculator.processSimulation("C:/WorkSpace/multipliers/yearly/year_2026.txt");
-         //calculator.processSimulation("C:/WorkSpace/multipliers/monthly/monthly_6.txt");
-       //  calculator.processSimulation("C:/WorkSpace/multipliers/weekly/weekly_35.txt");
+        calculator.processSimulation("C:/WorkSpace/multipliers/yearly/year_2026.txt");
+       //  calculator.processSimulation("C:/WorkSpace/multipliers/monthly/monthly_8.txt");
+        //calculator.processSimulation("C:/WorkSpace/multipliers/weekly/weekly_35.txt");
 
-        LocalDateTime from = LocalDateTime.of(2026, 8, 16, 0, 0, 0);
-        LocalDateTime to = LocalDateTime.of(2026, 8, 16, 23, 59, 59);
-        calculator.processSimulationDataFromDB(from, to);
+        LocalDateTime from = LocalDateTime.of(2026, 8, 29, 18, 45, 0);
+        LocalDateTime to = LocalDateTime.of(2026, 8, 29, 22, 20, 59);
+       // calculator.processSimulationDataFromDB(from, to);
 
     }
 
