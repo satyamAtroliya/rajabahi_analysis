@@ -39,22 +39,21 @@ public class DecisionMaker {
     // Tracker for how many ticks/games have passed since the last 100x hit
     private int ticksSinceLastHundred = 0;
 
-    int tracker_bal = 10000;
-    int high_bal = 10;
+    double tracker_bal = 0;
+    double tracker = 0;
     double invested = 0;
-    boolean lossCountFlag = true;
-    private List<Integer> list = new ArrayList<>();
 
     int acb = 0;
 
     double totalBet = 0;
+    int STOP = 0; // 1 looking to stop after a win, 2 STOPPED
 
     public boolean decisionMaker(double latestMultiplier, String balance) {
 
         double ivst = invested - balance_profit;
-        if (ivst > 500) {
+        if (ivst > 620) {
             // Calculates how many steps of 100 have passed beyond 1000
-            int extraSteps = (int) ((ivst - 501) / 100);
+            int extraSteps = (int) ((ivst - 620) / 100);
             betAmount = 11 + extraSteps;
         } else {
             betAmount = 10;
@@ -62,14 +61,20 @@ public class DecisionMaker {
         if (betAmount > 30)
             betAmount = 30;
 
-        if (ivst > 2900) {
-        // System.out.println(" Stop Playing today, Aviator is in looting mood, chess more till invested amount became 3600 Play tomorrow start with bet "+betAmount);
-          //return false;
+        tracker = Math.max(tracker_bal, tracker);
+        if (tracker_bal < (tracker - 3000) && STOP == 0) {
+            System.out.println(" ======  This is it for the DAY.... Play tomorrow or after at least 6 , 7 Hours  =========");
+            STOP = 1;
         }
-        if (ivst > 3600) {
-        //     return false;
+        if (STOP == 2) {
+            return false;
         }
-
+        if (tracker_bal < -7000) {
+            STOP = 2;
+            System.out.println(" ======  This is it for the DAY.... HARD STOP.... Play tomorrow =========");
+        }
+        if (acb < 6)
+            betAmount = 30;
 
         allBet++;
         // 1. Resolve the PREVIOUS round's bet based on the newly received multiplier
@@ -77,10 +82,10 @@ public class DecisionMaker {
             if (latestMultiplier >= target) {
 
                 // If won, calculate balance by multiplying betAmount by 99
-                lossCountFlag = true;
-
-                //if(invested - balance_profit>3600)
-                System.out.println(" bet amount == " + betAmount + " , active bet " + acb + " Invested before a win " + (invested - balance_profit));
+                if (STOP == 1)
+                    STOP = 2;
+                // if(acb<7)
+                //  System.out.println(" bet amount == " + betAmount + " , active bet " + acb + " Invested before a win " + (invested - balance_profit));
                 double profit = betAmount * target;
                 balance_profit += profit;
                 balance_profit -= betAmount;
@@ -90,7 +95,7 @@ public class DecisionMaker {
                 //  invested = Math.max(invested, balance_profit);
                 log.info(allBet + " 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {}", latestMultiplier, profit, balance_profit);
                 log.info("");
-                System.out.println("Balance " + balance_profit +"  totatol get "+(balance_profit+totalBet)+"  total invested "+totalBet);
+                System.out.println("Balance " + balance_profit + "  totatol get " + (balance_profit + totalBet) + "  total invested " + totalBet);
             } else {
                 // If lost, deduct the bet amount
                 balance_profit -= betAmount;
