@@ -13,4 +13,8 @@ public class Constants {
     public final static String  STRATEGY_200B = "STRATEGY_200B";
     public final static String  STRATEGY1P75 = "STRATEGY1P75";
     public final static String  STRATEGY1P85 = "STRATEGY1P85";
+    public final static String  STRATEGY30x = "STRATEGY30x";
+    public final static String  STRATEGY50x = "STRATEGY50x";
+    public final static String  STRATEGY60x = "STRATEGY60x";
+    public final static String  STRATEGYGAPTAP = "STRATEGYGAPTAP";
 }

@@ -8,7 +8,8 @@ import java.util.*;
 
 
 public class Helper {
-    private static final String filePath = "C:/WorkSpace/multipliers/yearly/year_2026.txt";
+   // private static final String filePath = "C:/WorkSpace/multipliers/yearly/year_2026.txt";
+    private static final String filePath = "C:/WorkSpace/multipliers/monthly/monthly_8.txt";
 
     public static Map<Integer, DataModel> getDataMap() {
         return dataMap;

@@ -24,13 +24,13 @@ public class DecisionMaker {
     private Strategy30x strategy30x = new Strategy30x();
     private Strategy50x strategy50x = new Strategy50x();
     private Strategy60x strategy60x = new Strategy60x();
+    private StrategyGapTap strategyGapTap = new StrategyGapTap();
 
     private boolean betButtonStatus = false;
     private boolean betButtonStatus10 = false;
     private static final double HUNDRED = 100.0;
-    private static final double TEN = 10.0;
-
-    private static double target = 15.0;
+    private static final double FIFTEEN = 15.0;
+    private static double target = 100.0;
 
     private double balance_profit = 0;
     private int allBet = 0;
@@ -38,14 +38,10 @@ public class DecisionMaker {
 
     // Tracker for how many ticks/games have passed since the last 100x hit
     private int ticksSinceLastHundred = 0;
-
     double tracker_bal = 0;
     double tracker = 0;
+    int active_bets_count = 0;
     double invested = 0;
-
-    int acb = 0;
-
-    double totalBet = 0;
     int STOP = 0; // 1 looking to stop after a win, 2 STOPPED
 
     public boolean decisionMaker(double latestMultiplier, String balance) {
@@ -69,33 +65,29 @@ public class DecisionMaker {
         if (STOP == 2) {
             return false;
         }
-        if (tracker_bal < -7000) {
+        if (tracker_bal < -8000) {
             STOP = 2;
             System.out.println(" ======  This is it for the DAY.... HARD STOP.... Play tomorrow =========");
         }
-        if (acb < 6)
-            betAmount = 30;
+        if (active_bets_count < 6)
+            betAmount = 20;
 
         allBet++;
         // 1. Resolve the PREVIOUS round's bet based on the newly received multiplier
         if (betButtonStatus) {
             if (latestMultiplier >= target) {
-
                 // If won, calculate balance by multiplying betAmount by 99
-                if (STOP == 1)
-                    STOP = 2;
-                // if(acb<7)
-                //  System.out.println(" bet amount == " + betAmount + " , active bet " + acb + " Invested before a win " + (invested - balance_profit));
                 double profit = betAmount * target;
                 balance_profit += profit;
                 balance_profit -= betAmount;
                 tracker_bal += profit;
+                active_bets_count=0;
+                if (STOP == 1)
+                    STOP = 2;
                 invested = balance_profit;
-                acb = 0;
-                //  invested = Math.max(invested, balance_profit);
                 log.info(allBet + " 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {}", latestMultiplier, profit, balance_profit);
                 log.info("");
-                System.out.println("Balance " + balance_profit + "  totatol get " + (balance_profit + totalBet) + "  total invested " + totalBet);
+                // System.out.println(balance_profit);
             } else {
                 // If lost, deduct the bet amount
                 balance_profit -= betAmount;
@@ -104,18 +96,16 @@ public class DecisionMaker {
         }
 
         if (betButtonStatus10) {
-            if (latestMultiplier >= 15) {
+            if (latestMultiplier >= FIFTEEN) {
                 // If won, calculate balance by multiplying betAmount by 99
-                // if(invested - balance_profit>10000)
-                //   System.out.println(" 15X BALA bet amount == "+betAmount+" , Invested before a win "+(invested - balance_profit));
-                double profit = betAmount * 15;
+                double profit = betAmount * FIFTEEN;
                 balance_profit += profit;
                 balance_profit -= betAmount;
                 tracker_bal += profit;
 
                 log.info(allBet + " 💰💰💰 WIN! " + STRATEGYO10 + " Multiplier: {}x | Profit: +{} | New Balance: {}", latestMultiplier, profit, balance_profit);
                 log.info("");
-                //System.out.println("Balance " + balance_profit +"  totatol get "+(balance_profit+totalBet)+"   10x");
+                //   System.out.println(balance_profit);
             } else {
                 // If lost, deduct the bet amount
                 balance_profit -= betAmount;
@@ -144,12 +134,13 @@ public class DecisionMaker {
         boolean isBetting30x = false;
         boolean isBetting50x = false;
         boolean isBetting60x = false;
+        boolean isBettingGapTap = false;
 
 
         isBettingO10 = strategyO10.decisionMaker(latestMultiplier);
 
-        //isBettingSS70 = strategySS70.decisionMaker(latestMultiplier);
-        //isBetting1p85 = strategy1p85.decisionMaker(latestMultiplier);
+        //isBettingSS70 = strategySS70.decisionMaker(latestMultiplier); // Not that efficient, Bets to profit ratio is low
+        //isBetting1p85 = strategy1p85.decisionMaker(latestMultiplier); // Not that efficient, Bets to profit ratio is low
 
         isBetting10 = strategy10.decisionMaker(latestMultiplier);
         isBetting100 = strategy100.decisionMaker(latestMultiplier);
@@ -160,6 +151,7 @@ public class DecisionMaker {
         isBetting30x = strategy30x.decisionMaker(latestMultiplier);
         isBetting50x = strategy50x.decisionMaker(latestMultiplier);
         isBetting60x = strategy60x.decisionMaker(latestMultiplier);
+        isBettingGapTap = strategyGapTap.decisionMaker(latestMultiplier);
 
 
         // Variables to determine next state
@@ -175,7 +167,7 @@ public class DecisionMaker {
         if (isBetting50x) target = 62;// will keep active
         if (isBetting60x) target = 90;//think about it
 
-        if (isBetting10 || isBetting100 || isBetting150 || isBetting200 || isBettingTD || isBettingSS70 || isBetting1p75 || isBetting1p85) {
+        if (isBetting10 || isBetting100 || isBetting150 || isBetting200 || isBettingTD || isBettingSS70 || isBetting1p75 || isBettingGapTap || isBetting1p85) {
             nextBetStatus = true;
             target = 100;
         }
@@ -183,7 +175,6 @@ public class DecisionMaker {
         if (isBettingO10) {
             nextBetStatus10 = true;
         }
-
 
         List<String> as = new ArrayList<>();
         if (isBetting10) as.add(STRATEGY_10);
@@ -195,6 +186,10 @@ public class DecisionMaker {
         if (isBettingSS70) as.add(STRATEGY_SS_70);
         if (isBetting1p75) as.add(STRATEGY1P75);
         if (isBetting1p85) as.add(STRATEGY1P85);
+        if (isBetting30x) as.add(STRATEGY30x);
+        if (isBetting50x) as.add(STRATEGY50x);
+        if (isBetting60x) as.add(STRATEGY60x);
+        if (isBettingGapTap) as.add(STRATEGYGAPTAP);
 
 
         // 4. Highlight significant state changes (Turning ON or OFF)
@@ -205,7 +200,9 @@ public class DecisionMaker {
         }
 
         // 5. Standard tick logging for every method call
-        String statusString = nextBetStatus ? "ON" : "OFF";
+        String statusString = nextBetStatus || nextBetStatus10 ? "ON" : "OFF";
+        if(statusString.equals("ON"))active_bets_count++;
+
         String tick = String.valueOf(latestMultiplier);
         switch (tick.length()) {
             case 3:
@@ -222,12 +219,13 @@ public class DecisionMaker {
                 break;
         }
 
-        log.info(allBet + " 📊 Tick:  {}  | Strategy:  {}  |  Balance:  {}  | Last 100x ago  {}  | Bet is  {}  | Profit:  {}",
-                tick, as, balance, ticksSinceLastHundred, statusString, balance_profit);
+        log.info(allBet + " 📊 Tick: {} | Strategy: {} | Balance: {} | L 100x ago {} | Bet is {} | Profit: {} | BetAmount: {} | IBAW: {}",
+                tick, as, balance, ticksSinceLastHundred, statusString, balance_profit, betAmount, ivst);
 
         // System property update
         System.setProperty("BET_BTN_STATUS", statusString);
 
+        // Save current bet status for the next tick
         // Save current bet status for the next tick
         if (ticksSinceLastHundred < 170) {
             betButtonStatus = nextBetStatus;
@@ -239,10 +237,6 @@ public class DecisionMaker {
 
         System.setProperty("BET_AMOUNT", String.valueOf(betAmount));
 
-        if (betButtonStatus || betButtonStatus10) {
-            totalBet += betAmount;
-            acb++;
-        }
         return betButtonStatus;
     }
 }
