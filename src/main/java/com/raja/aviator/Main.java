@@ -23,14 +23,14 @@ public class Main {
         // Individual Testing
         AviatorCalculator calculator = new AviatorCalculator(10000);
          //calculator.processSimulation(FILE_SOURCE+"mon_19_jun_CO.txt");
-        calculator.processSimulation("C:/WorkSpace/multipliers/daily/daily_234.txt");
+        calculator.processSimulation("C:/WorkSpace/multipliers/daily/daily_247.txt");
         //calculator.processSimulation("C:/WorkSpace/multipliers/yearly/year_2026.txt");
-       //  calculator.processSimulation("C:/WorkSpace/multipliers/monthly/monthly_6.txt");
+        // calculator.processSimulation("C:/WorkSpace/multipliers/monthly/monthly_8.txt");
         //calculator.processSimulation("C:/WorkSpace/multipliers/weekly/weekly_35.txt");
 
-        LocalDateTime from = LocalDateTime.of(2026, 8, 15, 18, 45, 0);
-        LocalDateTime to = LocalDateTime.of(2026, 9, 1, 22, 20, 59);
-       // calculator.processSimulationDataFromDB(from, to);
+        LocalDateTime from = LocalDateTime.of(2026, 9, 1, 20, 22, 0);
+        LocalDateTime to = LocalDateTime.of(2026, 9, 2, 17, 33, 59);
+        //calculator.processSimulationDataFromDB(from, to);
 
     }
 

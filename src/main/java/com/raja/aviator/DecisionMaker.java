@@ -65,7 +65,7 @@ public class DecisionMaker {
         if (STOP == 2) {
             return false;
         }
-        if (tracker_bal < -8000) {
+        if (tracker_bal < -6000) {
             STOP = 2;
             System.out.println(" ======  This is it for the DAY.... HARD STOP.... Play tomorrow =========");
         }
@@ -137,15 +137,15 @@ public class DecisionMaker {
         boolean isBettingGapTap = false;
 
 
-        isBettingO10 = strategyO10.decisionMaker(latestMultiplier);
+    //    isBettingO10 = strategyO10.decisionMaker(latestMultiplier);
 
         //isBettingSS70 = strategySS70.decisionMaker(latestMultiplier); // Not that efficient, Bets to profit ratio is low
         //isBetting1p85 = strategy1p85.decisionMaker(latestMultiplier); // Not that efficient, Bets to profit ratio is low
+        // isBetting200 = strategy200.decisionMaker(latestMultiplier);  // Not that efficient, Bets to profit ratio is low
 
         isBetting10 = strategy10.decisionMaker(latestMultiplier);
         isBetting100 = strategy100.decisionMaker(latestMultiplier);
         isBetting150 = strategy150.decisionMaker(latestMultiplier);
-        isBetting200 = strategy200.decisionMaker(latestMultiplier);
         isBettingTD = strategyTwoDigit.decisionMaker(latestMultiplier);
         isBetting1p75 = strategy1p75.decisionMaker(latestMultiplier);
         isBetting30x = strategy30x.decisionMaker(latestMultiplier);
@@ -227,7 +227,7 @@ public class DecisionMaker {
 
         // Save current bet status for the next tick
         // Save current bet status for the next tick
-        if (ticksSinceLastHundred < 170) {
+        if (ticksSinceLastHundred < 185) {
             betButtonStatus = nextBetStatus;
             betButtonStatus10 = nextBetStatus10;
         } else {
