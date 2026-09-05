@@ -1,12 +1,12 @@
-package com.raja.aviator;
+package com.raja.aviator.strategies;
 
-public class Strategy30x implements Strategy {
+public class Strategy60x implements Strategy {
 
-    private static final double TRIGGER = 30.0;
+    private static final double TRIGGER = 60.0;
 
     // After a 20x+ trigger:
-    private static final int WAIT_ROUNDS = 72;
-    private static final int BET_ROUNDS = 8;
+    private static final int WAIT_ROUNDS = 2;
+    private static final int BET_ROUNDS = 3;
 
     private int waitCount = 0;
     private int betCount = 0;
@@ -64,7 +64,7 @@ public class Strategy30x implements Strategy {
         // No active setup
         // Look for starting 20x+
         // -----------------------------------------
-        if (multip >= TRIGGER && multip <= 40) {
+        if (multip >= TRIGGER && multip <= 100) {
             waiting = true;
             waitCount = 0;
             betCount = 0;

@@ -1,4 +1,4 @@
-package com.raja.aviator;
+package com.raja.aviator.strategies;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.raja.aviator.Constants.*;
-import static com.raja.aviator.Constants.STRATEGY_100;
 
 public class StrategyO10 implements Strategy {
     private static final Logger log = LoggerFactory.getLogger(StrategyO10.class);
@@ -48,8 +47,8 @@ public class StrategyO10 implements Strategy {
                 if ( secondLast + last < 65) {
                     state = State.WAITING_A1;
                     System.setProperty(STRATEGYO10, STRATEGYO10);
-                    log.warn(" ------------ (SLH) '{}'  + (LH) '{}' < 65 ----- ", secondLast, last );
-                    log.warn("------- STRATEGYO10 ------- BETS will Start from next { 24 to 34 } Round ");
+                    //   log.warn(" ------------ (SLH) '{}'  + (LH) '{}' < 65 ----- ", secondLast, last );
+                    //log.warn("------- STRATEGYO10 ------- BETS will Start from next { 24 to 34 } Round ");
                 }
             }
         } else {
@@ -68,7 +67,7 @@ public class StrategyO10 implements Strategy {
                     if (lastHundredBefore == 34) {
                         state = State.SEARCHING_PATTERN;
                         betButtonStatus = false;
-                        log.warn(" ------------ STRATEGYO10 ( 24 to 34 ) ------ TURNED OFF");
+                      //  log.warn(" ------------ STRATEGYO10 ( 24 to 34 ) ------ TURNED OFF");
                     }
                     break;
                 case SEARCHING_PATTERN:

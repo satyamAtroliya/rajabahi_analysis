@@ -1,4 +1,4 @@
-package com.raja.aviator;
+package com.raja.aviator.strategies;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +25,8 @@ public class DecisionMaker {
     private Strategy50x strategy50x = new Strategy50x();
     private Strategy60x strategy60x = new Strategy60x();
     private StrategyGapTap strategyGapTap = new StrategyGapTap();
+    private Strategy300 strategy300 = new Strategy300();
+    private StrategySentiment2 strategySS2 = new StrategySentiment2();
 
     private boolean betButtonStatus = false;
     private boolean betButtonStatus10 = false;
@@ -45,6 +47,9 @@ public class DecisionMaker {
     int STOP = 0; // 1 looking to stop after a win, 2 STOPPED
 
     public boolean decisionMaker(double latestMultiplier, String balance) {
+
+        balance_profit = Double.parseDouble(System.getProperty(DUMMY_BALANCE,"10"));
+        invested = Math.max(invested,balance_profit);
 
         double ivst = invested - balance_profit;
         if (ivst > 620) {
@@ -81,7 +86,7 @@ public class DecisionMaker {
                 balance_profit += profit;
                 balance_profit -= betAmount;
                 tracker_bal += profit;
-                active_bets_count=0;
+                active_bets_count = 0;
                 if (STOP == 1)
                     STOP = 2;
                 invested = balance_profit;
@@ -135,13 +140,15 @@ public class DecisionMaker {
         boolean isBetting50x = false;
         boolean isBetting60x = false;
         boolean isBettingGapTap = false;
+        boolean isBetting300 = false;
+        boolean isBettingSS2 = false;
 
 
-    //    isBettingO10 = strategyO10.decisionMaker(latestMultiplier);
+        isBettingO10 = strategyO10.decisionMaker(latestMultiplier);
 
         //isBettingSS70 = strategySS70.decisionMaker(latestMultiplier); // Not that efficient, Bets to profit ratio is low
         //isBetting1p85 = strategy1p85.decisionMaker(latestMultiplier); // Not that efficient, Bets to profit ratio is low
-        // isBetting200 = strategy200.decisionMaker(latestMultiplier);  // Not that efficient, Bets to profit ratio is low
+        //isBetting200 = strategy200.decisionMaker(latestMultiplier); // Not that efficient, Bets to profit ratio is low
 
         isBetting10 = strategy10.decisionMaker(latestMultiplier);
         isBetting100 = strategy100.decisionMaker(latestMultiplier);
@@ -152,6 +159,8 @@ public class DecisionMaker {
         isBetting50x = strategy50x.decisionMaker(latestMultiplier);
         isBetting60x = strategy60x.decisionMaker(latestMultiplier);
         isBettingGapTap = strategyGapTap.decisionMaker(latestMultiplier);
+        isBetting300 = strategy300.decisionMaker(latestMultiplier);
+        isBettingSS2 = strategySS2.decisionMaker(latestMultiplier);
 
 
         // Variables to determine next state
@@ -167,7 +176,8 @@ public class DecisionMaker {
         if (isBetting50x) target = 62;// will keep active
         if (isBetting60x) target = 90;//think about it
 
-        if (isBetting10 || isBetting100 || isBetting150 || isBetting200 || isBettingTD || isBettingSS70 || isBetting1p75 || isBettingGapTap || isBetting1p85) {
+        if (isBetting10 || isBetting100 || isBetting150 || isBetting200 || isBettingTD || isBettingSS70 ||
+                isBetting1p75 || isBettingGapTap || isBetting1p85 || isBetting300 || isBettingSS2) {
             nextBetStatus = true;
             target = 100;
         }
@@ -190,6 +200,8 @@ public class DecisionMaker {
         if (isBetting50x) as.add(STRATEGY50x);
         if (isBetting60x) as.add(STRATEGY60x);
         if (isBettingGapTap) as.add(STRATEGYGAPTAP);
+        if (isBetting300) as.add(STRATEGY300);
+        if (isBettingSS2) as.add(STRATEGY_SS2);
 
 
         // 4. Highlight significant state changes (Turning ON or OFF)
@@ -201,7 +213,7 @@ public class DecisionMaker {
 
         // 5. Standard tick logging for every method call
         String statusString = nextBetStatus || nextBetStatus10 ? "ON" : "OFF";
-        if(statusString.equals("ON"))active_bets_count++;
+        if (statusString.equals("ON")) active_bets_count++;
 
         String tick = String.valueOf(latestMultiplier);
         switch (tick.length()) {
@@ -224,6 +236,7 @@ public class DecisionMaker {
 
         // System property update
         System.setProperty("BET_BTN_STATUS", statusString);
+        System.setProperty(DUMMY_BALANCE, String.valueOf(balance_profit));
 
         // Save current bet status for the next tick
         // Save current bet status for the next tick

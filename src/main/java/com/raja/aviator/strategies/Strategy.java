@@ -1,4 +1,4 @@
-package com.raja.aviator;
+package com.raja.aviator.strategies;
 
 public interface Strategy {
 

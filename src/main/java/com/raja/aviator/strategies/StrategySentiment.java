@@ -1,4 +1,4 @@
-package com.raja.aviator;
+package com.raja.aviator.strategies;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

@@ -1,4 +1,4 @@
-package com.raja.aviator;
+package com.raja.aviator.strategies;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

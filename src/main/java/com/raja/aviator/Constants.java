@@ -17,4 +17,7 @@ public class Constants {
     public final static String  STRATEGY50x = "STRATEGY50x";
     public final static String  STRATEGY60x = "STRATEGY60x";
     public final static String  STRATEGYGAPTAP = "STRATEGYGAPTAP";
+    public final static String  STRATEGY300 = "STRATEGY300";
+    public final static String  STRATEGY_SS2 = "STRATEGY_SS2";
+    public final static String  DUMMY_BALANCE = "DUMMY_BALANCE";
 }
