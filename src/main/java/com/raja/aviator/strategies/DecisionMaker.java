@@ -8,6 +8,7 @@ import java.util.List;
 
 import static com.raja.aviator.Constants.*;
 
+
 public class DecisionMaker {
 
     private static final Logger log = LoggerFactory.getLogger(DecisionMaker.class);
@@ -49,9 +50,8 @@ public class DecisionMaker {
     public boolean decisionMaker(double latestMultiplier, String balance) {
 
         balance_profit = Double.parseDouble(System.getProperty(DUMMY_BALANCE,"10"));
-        invested = Math.max(invested,balance_profit);
 
-        double ivst = invested - balance_profit;
+        double ivst = invested;
         if (ivst > 620) {
             // Calculates how many steps of 100 have passed beyond 1000
             int extraSteps = (int) ((ivst - 620) / 100);
@@ -67,7 +67,7 @@ public class DecisionMaker {
             System.out.println(" ======  This is it for the DAY.... Play tomorrow or after at least 6 , 7 Hours  =========");
             STOP = 1;
         }
-        if (STOP == 2) {
+        if (STOP == 2 || active_bets_count>210) {
             return false;
         }
         if (tracker_bal < -6000) {
@@ -89,7 +89,7 @@ public class DecisionMaker {
                 active_bets_count = 0;
                 if (STOP == 1)
                     STOP = 2;
-                invested = balance_profit;
+                invested = 0;
                 log.info(allBet + " 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {}", latestMultiplier, profit, balance_profit);
                 log.info("");
                 // System.out.println(balance_profit);
@@ -97,6 +97,7 @@ public class DecisionMaker {
                 // If lost, deduct the bet amount
                 balance_profit -= betAmount;
                 tracker_bal -= betAmount;
+                invested+=betAmount;
             }
         }
 
@@ -115,6 +116,7 @@ public class DecisionMaker {
                 // If lost, deduct the bet amount
                 balance_profit -= betAmount;
                 tracker_bal -= betAmount;
+                invested+=betAmount;
             }
         }
 
@@ -231,8 +233,8 @@ public class DecisionMaker {
                 break;
         }
 
-        log.info(allBet + " 📊 Tick: {} | Strategy: {} | Balance: {} | L 100x ago {} | Bet is {} | Profit: {} | BetAmount: {} | IBAW: {}",
-                tick, as, balance, ticksSinceLastHundred, statusString, balance_profit, betAmount, ivst);
+        log.info(allBet + " 📊 Tick: {} | Strategy: {} | Balance: {} | L 100x ago {} | Bet is {} | Profit: {} | BetAmount: {} | ABC: {} | IBAW: {}",
+                tick, as, balance, ticksSinceLastHundred, statusString, balance_profit, betAmount,active_bets_count, ivst);
 
         // System property update
         System.setProperty("BET_BTN_STATUS", statusString);
