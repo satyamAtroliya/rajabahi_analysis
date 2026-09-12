@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.raja.aviator.Constants.*;
-
-
 public class DecisionMaker {
 
     private static final Logger log = LoggerFactory.getLogger(DecisionMaker.class);
@@ -67,9 +65,10 @@ public class DecisionMaker {
             System.out.println(" ======  This is it for the DAY.... Play tomorrow or after at least 6 , 7 Hours  =========");
             STOP = 1;
         }
-        if (STOP == 2 || active_bets_count>210) {
+        if (STOP == 2 || active_bets_count>320) {
             return false;
         }
+        STOP = Integer.parseInt(System.getProperty(MANUAL_STOP,"0")) == 1 ? 1 : STOP;
         if (tracker_bal < -6000) {
             STOP = 2;
             System.out.println(" ======  This is it for the DAY.... HARD STOP.... Play tomorrow =========");
@@ -233,8 +232,8 @@ public class DecisionMaker {
                 break;
         }
 
-        log.info(allBet + " 📊 Tick: {} | Strategy: {} | Balance: {} | L 100x ago {} | Bet is {} | Profit: {} | BetAmount: {} | ABC: {} | IBAW: {}",
-                tick, as, balance, ticksSinceLastHundred, statusString, balance_profit, betAmount,active_bets_count, ivst);
+        log.info(allBet + " 📊 Tick: {} | Strategy: {} | Balance: {} | L 100x ago {} | Bet is {} | Profit: {} | POD: {} | BetAmount: {} | ABC: {} | IBAW: {}",
+                tick, as, balance, ticksSinceLastHundred, statusString, balance_profit, tracker_bal, betAmount,active_bets_count, ivst);
 
         // System property update
         System.setProperty("BET_BTN_STATUS", statusString);
