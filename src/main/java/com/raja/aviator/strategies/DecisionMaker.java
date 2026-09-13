@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.raja.aviator.Constants.*;
+
 public class DecisionMaker {
 
     private static final Logger log = LoggerFactory.getLogger(DecisionMaker.class);
@@ -62,16 +63,16 @@ public class DecisionMaker {
 
         tracker = Math.max(tracker_bal, tracker);
         if (tracker_bal < (tracker - 3000) && STOP == 0) {
-            System.out.println(" ======  This is it for the DAY.... Play tomorrow or after at least 6 , 7 Hours  =========");
+          //  System.out.println(" ======  This is it for the DAY.... Play tomorrow or after at least 6 , 7 Hours  =========");
             STOP = 1;
         }
         if (STOP == 2 || active_bets_count>320) {
-            return false;
+           // return false;
         }
         STOP = Integer.parseInt(System.getProperty(MANUAL_STOP,"0")) == 1 ? 1 : STOP;
         if (tracker_bal < -6000) {
             STOP = 2;
-            System.out.println(" ======  This is it for the DAY.... HARD STOP.... Play tomorrow =========");
+         //   System.out.println(" ======  This is it for the DAY.... HARD STOP.... Play tomorrow =========");
         }
         if (active_bets_count < 6)
             betAmount = 20;
@@ -81,15 +82,14 @@ public class DecisionMaker {
         if (betButtonStatus) {
             if (latestMultiplier >= target) {
                 // If won, calculate balance by multiplying betAmount by 99
-                double profit = betAmount * target;
+                double profit = (betAmount * target) - betAmount;
                 balance_profit += profit;
-                balance_profit -= betAmount;
                 tracker_bal += profit;
                 active_bets_count = 0;
                 if (STOP == 1)
                     STOP = 2;
                 invested = 0;
-                log.info(allBet + " 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {}", latestMultiplier, profit, balance_profit);
+                log.error(allBet + " 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {} ", latestMultiplier, profit, balance_profit);
                 log.info("");
                 // System.out.println(balance_profit);
             } else {
@@ -103,11 +103,9 @@ public class DecisionMaker {
         if (betButtonStatus10) {
             if (latestMultiplier >= FIFTEEN) {
                 // If won, calculate balance by multiplying betAmount by 99
-                double profit = betAmount * FIFTEEN;
+                double profit = (betAmount * FIFTEEN) - betAmount;
                 balance_profit += profit;
-                balance_profit -= betAmount;
                 tracker_bal += profit;
-
                 log.info(allBet + " 💰💰💰 WIN! " + STRATEGYO10 + " Multiplier: {}x | Profit: +{} | New Balance: {}", latestMultiplier, profit, balance_profit);
                 log.info("");
                 //   System.out.println(balance_profit);
@@ -241,7 +239,7 @@ public class DecisionMaker {
 
         // Save current bet status for the next tick
         // Save current bet status for the next tick
-        if (ticksSinceLastHundred < 185) {
+        if (ticksSinceLastHundred < 185 || isBettingGapTap) {
             betButtonStatus = nextBetStatus;
             betButtonStatus10 = nextBetStatus10;
         } else {

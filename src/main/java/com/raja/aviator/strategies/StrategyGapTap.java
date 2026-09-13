@@ -36,7 +36,7 @@ public class StrategyGapTap {
         roundsSince100x++;
 
         // Stop this cycle after round 69.
-        if (roundsSince100x > 187) {
+        if (roundsSince100x > 362) {
             return false;
         }
 
@@ -50,6 +50,8 @@ public class StrategyGapTap {
                         || (round >= 29 && round <= 30)
                         || (round >= 48 && round <= 52)
                         || (round >= 62 && round <= 66)
-                        || (round >= 171 && round <= 185);
+                        || (round >= 171 && round <= 185)
+                        || (round >= 240 && round <= 260)
+                        || (round >= 340 && round <= 360);
     }
 }
