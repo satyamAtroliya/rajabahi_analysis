@@ -2,6 +2,30 @@ package com.raja.aviator;
 
 public class TurnTracker {
 
+    static int ivst =0;
+    static int betAmount =10;
+
+    public static void main(String arg[]){
+        for(int i = 0; i<=500; i++) {
+
+
+            if (ivst > 600) {
+                // Calculates how many steps of 100 have passed beyond 1000
+                int extraSteps = (int) ((ivst - 600) / 100);
+                betAmount = 11 + extraSteps;
+            } else {
+                betAmount = 10;
+            }
+            if (ivst > 4000) {
+                // Calculates how many steps of 100 have passed beyond 1000
+                int extraSteps = (int) ((ivst - 4000) / 100);
+                betAmount = 11 + extraSteps;
+            }
+            System.out.println(i+ "  betAmount : "+betAmount+" , IVST : "+ivst);
+            ivst+=betAmount;
+        }
+    }
+
     private double total100xCount = 0;
     private int totalTurnCount = 0;
 

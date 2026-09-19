@@ -18,10 +18,8 @@ public class RangeCounter {
             total++;
             counter++;
             if(entry.getValue().getMultiplier()>100){
-                if(counter>=200)
+                if(counter>=190)
                System.out.println("=================== "+counter);
-                else if(counter<=200 && counter>=100)
-               System.out.println("=============== "+counter);
                 else
                     System.out.println("========= "+counter);
 
@@ -32,8 +30,19 @@ public class RangeCounter {
 
         // 2. Define your custom ranges here
         List<Range> ranges = Arrays.asList(
-                new Range(1, 75),
-                new Range(100, 150),
+                new Range(1, 5),
+                new Range(5, 10),
+                new Range(10, 15),
+                new Range(15, 20),
+                new Range(20, 25),
+                new Range(25, 30),
+                new Range(30, 35),
+                new Range(35, 40),
+                new Range(40, 45),
+                new Range(45, 50),
+                new Range(50, 60),
+                new Range(60, 150),
+
                 new Range(150, 200),
                 new Range(200, 250),
                 new Range(250, 300),
