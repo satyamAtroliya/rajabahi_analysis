@@ -6,22 +6,20 @@ public class TurnTracker {
     static int betAmount =10;
 
     public static void main(String arg[]){
-        for(int i = 0; i<=500; i++) {
-
-
-            if (ivst > 600) {
-                // Calculates how many steps of 100 have passed beyond 1000
-                int extraSteps = (int) ((ivst - 600) / 100);
-                betAmount = 11 + extraSteps;
-            } else {
+        for(int i = 0; i<=600; i++) {
+            if (ivst <= 100) {
                 betAmount = 10;
+
+            } else if (ivst <= 7000) {
+                // Increase by ₹1 for every ₹100 invested beyond ₹600.
+                betAmount = 11 + (int) ((ivst - 100) / 100);
+            } else {
+                // Start at ₹45 to avoid dropping the bet at ₹4000.
+                // Each subsequent ₹1 increase requires more investment.
+                double extraInvestment = ivst - 7000;
+                betAmount = 45 + (int) Math.sqrt(extraInvestment / 100.0);
             }
-            if (ivst > 4000) {
-                // Calculates how many steps of 100 have passed beyond 1000
-                int extraSteps = (int) ((ivst - 4000) / 100);
-                betAmount = 11 + extraSteps;
-            }
-            System.out.println(i+ "  betAmount : "+betAmount+" , IVST : "+ivst);
+            System.out.println(i+ "  betAmount : "+betAmount+" , IVST : "+ivst +" P/L  : "+((betAmount*100)-ivst) );
             ivst+=betAmount;
         }
     }
