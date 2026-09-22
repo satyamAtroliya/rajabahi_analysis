@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import static com.raja.aviator.Constants.*;
 
 public class StrategyO10 implements Strategy {

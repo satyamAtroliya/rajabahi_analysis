@@ -3,7 +3,8 @@ package com.raja.aviator.strategies;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static com.raja.aviator.Constants.STRATEGY_10;
+import static com.raja.aviator.Constants.*;
+
 
 public class Strategy1p75 implements Strategy {
     private static final Logger log = LoggerFactory.getLogger(Strategy1p75.class);

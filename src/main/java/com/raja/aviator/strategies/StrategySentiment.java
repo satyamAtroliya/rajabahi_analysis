@@ -2,8 +2,7 @@ package com.raja.aviator.strategies;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
-
-import static com.raja.aviator.Constants.STRATEGY_SS_70;
+import static com.raja.aviator.Constants.*;
 
 public class StrategySentiment implements Strategy {
 

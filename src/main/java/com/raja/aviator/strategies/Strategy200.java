@@ -4,9 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
-
-import static com.raja.aviator.Constants.STRATEGY_200A;
-import static com.raja.aviator.Constants.STRATEGY_200B;
+import static com.raja.aviator.Constants.*;
 
 public class Strategy200 implements Strategy {
     private static final Logger log = LoggerFactory.getLogger(Strategy200.class);

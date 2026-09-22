@@ -5,9 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.raja.aviator.Constants.STRATEGY_TD_A1;
-import static com.raja.aviator.Constants.STRATEGY_TD_B1;
+import static com.raja.aviator.Constants.*;
 
 public class StrategyTwoDigit implements Strategy {
     private static final Logger log = LoggerFactory.getLogger(StrategyTwoDigit.class);

@@ -46,7 +46,7 @@ public class StrategyGapTap {
 
     private boolean isBettingWindow(int round) {
         return
-                (round >= 23 && round <= 24)
+                (round >= 22 && round <= 25)
                         || (round >= 29 && round <= 30)
                         || (round >= 48 && round <= 52)
                         || (round >= 62 && round <= 66)

@@ -38,77 +38,55 @@ public class DecisionMaker {
     private int allBet = 0;
     private double betAmount = 10.0;
 
-
     // Tracker for how many ticks/games have passed since the last 100x hit
     private int ticksSinceLastHundred = 0;
     double tracker_bal = 0;
-    double tracker = 0;
     int active_bets_count = 0;
     double invested = 0;
     int STOP = 0; // 1 looking to stop after a win, 2 STOPPED
-
-    double h_bet = 0;
-    double h_ibst = 0;
-    double h_ABC = 0;
-
-    boolean falgg = false;
-    int count = 0;
+    boolean skip_flag = false;
+    int skip_count = 0;
 
     public boolean decisionMaker(double latestMultiplier, String balance) {
 
-        if (active_bets_count == 200 || active_bets_count == 400 && !falgg)
-        {
-            falgg = true;
+        balance_profit = Double.parseDouble(System.getProperty(DUMMY_BALANCE,"10"));
+        invested = Double.parseDouble(System.getProperty(INVESTED,"0"));
+
+        // Skip section
+        if (active_bets_count == 200 || active_bets_count == 400 && !skip_flag)
+        { skip_flag = true;
             active_bets_count++;
         }
-
-        if (falgg) {
-            count++;
-            if(count==150)
+        if (skip_flag) {
+            skip_count++;
+            if(skip_count==150)
             {
-                falgg = false;
-                count=0;
+                skip_flag = false;
+                skip_count=0;
             }
             return false;
         }
 
-
-        balance_profit = Double.parseDouble(System.getProperty(DUMMY_BALANCE, "10"));
+        // Investment control
         double ivst = invested;
-
-        if (ivst > 600) {
-            // Calculates how many steps of 100 have passed beyond 1000
-            int extraSteps = (int) ((ivst - 600) / 100);
-            betAmount = 11 + extraSteps;
-        } else {
+        if (ivst <= 100) {
             betAmount = 10;
-        }
-        if (ivst > 4000) {
-            // Calculates how many steps of 100 have passed beyond 1000
-            int extraSteps = (int) ((ivst - 4000) / 100);
-            betAmount = 11 + extraSteps;
-        }
-         if (betAmount > 200)
-            betAmount = 200;
 
-        // if (invested>=2000)
-        //    invested=1500;
+        } else if (ivst <= 7000) {
+            // Increase by ₹1 for every ₹100 invested beyond ₹600.
+            betAmount = 11 + (int) ((ivst - 100) / 100);
+        } else {
+            // Start at ₹45 to avoid dropping the bet at ₹4000.
+            // Each subsequent ₹1 increase requires more investment.
+            double extraInvestment = ivst - 7000;
+            betAmount = 45 + (int) Math.sqrt(extraInvestment / 100.0);
+        }
 
-        tracker = Math.max(tracker_bal, tracker);
-        if (tracker_bal < (tracker - 3000) && STOP == 0) {
-            //  System.out.println(" ======  This is it for the DAY.... Play tomorrow or after at least 6 , 7 Hours  =========");
-            STOP = 1;
+        STOP = Integer.parseInt(System.getProperty(MANUAL_STOP,"0")) == 1 ? 1 : STOP;
+        if (STOP == 2) {
+            System.out.println("........STOPPED After a win......");
+            return false;
         }
-        if (STOP == 2 || active_bets_count > 320) {
-            // return false;
-        }
-        STOP = Integer.parseInt(System.getProperty(MANUAL_STOP, "0")) == 1 ? 1 : STOP;
-        if (tracker_bal < -6000) {
-            STOP = 2;
-            //   System.out.println(" ======  This is it for the DAY.... HARD STOP.... Play tomorrow =========");
-        }
-        //     if (active_bets_count < 6)
-        //       betAmount = 20;
 
         allBet++;
         // 1. Resolve the PREVIOUS round's bet based on the newly received multiplier
@@ -122,14 +100,14 @@ public class DecisionMaker {
                 if (STOP == 1)
                     STOP = 2;
                 invested = 0;
-                //      log.error(allBet + " 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {} ", latestMultiplier, profit, balance_profit);
+                log.info(allBet + " 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {}", latestMultiplier, profit, balance_profit);
                 log.info("");
                 // System.out.println(balance_profit);
             } else {
                 // If lost, deduct the bet amount
                 balance_profit -= betAmount;
                 tracker_bal -= betAmount;
-                invested += betAmount;
+                invested+=betAmount;
             }
         }
 
@@ -146,7 +124,7 @@ public class DecisionMaker {
                 // If lost, deduct the bet amount
                 balance_profit -= betAmount;
                 tracker_bal -= betAmount;
-                invested += betAmount;
+                invested+=betAmount;
             }
         }
 
@@ -176,11 +154,10 @@ public class DecisionMaker {
         boolean isBettingSS2 = false;
 
 
-        //isBettingO10 = strategyO10.decisionMaker(latestMultiplier);
-
-//       isBettingSS70 = strategySS70.decisionMaker(latestMultiplier); // Not that efficient, Bets to profit ratio is low
-        //   isBetting1p85 = strategy1p85.decisionMaker(latestMultiplier); // Not that efficient, Bets to profit ratio is low
-     //   isBetting200 = strategy200.decisionMaker(latestMultiplier); // Not that efficient, Bets to profit ratio is low
+       // isBettingO10 = strategyO10.decisionMaker(latestMultiplier); // Lose making
+        //isBettingSS70 = strategySS70.decisionMaker(latestMultiplier); // Not that efficient, Bets to profit ratio is low
+        //isBetting1p85 = strategy1p85.decisionMaker(latestMultiplier); // Not that efficient, Bets to profit ratio is low
+        //isBetting200 = strategy200.decisionMaker(latestMultiplier); // Not that efficient, Bets to profit ratio is low
 
         isBetting10 = strategy10.decisionMaker(latestMultiplier);
         isBetting100 = strategy100.decisionMaker(latestMultiplier);
@@ -207,9 +184,6 @@ public class DecisionMaker {
         if (isBetting30x) target = 80; //Final
         if (isBetting50x) target = 62;// will keep active
         if (isBetting60x) target = 90;//think about it
-//        if (isBetting30x) target = 100; //Final
-//        if (isBetting50x) target = 100;// will keep active
-//        if (isBetting60x) target = 100;//think about it
 
         if (isBetting10 || isBetting100 || isBetting150 || isBetting200 || isBettingTD || isBettingSS70 ||
                 isBetting1p75 || isBettingGapTap || isBetting1p85 || isBetting300 || isBettingSS2) {
@@ -266,22 +240,17 @@ public class DecisionMaker {
                 break;
         }
 
-        h_bet = Math.max(h_bet, betAmount);
-        h_ibst = Math.max(h_ibst, ivst);
-        h_ABC = Math.max(h_ABC, active_bets_count);
-
-        //log.error(allBet + " 📊 Tick: {} | Strategy: {} | Balance: {} | L 100x ago {} | Bet is {} | Profit: {} | POD: {} | BetAmount: {} | ABC: {} | IBAW: {}",
-        //       tick, as, balance, ticksSinceLastHundred, statusString, balance_profit, tracker_bal, betAmount,active_bets_count, ivst);
-        // if(active_bets_count==400 || active_bets_count==300)
-        log.error(" bet amount max : {} , invested_max : {} , ACB : {} , Profit : {}", h_bet, h_ibst, h_ABC, balance_profit);
+        log.info(allBet + " 📊 Tick: {} | Strategy: {} | Balance: {} | L 100x ago {} | Bet is {} | Profit: {} | POD: {} | BetAmount: {} | ABC: {} | IBAW: {}",
+                tick, as, balance, ticksSinceLastHundred, statusString, balance_profit, tracker_bal, betAmount,active_bets_count, ivst);
 
         // System property update
         System.setProperty("BET_BTN_STATUS", statusString);
         System.setProperty(DUMMY_BALANCE, String.valueOf(balance_profit));
+        System.setProperty(INVESTED, String.valueOf(invested));
 
         // Save current bet status for the next tick
         // Save current bet status for the next tick
-        if (ticksSinceLastHundred < 1755 || isBettingGapTap) {
+        if (ticksSinceLastHundred < 185 || isBettingGapTap) {
             betButtonStatus = nextBetStatus;
             betButtonStatus10 = nextBetStatus10;
         } else {

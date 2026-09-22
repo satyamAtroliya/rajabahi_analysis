@@ -21,4 +21,5 @@ public class Constants {
     public final static String  STRATEGY_SS2 = "STRATEGY_SS2";
     public final static String  DUMMY_BALANCE = "DUMMY_BALANCE";
     public final static String  MANUAL_STOP = "MANUAL_STOP";
+    public final static String  INVESTED = "INVESTED";
 }
