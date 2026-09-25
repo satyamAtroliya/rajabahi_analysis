@@ -3,7 +3,9 @@ package com.raja.aviator.strategies;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 
 import static com.raja.aviator.Constants.*;
@@ -47,32 +49,51 @@ public class DecisionMaker {
     boolean skip_flag = false;
     int skip_count = 0;
 
+    int c_won = 0;
+    Deque<Double> stack = new ArrayDeque<>();
+
+    double h_ivst=0;
+    int h_abc=0;
+
     public boolean decisionMaker(double latestMultiplier, String balance) {
 
-        balance_profit = Double.parseDouble(System.getProperty(DUMMY_BALANCE,"10"));
-        invested = Double.parseDouble(System.getProperty(INVESTED,"0"));
+        balance_profit = Double.parseDouble(System.getProperty(DUMMY_BALANCE, "10"));
+        invested = Double.parseDouble(System.getProperty(INVESTED, "0"));
 
         // Skip section
-        if (active_bets_count == 200 || active_bets_count == 400 && !skip_flag)
-        { skip_flag = true;
+        if (active_bets_count == 200 || active_bets_count == 400 && !skip_flag) {
+            skip_flag = true;
             active_bets_count++;
         }
         if (skip_flag) {
             skip_count++;
-            if(skip_count==150)
-            {
+            if (skip_count == 150) {
                 skip_flag = false;
-                skip_count=0;
+                skip_count = 0;
             }
-            return false;
+            //   return false;
         }
 
         // Investment control
         double ivst = invested;
+
+        if (active_bets_count/50 == 0) {
+           stack.push(ivst);
+         //  if(ivst>70000)
+            System.out.println("push : " + ivst);
+            ivst = 0;
+           // active_bets_count=0;
+        }
+        if(c_won<=1 && !stack.isEmpty())
+        { ivst=stack.pop();
+         //   if(ivst>70000)
+            System.out.println("pop : " +ivst);
+        }
+
         if (ivst <= 100) {
             betAmount = 10;
 
-        } else if (ivst <= 7000) {
+        } else if (ivst <= 7000000) {
             // Increase by ₹1 for every ₹100 invested beyond ₹600.
             betAmount = 11 + (int) ((ivst - 100) / 100);
         } else {
@@ -82,7 +103,7 @@ public class DecisionMaker {
             betAmount = 45 + (int) Math.sqrt(extraInvestment / 100.0);
         }
 
-        STOP = Integer.parseInt(System.getProperty(MANUAL_STOP,"0")) == 1 ? 1 : STOP;
+        STOP = Integer.parseInt(System.getProperty(MANUAL_STOP, "0")) == 1 ? 1 : STOP;
         if (STOP == 2) {
             System.out.println("........STOPPED After a win......");
             return false;
@@ -96,6 +117,11 @@ public class DecisionMaker {
                 double profit = (betAmount * target) - betAmount;
                 balance_profit += profit;
                 tracker_bal += profit;
+
+                if (active_bets_count < 100)
+                    c_won++;
+                else c_won = 0;
+
                 active_bets_count = 0;
                 if (STOP == 1)
                     STOP = 2;
@@ -107,7 +133,7 @@ public class DecisionMaker {
                 // If lost, deduct the bet amount
                 balance_profit -= betAmount;
                 tracker_bal -= betAmount;
-                invested+=betAmount;
+                invested += betAmount;
             }
         }
 
@@ -124,7 +150,7 @@ public class DecisionMaker {
                 // If lost, deduct the bet amount
                 balance_profit -= betAmount;
                 tracker_bal -= betAmount;
-                invested+=betAmount;
+                invested += betAmount;
             }
         }
 
@@ -154,7 +180,7 @@ public class DecisionMaker {
         boolean isBettingSS2 = false;
 
 
-       // isBettingO10 = strategyO10.decisionMaker(latestMultiplier); // Lose making
+        // isBettingO10 = strategyO10.decisionMaker(latestMultiplier); // Lose making
         //isBettingSS70 = strategySS70.decisionMaker(latestMultiplier); // Not that efficient, Bets to profit ratio is low
         //isBetting1p85 = strategy1p85.decisionMaker(latestMultiplier); // Not that efficient, Bets to profit ratio is low
         //isBetting200 = strategy200.decisionMaker(latestMultiplier); // Not that efficient, Bets to profit ratio is low
@@ -239,9 +265,10 @@ public class DecisionMaker {
                 tick = tick + "x   ";
                 break;
         }
-
+        h_ivst=Math.max(ivst,h_ivst);
+        h_abc=Math.max(active_bets_count,h_abc);
         log.info(allBet + " 📊 Tick: {} | Strategy: {} | Balance: {} | L 100x ago {} | Bet is {} | Profit: {} | POD: {} | BetAmount: {} | ABC: {} | IBAW: {}",
-                tick, as, balance, ticksSinceLastHundred, statusString, balance_profit, tracker_bal, betAmount,active_bets_count, ivst);
+                tick, as, balance, ticksSinceLastHundred, statusString, balance_profit, tracker_bal, betAmount, h_abc, h_ivst);
 
         // System property update
         System.setProperty("BET_BTN_STATUS", statusString);
