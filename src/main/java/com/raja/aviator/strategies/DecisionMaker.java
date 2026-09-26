@@ -60,26 +60,11 @@ public class DecisionMaker {
         balance_profit = Double.parseDouble(System.getProperty(DUMMY_BALANCE, "10"));
         invested = Double.parseDouble(System.getProperty(INVESTED, "0"));
 
-        // Skip section
-        if (active_bets_count == 200 || active_bets_count == 400 && !skip_flag) {
-            skip_flag = true;
-           // active_bets_count++;
-        }
-        if (skip_flag) {
-            skip_count++;
-            if (skip_count == 150) {
-                skip_flag = false;
-                skip_count = 0;
-            }
-            //   return false;
-        }
-
         // Investment control
         double ivst = invested;
 
-       // if (active_bets_count%210 == 0) {
         if (invested>7000) {
-            double hold = ivst/7;
+            double hold = (int) ivst/7;
            stack.push(hold);
            stack.push(hold);
            stack.push(hold);
@@ -87,8 +72,7 @@ public class DecisionMaker {
            stack.push(hold);
            stack.push(hold);
 
-            System.out.println("push : " + hold);
-         //   System.out.println("push : " + ivst);
+            System.out.println("pushed : " + hold);
             ivst = hold;
             invested=hold;
             active_bets_count++;
@@ -102,13 +86,13 @@ public class DecisionMaker {
         if (ivst <= 100) {
             betAmount = 10;
 
-        } else if (ivst <= 12000) {
+        } else if (ivst <= 8000) {
             // Increase by ₹1 for every ₹100 invested beyond ₹600.
             betAmount = 11 + (int) ((ivst - 100) / 100);
         } else {
             // Start at ₹45 to avoid dropping the bet at ₹4000.
             // Each subsequent ₹1 increase requires more investment.
-            double extraInvestment = ivst - 12000;
+            double extraInvestment = ivst - 8000;
             betAmount = 45 + (int) Math.sqrt(extraInvestment / 100.0);
         }
 
