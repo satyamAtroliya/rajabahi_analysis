@@ -43,7 +43,7 @@ public class DecisionMaker {
     // Tracker for how many ticks/games have passed since the last 100x hit
     private int ticksSinceLastHundred = 0;
     double tracker_bal = 0;
-    int active_bets_count = 0;
+    int active_bets_count = 1;
     double invested = 0;
     int STOP = 0; // 1 looking to stop after a win, 2 STOPPED
     boolean skip_flag = false;
@@ -63,7 +63,7 @@ public class DecisionMaker {
         // Skip section
         if (active_bets_count == 200 || active_bets_count == 400 && !skip_flag) {
             skip_flag = true;
-            active_bets_count++;
+           // active_bets_count++;
         }
         if (skip_flag) {
             skip_count++;
@@ -77,29 +77,38 @@ public class DecisionMaker {
         // Investment control
         double ivst = invested;
 
-        if (active_bets_count/50 == 0) {
-           stack.push(ivst);
-         //  if(ivst>70000)
-            System.out.println("push : " + ivst);
-            ivst = 0;
-           // active_bets_count=0;
-        }
-        if(c_won<=1 && !stack.isEmpty())
-        { ivst=stack.pop();
-         //   if(ivst>70000)
+       // if (active_bets_count%210 == 0) {
+        if (invested>7000) {
+            double hold = ivst/7;
+           stack.push(hold);
+           stack.push(hold);
+           stack.push(hold);
+           stack.push(hold);
+           stack.push(hold);
+           stack.push(hold);
+
+            System.out.println("push : " + hold);
+         //   System.out.println("push : " + ivst);
+            ivst = hold;
+            invested=hold;
+            active_bets_count++;
+        }else if(c_won>=1 && !stack.isEmpty())
+        {
+            ivst=stack.pop();
+            c_won=0;
             System.out.println("pop : " +ivst);
         }
 
         if (ivst <= 100) {
             betAmount = 10;
 
-        } else if (ivst <= 7000000) {
+        } else if (ivst <= 12000) {
             // Increase by ₹1 for every ₹100 invested beyond ₹600.
             betAmount = 11 + (int) ((ivst - 100) / 100);
         } else {
             // Start at ₹45 to avoid dropping the bet at ₹4000.
             // Each subsequent ₹1 increase requires more investment.
-            double extraInvestment = ivst - 7000;
+            double extraInvestment = ivst - 12000;
             betAmount = 45 + (int) Math.sqrt(extraInvestment / 100.0);
         }
 
@@ -118,15 +127,15 @@ public class DecisionMaker {
                 balance_profit += profit;
                 tracker_bal += profit;
 
-                if (active_bets_count < 100)
+                if (active_bets_count < 150)
                     c_won++;
                 else c_won = 0;
 
-                active_bets_count = 0;
+                active_bets_count = 1;
                 if (STOP == 1)
                     STOP = 2;
                 invested = 0;
-                log.info(allBet + " 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {}", latestMultiplier, profit, balance_profit);
+                log.error(allBet + " 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {}  , ivst : {} , betamt {}", latestMultiplier, profit, balance_profit,ivst,betAmount);
                 log.info("");
                 // System.out.println(balance_profit);
             } else {
@@ -207,9 +216,9 @@ public class DecisionMaker {
         }
 
         if (isBettingO10) target = 15;
-        if (isBetting30x) target = 80; //Final
-        if (isBetting50x) target = 62;// will keep active
-        if (isBetting60x) target = 90;//think about it
+        if (isBetting30x) target = 100; //Final
+        if (isBetting50x) target = 100;// will keep active
+        if (isBetting60x) target = 100;//think about it
 
         if (isBetting10 || isBetting100 || isBetting150 || isBetting200 || isBettingTD || isBettingSS70 ||
                 isBetting1p75 || isBettingGapTap || isBetting1p85 || isBetting300 || isBettingSS2) {
