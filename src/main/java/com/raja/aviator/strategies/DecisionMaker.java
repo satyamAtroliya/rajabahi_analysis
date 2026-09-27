@@ -3,12 +3,11 @@ package com.raja.aviator.strategies;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.List;
 
 import static com.raja.aviator.Constants.*;
+
 
 public class DecisionMaker {
 
@@ -43,60 +42,53 @@ public class DecisionMaker {
     // Tracker for how many ticks/games have passed since the last 100x hit
     private int ticksSinceLastHundred = 0;
     double tracker_bal = 0;
-    int active_bets_count = 1;
+    int active_bets_count = 0;
     double invested = 0;
     int STOP = 0; // 1 looking to stop after a win, 2 STOPPED
-    boolean skip_flag = false;
-    int skip_count = 0;
 
-    int c_won = 0;
-    Deque<Double> stack = new ArrayDeque<>();
-
-    double h_ivst=0;
-    int h_abc=0;
+    int win_in_150 = 0;
+    int yet_pending = 0;
+    double pAndL = 0;
 
     public boolean decisionMaker(double latestMultiplier, String balance) {
 
-        balance_profit = Double.parseDouble(System.getProperty(DUMMY_BALANCE, "10"));
-        invested = Double.parseDouble(System.getProperty(INVESTED, "0"));
+        balance_profit = Double.parseDouble(System.getProperty(DUMMY_BALANCE,"10"));
+        invested = Double.parseDouble(System.getProperty(INVESTED,"0"));
+        yet_pending = Integer.parseInt(System.getProperty(YET_PENDING,"0"));
 
         // Investment control
         double ivst = invested;
-
-        if (invested>7000) {
-            double hold = (int) ivst/7;
-           stack.push(hold);
-           stack.push(hold);
-           stack.push(hold);
-           stack.push(hold);
-           stack.push(hold);
-           stack.push(hold);
-
-            System.out.println("pushed : " + hold);
-            ivst = hold;
-            invested=hold;
-            active_bets_count++;
-        }else if(c_won>=1 && !stack.isEmpty())
-        {
-            ivst=stack.pop();
-            c_won=0;
-            System.out.println("pop : " +ivst);
+        int pp = 500;
+        if (pAndL< 1) {
+           // int a = Math.abs((int)Math.floor(pAndL/pp));
+            yet_pending = 1;
+            System.out.println("yet_pending : " + yet_pending);
+            ivst = pp;
+            invested = pp;
+            win_in_150 = 0;
+            pAndL=2;
+        } else if (win_in_150 >= 1 && yet_pending != 0) {
+            yet_pending--;
+            ivst = pp;
+            invested = pp;
+            win_in_150 = 0;
+            System.out.println("Starting from 100 and yet_pending : " + yet_pending);
         }
 
         if (ivst <= 100) {
             betAmount = 10;
 
-        } else if (ivst <= 8000) {
+        } else if (ivst <= 7000) {
             // Increase by ₹1 for every ₹100 invested beyond ₹600.
             betAmount = 11 + (int) ((ivst - 100) / 100);
         } else {
             // Start at ₹45 to avoid dropping the bet at ₹4000.
             // Each subsequent ₹1 increase requires more investment.
-            double extraInvestment = ivst - 8000;
-            betAmount = 45 + (int) Math.sqrt(extraInvestment / 100.0);
+            double extraInvestment = ivst - 7000;
+            betAmount = 10 + (int) Math.sqrt(extraInvestment / 100.0);
         }
 
-        STOP = Integer.parseInt(System.getProperty(MANUAL_STOP, "0")) == 1 ? 1 : STOP;
+        STOP = Integer.parseInt(System.getProperty(MANUAL_STOP,"0")) == 1 ? 1 : STOP;
         if (STOP == 2) {
             System.out.println("........STOPPED After a win......");
             return false;
@@ -110,23 +102,23 @@ public class DecisionMaker {
                 double profit = (betAmount * target) - betAmount;
                 balance_profit += profit;
                 tracker_bal += profit;
-
+                pAndL=(profit-invested);
                 if (active_bets_count < 150)
-                    c_won++;
-                else c_won = 0;
+                    win_in_150++;
+                else win_in_150 = 0;
 
-                active_bets_count = 1;
+                active_bets_count = 0;
                 if (STOP == 1)
                     STOP = 2;
                 invested = 0;
-                log.error(allBet + " 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {}  , ivst : {} , betamt {}", latestMultiplier, profit, balance_profit,ivst,betAmount);
+                log.error(allBet + " 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {}", latestMultiplier, profit, balance_profit);
                 log.info("");
                 // System.out.println(balance_profit);
             } else {
                 // If lost, deduct the bet amount
                 balance_profit -= betAmount;
                 tracker_bal -= betAmount;
-                invested += betAmount;
+                invested+=betAmount;
             }
         }
 
@@ -143,7 +135,7 @@ public class DecisionMaker {
                 // If lost, deduct the bet amount
                 balance_profit -= betAmount;
                 tracker_bal -= betAmount;
-                invested += betAmount;
+                invested+=betAmount;
             }
         }
 
@@ -200,9 +192,9 @@ public class DecisionMaker {
         }
 
         if (isBettingO10) target = 15;
-        if (isBetting30x) target = 100; //Final
-        if (isBetting50x) target = 100;// will keep active
-        if (isBetting60x) target = 100;//think about it
+        if (isBetting30x) target = 80; //Final
+        if (isBetting50x) target = 62;// will keep active
+        if (isBetting60x) target = 90;//think about it
 
         if (isBetting10 || isBetting100 || isBetting150 || isBetting200 || isBettingTD || isBettingSS70 ||
                 isBetting1p75 || isBettingGapTap || isBetting1p85 || isBetting300 || isBettingSS2) {
@@ -258,15 +250,15 @@ public class DecisionMaker {
                 tick = tick + "x   ";
                 break;
         }
-        h_ivst=Math.max(ivst,h_ivst);
-        h_abc=Math.max(active_bets_count,h_abc);
+
         log.info(allBet + " 📊 Tick: {} | Strategy: {} | Balance: {} | L 100x ago {} | Bet is {} | Profit: {} | POD: {} | BetAmount: {} | ABC: {} | IBAW: {}",
-                tick, as, balance, ticksSinceLastHundred, statusString, balance_profit, tracker_bal, betAmount, h_abc, h_ivst);
+                tick, as, balance, ticksSinceLastHundred, statusString, balance_profit, tracker_bal, betAmount,active_bets_count, ivst);
 
         // System property update
         System.setProperty("BET_BTN_STATUS", statusString);
         System.setProperty(DUMMY_BALANCE, String.valueOf(balance_profit));
         System.setProperty(INVESTED, String.valueOf(invested));
+        System.setProperty(YET_PENDING, String.valueOf(yet_pending));
 
         // Save current bet status for the next tick
         // Save current bet status for the next tick

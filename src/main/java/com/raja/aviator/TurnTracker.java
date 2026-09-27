@@ -17,7 +17,7 @@ public class TurnTracker {
                 // Start at ₹45 to avoid dropping the bet at ₹4000.
                 // Each subsequent ₹1 increase requires more investment.
                 double extraInvestment = ivst - 7000;
-                betAmount = 45 + (int) Math.sqrt(extraInvestment / 100.0);
+                betAmount = 10+ (int) Math.sqrt(extraInvestment / 100.0);
             }
             System.out.println(i+ "  betAmount : "+betAmount+" , IVST : "+ivst +" P/L  : "+((betAmount*100)-ivst) );
             ivst+=betAmount;
