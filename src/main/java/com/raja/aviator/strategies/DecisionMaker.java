@@ -106,7 +106,8 @@ public class DecisionMaker {
                 if (active_bets_count < 150)
                     win_in_150++;
                 else win_in_150 = 0;
-
+                if (active_bets_count < 200 && active_bets_count > 110)
+                    yet_pending++;
                 active_bets_count = 0;
                 if (STOP == 1)
                     STOP = 2;
