@@ -38,6 +38,7 @@ public class DecisionMaker {
     private double balance_profit = 0;
     private int allBet = 0;
     private double betAmount = 10.0;
+    private int habc  = 10;
 
     // Tracker for how many ticks/games have passed since the last 100x hit
     private int ticksSinceLastHundred = 0;
@@ -75,18 +76,38 @@ public class DecisionMaker {
             System.out.println("Starting from 100 and yet_pending : " + yet_pending);
         }
 
-        if (ivst <= 100) {
+        /*
+        1 betAmount: 10, IVST: 10, P/L if win: 990
+        100 betAmount: 25, IVST: 1575, P/L if win: 925
+        200 betAmount: 68, IVST: 5881, P/L if win: 919
+        300 betAmount: 80, IVST: 11646, P/L if win: -3646
+        398 betAmount: 213, IVST: 25021, P/L if win: -3721
+        399 betAmount: 150, IVST: 25171, P/L if win: -10171
+        400 betAmount: 151, IVST: 25322, P/L if win: -10222
+        497 betAmount: 397, IVST: 50146, P/L if win: -10446
+        498 betAmount: 301, IVST: 50447, P/L if win: -20347
+        499 betAmount: 304, IVST: 50751, P/L if win: -20351
+        ===Note till the Date all the win were before 500 abc====
+        500 betAmount: 307, IVST: 51058, P/L if win: -20358
+        600 betAmount: 830, IVST: 103920, P/L if win: -20920
+         */
+
+        if (ivst <= 250) {
             betAmount = 10;
 
         } else if (ivst <= 7000) {
-            // Increase by ₹1 for every ₹100 invested beyond ₹600.
             betAmount = 11 + (int) ((ivst - 100) / 100);
-        } else {
-            // Start at ₹45 to avoid dropping the bet at ₹4000.
-            // Each subsequent ₹1 increase requires more investment.
-            double extraInvestment = ivst - 7000;
-            betAmount = 10 + (int) Math.sqrt(extraInvestment / 100.0);
+
+        } else if (ivst <= 25000) {
+            betAmount = 35 + (int) ((ivst - 7000) / 100);
         }
+        else if (ivst <= 50000) {
+            betAmount =  (int) ((ivst - 10000) / 100) ;
+        } else {
+            // Continue from ₹79; increase ₹1 per ₹100 invested.
+            betAmount = (int) ((ivst - 20000) / 100);
+        }
+
 
         STOP = Integer.parseInt(System.getProperty(MANUAL_STOP,"0")) == 1 ? 1 : STOP;
         if (STOP == 2) {
@@ -99,6 +120,7 @@ public class DecisionMaker {
         if (betButtonStatus) {
             if (latestMultiplier >= target) {
                 // If won, calculate balance by multiplying betAmount by 99
+                habc = Math.max(habc,active_bets_count);
                 double profit = (betAmount * target) - betAmount;
                 balance_profit += profit;
                 tracker_bal += profit;
@@ -112,7 +134,7 @@ public class DecisionMaker {
                 if (STOP == 1)
                     STOP = 2;
                 invested = 0;
-                log.error(allBet + " 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {}", latestMultiplier, profit, balance_profit);
+                log.error(allBet + " 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {}", habc, profit, balance_profit);
                 log.info("");
                 // System.out.println(balance_profit);
             } else {
@@ -171,17 +193,20 @@ public class DecisionMaker {
         //isBetting1p85 = strategy1p85.decisionMaker(latestMultiplier); // Not that efficient, Bets to profit ratio is low
         //isBetting200 = strategy200.decisionMaker(latestMultiplier); // Not that efficient, Bets to profit ratio is low
 
-        isBetting10 = strategy10.decisionMaker(latestMultiplier);
-        isBetting100 = strategy100.decisionMaker(latestMultiplier);
-        isBetting150 = strategy150.decisionMaker(latestMultiplier);
-        isBettingTD = strategyTwoDigit.decisionMaker(latestMultiplier);
+
         isBetting1p75 = strategy1p75.decisionMaker(latestMultiplier);
+        isBettingGapTap = strategyGapTap.decisionMaker(latestMultiplier);
+        isBetting10 = strategy10.decisionMaker(latestMultiplier);
+        isBetting150 = strategy150.decisionMaker(latestMultiplier);
         isBetting30x = strategy30x.decisionMaker(latestMultiplier);
         isBetting50x = strategy50x.decisionMaker(latestMultiplier);
         isBetting60x = strategy60x.decisionMaker(latestMultiplier);
-        isBettingGapTap = strategyGapTap.decisionMaker(latestMultiplier);
-        isBetting300 = strategy300.decisionMaker(latestMultiplier);
-        isBettingSS2 = strategySS2.decisionMaker(latestMultiplier);
+// - If bellow is commented max abc is 480
+
+        //isBettingTD = strategyTwoDigit.decisionMaker(latestMultiplier);
+         //isBetting100 = strategy100.decisionMaker(latestMultiplier);
+        //isBetting300 = strategy300.decisionMaker(latestMultiplier);
+        //isBettingSS2 = strategySS2.decisionMaker(latestMultiplier);
 
 
         // Variables to determine next state

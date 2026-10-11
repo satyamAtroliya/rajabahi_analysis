@@ -24,9 +24,9 @@ public class Main {
         AviatorCalculator calculator = new AviatorCalculator(1000000);
          //calculator.processSimulation(FILE_SOURCE+"mon_19_jun_CO.txt");
        // calculator.processSimulation("C:/WorkSpace/multipliers/daily/daily_240.txt");
-       calculator.processSimulation("C:/WorkSpace/multipliers/yearly/year_2026.txt");
-      //calculator.processSimulation("C:/WorkSpace/multipliers/monthly/monthly_8.txt");
-     //   calculator.processSimulation("C:/WorkSpace/multipliers/weekly/weekly_40.txt");
+       //calculator.processSimulation("C:/WorkSpace/multipliers/yearly/year_2026.txt");
+      calculator.processSimulation("C:/WorkSpace/multipliers/monthly/monthly_10.txt");
+      //calculator.processSimulation("C:/WorkSpace/multipliers/weekly/weekly_40.txt");
 
         LocalDateTime from = LocalDateTime.of(2026, 9, 20, 20, 22, 0);
         LocalDateTime to = LocalDateTime.of(2026, 9, 30, 17, 33, 59);
