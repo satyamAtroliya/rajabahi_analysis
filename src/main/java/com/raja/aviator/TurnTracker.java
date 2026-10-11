@@ -5,33 +5,27 @@ public class TurnTracker {
     static int ivst =0;
     static int betAmount =10;
 //abc max till today 480.
+
     public static void main(String[] args) {
         long ivst = 0;
+        int magicNumber = 27;
         final long maxInvestment = 20000;
 
-        /*
-
-         */
+        System.out.println("   Magic Number === "+magicNumber);
 
         for (int i = 1; i <= 600; i++) {
             int betAmount;
 
-            if (ivst <= 250) {
+            if (ivst <= 100) {
                 betAmount = 10;
 
             } else if (ivst <= 7000) {
                 betAmount = 11 + (int) ((ivst - 100) / 100);
 
-            } else if (ivst <= 25000) {
-                betAmount = 35 + (int) ((ivst - 7000) / 100);
-            }
-            else if (ivst <= 50000) {
-                betAmount =  (int) ((ivst - 10000) / 100) ;
             } else {
                 // Continue from ₹79; increase ₹1 per ₹100 invested.
-                betAmount = (int) ((ivst - 20000) / 100);
+                betAmount = magicNumber + (int) ((ivst - 7000) / 100);
             }
-
 
             ivst += betAmount;
 
@@ -46,26 +40,6 @@ public class TurnTracker {
             );
         }
     }
-
-    public static void madin(String arg[]){
-        for(int i = 0; i<=600; i++) {
-            if (ivst <= 100) {
-                betAmount = 10;
-
-            } else if (ivst <= 7000) {
-                // Increase by ₹1 for every ₹100 invested beyond ₹600.
-                betAmount = 11 + (int) ((ivst - 100) / 100);
-            } else {
-                // Start at ₹45 to avoid dropping the bet at ₹4000.
-                // Each subsequent ₹1 increase requires more investment.
-                double extraInvestment = ivst - 7000;
-                betAmount = 10+ (int) Math.sqrt(extraInvestment / 100.0);
-            }
-            System.out.println(i+ "  betAmount : "+betAmount+" , IVST : "+ivst +" P/L  : "+((betAmount*100)-ivst) );
-            ivst+=betAmount;
-        }
-    }
-
     private double total100xCount = 0;
     private int totalTurnCount = 0;
 

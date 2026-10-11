@@ -57,9 +57,9 @@ public class DecisionMaker {
         invested = Double.parseDouble(System.getProperty(INVESTED,"0"));
         yet_pending = Integer.parseInt(System.getProperty(YET_PENDING,"0"));
 
-        // Investment control
-        double ivst = invested;
-        int pp = 500;
+
+       double ivst = invested;
+ /*       int pp = 500;
         if (pAndL< 1) {
            // int a = Math.abs((int)Math.floor(pAndL/pp));
             yet_pending = 1;
@@ -75,37 +75,18 @@ public class DecisionMaker {
             win_in_150 = 0;
             System.out.println("Starting from 100 and yet_pending : " + yet_pending);
         }
-
+*/
         /*
-        1 betAmount: 10, IVST: 10, P/L if win: 990
-        100 betAmount: 25, IVST: 1575, P/L if win: 925
-        200 betAmount: 68, IVST: 5881, P/L if win: 919
-        300 betAmount: 80, IVST: 11646, P/L if win: -3646
-        398 betAmount: 213, IVST: 25021, P/L if win: -3721
-        399 betAmount: 150, IVST: 25171, P/L if win: -10171
-        400 betAmount: 151, IVST: 25322, P/L if win: -10222
-        497 betAmount: 397, IVST: 50146, P/L if win: -10446
-        498 betAmount: 301, IVST: 50447, P/L if win: -20347
-        499 betAmount: 304, IVST: 50751, P/L if win: -20351
-        ===Note till the Date all the win were before 500 abc====
-        500 betAmount: 307, IVST: 51058, P/L if win: -20358
-        600 betAmount: 830, IVST: 103920, P/L if win: -20920
+        Investment points available in Notes.txt file in root folder
          */
-
-        if (ivst <= 250) {
+    // Investment control
+        if (ivst <= 100) {
             betAmount = 10;
 
         } else if (ivst <= 7000) {
             betAmount = 11 + (int) ((ivst - 100) / 100);
-
-        } else if (ivst <= 25000) {
-            betAmount = 35 + (int) ((ivst - 7000) / 100);
-        }
-        else if (ivst <= 50000) {
-            betAmount =  (int) ((ivst - 10000) / 100) ;
         } else {
-            // Continue from ₹79; increase ₹1 per ₹100 invested.
-            betAmount = (int) ((ivst - 20000) / 100);
+            betAmount = 27 + (int) ((ivst - 7000) / 100);
         }
 
 
