@@ -5,6 +5,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 import static com.raja.aviator.Constants.*;
 
@@ -57,38 +59,23 @@ public class DecisionMaker {
         invested = Double.parseDouble(System.getProperty(INVESTED,"0"));
         yet_pending = Integer.parseInt(System.getProperty(YET_PENDING,"0"));
 
-
+        // Investment control
+        int pp = process((int) invested);
+        if(pp!=-1) invested=pp;
        double ivst = invested;
- /*       int pp = 500;
-        if (pAndL< 1) {
-           // int a = Math.abs((int)Math.floor(pAndL/pp));
-            yet_pending = 1;
-            System.out.println("yet_pending : " + yet_pending);
-            ivst = pp;
-            invested = pp;
-            win_in_150 = 0;
-            pAndL=2;
-        } else if (win_in_150 >= 1 && yet_pending != 0) {
-            yet_pending--;
-            ivst = pp;
-            invested = pp;
-            win_in_150 = 0;
-            System.out.println("Starting from 100 and yet_pending : " + yet_pending);
-        }
-*/
-        /*
-        Investment points available in Notes.txt file in root folder
-         */
+
     // Investment control
         if (ivst <= 100) {
             betAmount = 10;
 
         } else if (ivst <= 7000) {
-            betAmount = 11 + (int) ((ivst - 100) / 100);
-        } else {
-            betAmount = 27 + (int) ((ivst - 7000) / 100);
-        }
+            betAmount = 12 + (int) ((ivst - 100) / 100);
 
+        }  else if (ivst <= 50000) {
+            betAmount = 35 + (int) ((ivst - 7000) / 100);
+        }else {
+            betAmount = 250 + (int) ((ivst - 50000) / 100);
+        }
 
         STOP = Integer.parseInt(System.getProperty(MANUAL_STOP,"0")) == 1 ? 1 : STOP;
         if (STOP == 2) {
@@ -99,6 +86,8 @@ public class DecisionMaker {
         allBet++;
         // 1. Resolve the PREVIOUS round's bet based on the newly received multiplier
         if (betButtonStatus) {
+            if(active_bets_count>300)
+                target=85;
             if (latestMultiplier >= target) {
                 // If won, calculate balance by multiplying betAmount by 99
                 habc = Math.max(habc,active_bets_count);
@@ -111,13 +100,14 @@ public class DecisionMaker {
                 else win_in_150 = 0;
                 if (active_bets_count < 200 && active_bets_count > 110)
                     yet_pending++;
-                active_bets_count = 0;
+
                 if (STOP == 1)
                     STOP = 2;
-                invested = 0;
-                log.error(allBet + " 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {}", habc, profit, balance_profit);
+                invested = pop();
+                log.error(allBet + " 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {}", active_bets_count, profit, balance_profit);
                 log.info("");
                 // System.out.println(balance_profit);
+                active_bets_count = 0;
             } else {
                 // If lost, deduct the bet amount
                 balance_profit -= betAmount;
@@ -184,10 +174,10 @@ public class DecisionMaker {
         isBetting60x = strategy60x.decisionMaker(latestMultiplier);
 // - If bellow is commented max abc is 480
 
-        //isBettingTD = strategyTwoDigit.decisionMaker(latestMultiplier);
-         //isBetting100 = strategy100.decisionMaker(latestMultiplier);
-        //isBetting300 = strategy300.decisionMaker(latestMultiplier);
-        //isBettingSS2 = strategySS2.decisionMaker(latestMultiplier);
+        isBettingTD = strategyTwoDigit.decisionMaker(latestMultiplier);
+         isBetting100 = strategy100.decisionMaker(latestMultiplier);
+        isBetting300 = strategy300.decisionMaker(latestMultiplier);
+        isBettingSS2 = strategySS2.decisionMaker(latestMultiplier);
 
 
         // Variables to determine next state
@@ -281,4 +271,47 @@ public class DecisionMaker {
 
         return betButtonStatus;
     }
+
+
+    private final Queue<Integer> queue = new PriorityQueue<>();
+
+    private int nextThreshold = 50000;
+    private int pushedd = 0;
+    private int maxpushedd = 0;
+
+    public int process(int number) {
+
+        if (number < nextThreshold) {
+            return -1;
+        }
+
+        // Store one part in the queue
+        queue.offer(7000);
+        queue.offer(7000);
+        queue.offer(7000);
+        queue.offer(7000);
+        //  System.out.println(" PUSHED : " + part);
+        pushedd = pushedd+2800;
+        System.out.println(" PUSHED : Total : " + pushedd);
+        // Return the other part if no smaller value exists;
+        // otherwise return the lowest queued value.
+        int result = 25000;
+        System.out.println(" POP : remaing : " + pushedd);
+        maxpushedd = Math.max(pushedd,maxpushedd);
+        System.out.println(" MAX PUSHED PUSHED : Total : " + maxpushedd);
+
+        return result;
+    }
+
+    public int pop() {
+        Integer value = queue.poll();
+        if(value==null)
+            nextThreshold=50000;
+        else
+        { pushedd=pushedd-7000;
+            System.out.println("POPPED : remaining "+ pushedd);
+        }
+        return value != null ? value : -1;
+    }
+
 }

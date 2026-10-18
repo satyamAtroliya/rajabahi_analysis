@@ -8,7 +8,7 @@ public class TurnTracker {
 
     public static void main(String[] args) {
         long ivst = 0;
-        int magicNumber = 27;
+        int magicNumber = 35;
         final long maxInvestment = 20000;
 
         System.out.println("   Magic Number === "+magicNumber);
@@ -20,11 +20,14 @@ public class TurnTracker {
                 betAmount = 10;
 
             } else if (ivst <= 7000) {
-                betAmount = 11 + (int) ((ivst - 100) / 100);
+                betAmount = 12 + (int) ((ivst - 100) / 100);
 
-            } else {
+            }  else if (ivst <= 50000) {
+                betAmount = 35 + (int) ((ivst - 7000) / 100);
+
+            }else {
                 // Continue from ₹79; increase ₹1 per ₹100 invested.
-                betAmount = magicNumber + (int) ((ivst - 7000) / 100);
+                betAmount = 250 + (int) ((ivst - 50000) / 100);
             }
 
             ivst += betAmount;
