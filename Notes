@@ -1,604 +1,704 @@
-C:\Users\satya\.jdks\ms-17.0.19\bin\java.exe "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA 2026.1.4\lib\idea_rt.jar=52670" -Dfile.encoding=UTF-8 -classpath C:\WorkSpace\rajabahi_analysis\target\classes;C:\Users\satya\.m2\repository\com\microsoft\playwright\playwright\1.59.0\playwright-1.59.0.jar;C:\Users\satya\.m2\repository\com\google\code\gson\gson\2.13.2\gson-2.13.2.jar;C:\Users\satya\.m2\repository\com\google\errorprone\error_prone_annotations\2.41.0\error_prone_annotations-2.41.0.jar;C:\Users\satya\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\satya\.m2\repository\com\microsoft\playwright\driver\1.59.0\driver-1.59.0.jar;C:\Users\satya\.m2\repository\com\microsoft\playwright\driver-bundle\1.59.0\driver-bundle-1.59.0.jar;C:\Users\satya\.m2\repository\org\slf4j\slf4j-api\2.0.13\slf4j-api-2.0.13.jar;C:\Users\satya\.m2\repository\ch\qos\logback\logback-classic\1.5.6\logback-classic-1.5.6.jar;C:\Users\satya\.m2\repository\ch\qos\logback\logback-core\1.5.6\logback-core-1.5.6.jar;C:\Users\satya\.m2\repository\org\postgresql\postgresql\42.7.3\postgresql-42.7.3.jar;C:\Users\satya\.m2\repository\org\checkerframework\checker-qual\3.42.0\checker-qual-3.42.0.jar com.raja.aviator.TurnTracker
+C:\Users\satya\.jdks\ms-17.0.19\bin\java.exe "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA 2026.1.4\lib\idea_rt.jar=64605" -Dfile.encoding=UTF-8 -classpath C:\WorkSpace\rajabahi_analysis\target\classes;C:\Users\satya\.m2\repository\com\microsoft\playwright\playwright\1.59.0\playwright-1.59.0.jar;C:\Users\satya\.m2\repository\com\google\code\gson\gson\2.13.2\gson-2.13.2.jar;C:\Users\satya\.m2\repository\com\google\errorprone\error_prone_annotations\2.41.0\error_prone_annotations-2.41.0.jar;C:\Users\satya\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\satya\.m2\repository\com\microsoft\playwright\driver\1.59.0\driver-1.59.0.jar;C:\Users\satya\.m2\repository\com\microsoft\playwright\driver-bundle\1.59.0\driver-bundle-1.59.0.jar;C:\Users\satya\.m2\repository\org\slf4j\slf4j-api\2.0.13\slf4j-api-2.0.13.jar;C:\Users\satya\.m2\repository\ch\qos\logback\logback-classic\1.5.6\logback-classic-1.5.6.jar;C:\Users\satya\.m2\repository\ch\qos\logback\logback-core\1.5.6\logback-core-1.5.6.jar;C:\Users\satya\.m2\repository\org\postgresql\postgresql\42.7.3\postgresql-42.7.3.jar;C:\Users\satya\.m2\repository\org\checkerframework\checker-qual\3.42.0\checker-qual-3.42.0.jar com.raja.aviator.TurnTracker
    Magic Number === 35
-1 betAmount: 10, IVST: 10, P/L if win: 990
-2 betAmount: 10, IVST: 20, P/L if win: 980
-3 betAmount: 10, IVST: 30, P/L if win: 970
-4 betAmount: 10, IVST: 40, P/L if win: 960
-5 betAmount: 10, IVST: 50, P/L if win: 950
-6 betAmount: 10, IVST: 60, P/L if win: 940
-7 betAmount: 10, IVST: 70, P/L if win: 930
-8 betAmount: 10, IVST: 80, P/L if win: 920
-9 betAmount: 10, IVST: 90, P/L if win: 910
-10 betAmount: 10, IVST: 100, P/L if win: 900
-11 betAmount: 10, IVST: 110, P/L if win: 890
-12 betAmount: 12, IVST: 122, P/L if win: 1078
-13 betAmount: 12, IVST: 134, P/L if win: 1066
-14 betAmount: 12, IVST: 146, P/L if win: 1054
-15 betAmount: 12, IVST: 158, P/L if win: 1042
-16 betAmount: 12, IVST: 170, P/L if win: 1030
-17 betAmount: 12, IVST: 182, P/L if win: 1018
-18 betAmount: 12, IVST: 194, P/L if win: 1006
-19 betAmount: 12, IVST: 206, P/L if win: 994
-20 betAmount: 13, IVST: 219, P/L if win: 1081
-21 betAmount: 13, IVST: 232, P/L if win: 1068
-22 betAmount: 13, IVST: 245, P/L if win: 1055
-23 betAmount: 13, IVST: 258, P/L if win: 1042
-24 betAmount: 13, IVST: 271, P/L if win: 1029
-25 betAmount: 13, IVST: 284, P/L if win: 1016
-26 betAmount: 13, IVST: 297, P/L if win: 1003
-27 betAmount: 13, IVST: 310, P/L if win: 990
-28 betAmount: 14, IVST: 324, P/L if win: 1076
-29 betAmount: 14, IVST: 338, P/L if win: 1062
-30 betAmount: 14, IVST: 352, P/L if win: 1048
-31 betAmount: 14, IVST: 366, P/L if win: 1034
-32 betAmount: 14, IVST: 380, P/L if win: 1020
-33 betAmount: 14, IVST: 394, P/L if win: 1006
-34 betAmount: 14, IVST: 408, P/L if win: 992
-35 betAmount: 15, IVST: 423, P/L if win: 1077
-36 betAmount: 15, IVST: 438, P/L if win: 1062
-37 betAmount: 15, IVST: 453, P/L if win: 1047
-38 betAmount: 15, IVST: 468, P/L if win: 1032
-39 betAmount: 15, IVST: 483, P/L if win: 1017
-40 betAmount: 15, IVST: 498, P/L if win: 1002
-41 betAmount: 15, IVST: 513, P/L if win: 987
-42 betAmount: 16, IVST: 529, P/L if win: 1071
-43 betAmount: 16, IVST: 545, P/L if win: 1055
-44 betAmount: 16, IVST: 561, P/L if win: 1039
-45 betAmount: 16, IVST: 577, P/L if win: 1023
-46 betAmount: 16, IVST: 593, P/L if win: 1007
-47 betAmount: 16, IVST: 609, P/L if win: 991
-48 betAmount: 17, IVST: 626, P/L if win: 1074
-49 betAmount: 17, IVST: 643, P/L if win: 1057
-50 betAmount: 17, IVST: 660, P/L if win: 1040
-51 betAmount: 17, IVST: 677, P/L if win: 1023
-52 betAmount: 17, IVST: 694, P/L if win: 1006
-53 betAmount: 17, IVST: 711, P/L if win: 989
-54 betAmount: 18, IVST: 729, P/L if win: 1071
-55 betAmount: 18, IVST: 747, P/L if win: 1053
-56 betAmount: 18, IVST: 765, P/L if win: 1035
-57 betAmount: 18, IVST: 783, P/L if win: 1017
-58 betAmount: 18, IVST: 801, P/L if win: 999
-59 betAmount: 19, IVST: 820, P/L if win: 1080
-60 betAmount: 19, IVST: 839, P/L if win: 1061
-61 betAmount: 19, IVST: 858, P/L if win: 1042
-62 betAmount: 19, IVST: 877, P/L if win: 1023
-63 betAmount: 19, IVST: 896, P/L if win: 1004
-64 betAmount: 19, IVST: 915, P/L if win: 985
-65 betAmount: 20, IVST: 935, P/L if win: 1065
-66 betAmount: 20, IVST: 955, P/L if win: 1045
-67 betAmount: 20, IVST: 975, P/L if win: 1025
-68 betAmount: 20, IVST: 995, P/L if win: 1005
-69 betAmount: 20, IVST: 1015, P/L if win: 985
-70 betAmount: 21, IVST: 1036, P/L if win: 1064
-71 betAmount: 21, IVST: 1057, P/L if win: 1043
-72 betAmount: 21, IVST: 1078, P/L if win: 1022
-73 betAmount: 21, IVST: 1099, P/L if win: 1001
-74 betAmount: 21, IVST: 1120, P/L if win: 980
-75 betAmount: 22, IVST: 1142, P/L if win: 1058
-76 betAmount: 22, IVST: 1164, P/L if win: 1036
-77 betAmount: 22, IVST: 1186, P/L if win: 1014
-78 betAmount: 22, IVST: 1208, P/L if win: 992
-79 betAmount: 23, IVST: 1231, P/L if win: 1069
-80 betAmount: 23, IVST: 1254, P/L if win: 1046
-81 betAmount: 23, IVST: 1277, P/L if win: 1023
-82 betAmount: 23, IVST: 1300, P/L if win: 1000
-83 betAmount: 24, IVST: 1324, P/L if win: 1076
-84 betAmount: 24, IVST: 1348, P/L if win: 1052
-85 betAmount: 24, IVST: 1372, P/L if win: 1028
-86 betAmount: 24, IVST: 1396, P/L if win: 1004
-87 betAmount: 24, IVST: 1420, P/L if win: 980
-88 betAmount: 25, IVST: 1445, P/L if win: 1055
-89 betAmount: 25, IVST: 1470, P/L if win: 1030
-90 betAmount: 25, IVST: 1495, P/L if win: 1005
-91 betAmount: 25, IVST: 1520, P/L if win: 980
-92 betAmount: 26, IVST: 1546, P/L if win: 1054
-93 betAmount: 26, IVST: 1572, P/L if win: 1028
-94 betAmount: 26, IVST: 1598, P/L if win: 1002
-95 betAmount: 26, IVST: 1624, P/L if win: 976
-96 betAmount: 27, IVST: 1651, P/L if win: 1049
-97 betAmount: 27, IVST: 1678, P/L if win: 1022
-98 betAmount: 27, IVST: 1705, P/L if win: 995
-99 betAmount: 28, IVST: 1733, P/L if win: 1067
-100 betAmount: 28, IVST: 1761, P/L if win: 1039
-101 betAmount: 28, IVST: 1789, P/L if win: 1011
-102 betAmount: 28, IVST: 1817, P/L if win: 983
-103 betAmount: 29, IVST: 1846, P/L if win: 1054
-104 betAmount: 29, IVST: 1875, P/L if win: 1025
-105 betAmount: 29, IVST: 1904, P/L if win: 996
-106 betAmount: 30, IVST: 1934, P/L if win: 1066
-107 betAmount: 30, IVST: 1964, P/L if win: 1036
-108 betAmount: 30, IVST: 1994, P/L if win: 1006
-109 betAmount: 30, IVST: 2024, P/L if win: 976
-110 betAmount: 31, IVST: 2055, P/L if win: 1045
-111 betAmount: 31, IVST: 2086, P/L if win: 1014
-112 betAmount: 31, IVST: 2117, P/L if win: 983
-113 betAmount: 32, IVST: 2149, P/L if win: 1051
-114 betAmount: 32, IVST: 2181, P/L if win: 1019
-115 betAmount: 32, IVST: 2213, P/L if win: 987
-116 betAmount: 33, IVST: 2246, P/L if win: 1054
-117 betAmount: 33, IVST: 2279, P/L if win: 1021
-118 betAmount: 33, IVST: 2312, P/L if win: 988
-119 betAmount: 34, IVST: 2346, P/L if win: 1054
-120 betAmount: 34, IVST: 2380, P/L if win: 1020
-121 betAmount: 34, IVST: 2414, P/L if win: 986
-122 betAmount: 35, IVST: 2449, P/L if win: 1051
-123 betAmount: 35, IVST: 2484, P/L if win: 1016
-124 betAmount: 35, IVST: 2519, P/L if win: 981
-125 betAmount: 36, IVST: 2555, P/L if win: 1045
-126 betAmount: 36, IVST: 2591, P/L if win: 1009
-127 betAmount: 36, IVST: 2627, P/L if win: 973
-128 betAmount: 37, IVST: 2664, P/L if win: 1036
-129 betAmount: 37, IVST: 2701, P/L if win: 999
-130 betAmount: 38, IVST: 2739, P/L if win: 1061
-131 betAmount: 38, IVST: 2777, P/L if win: 1023
-132 betAmount: 38, IVST: 2815, P/L if win: 985
-133 betAmount: 39, IVST: 2854, P/L if win: 1046
-134 betAmount: 39, IVST: 2893, P/L if win: 1007
-135 betAmount: 39, IVST: 2932, P/L if win: 968
-136 betAmount: 40, IVST: 2972, P/L if win: 1028
-137 betAmount: 40, IVST: 3012, P/L if win: 988
-138 betAmount: 41, IVST: 3053, P/L if win: 1047
-139 betAmount: 41, IVST: 3094, P/L if win: 1006
-140 betAmount: 41, IVST: 3135, P/L if win: 965
-141 betAmount: 42, IVST: 3177, P/L if win: 1023
-142 betAmount: 42, IVST: 3219, P/L if win: 981
-143 betAmount: 43, IVST: 3262, P/L if win: 1038
-144 betAmount: 43, IVST: 3305, P/L if win: 995
-145 betAmount: 44, IVST: 3349, P/L if win: 1051
-146 betAmount: 44, IVST: 3393, P/L if win: 1007
-147 betAmount: 44, IVST: 3437, P/L if win: 963
-148 betAmount: 45, IVST: 3482, P/L if win: 1018
-149 betAmount: 45, IVST: 3527, P/L if win: 973
-150 betAmount: 46, IVST: 3573, P/L if win: 1027
-151 betAmount: 46, IVST: 3619, P/L if win: 981
-152 betAmount: 47, IVST: 3666, P/L if win: 1034
-153 betAmount: 47, IVST: 3713, P/L if win: 987
-154 betAmount: 48, IVST: 3761, P/L if win: 1039
-155 betAmount: 48, IVST: 3809, P/L if win: 991
-156 betAmount: 49, IVST: 3858, P/L if win: 1042
-157 betAmount: 49, IVST: 3907, P/L if win: 993
-158 betAmount: 50, IVST: 3957, P/L if win: 1043
-159 betAmount: 50, IVST: 4007, P/L if win: 993
-160 betAmount: 51, IVST: 4058, P/L if win: 1042
-161 betAmount: 51, IVST: 4109, P/L if win: 991
-162 betAmount: 52, IVST: 4161, P/L if win: 1039
-163 betAmount: 52, IVST: 4213, P/L if win: 987
-164 betAmount: 53, IVST: 4266, P/L if win: 1034
-165 betAmount: 53, IVST: 4319, P/L if win: 981
-166 betAmount: 54, IVST: 4373, P/L if win: 1027
-167 betAmount: 54, IVST: 4427, P/L if win: 973
-168 betAmount: 55, IVST: 4482, P/L if win: 1018
-169 betAmount: 55, IVST: 4537, P/L if win: 963
-170 betAmount: 56, IVST: 4593, P/L if win: 1007
-171 betAmount: 56, IVST: 4649, P/L if win: 951
-172 betAmount: 57, IVST: 4706, P/L if win: 994
-173 betAmount: 58, IVST: 4764, P/L if win: 1036
-174 betAmount: 58, IVST: 4822, P/L if win: 978
-175 betAmount: 59, IVST: 4881, P/L if win: 1019
-176 betAmount: 59, IVST: 4940, P/L if win: 960
-177 betAmount: 60, IVST: 5000, P/L if win: 1000
-178 betAmount: 61, IVST: 5061, P/L if win: 1039
-179 betAmount: 61, IVST: 5122, P/L if win: 978
-180 betAmount: 62, IVST: 5184, P/L if win: 1016
-181 betAmount: 62, IVST: 5246, P/L if win: 954
-182 betAmount: 63, IVST: 5309, P/L if win: 991
-183 betAmount: 64, IVST: 5373, P/L if win: 1027
-184 betAmount: 64, IVST: 5437, P/L if win: 963
-185 betAmount: 65, IVST: 5502, P/L if win: 998
-186 betAmount: 66, IVST: 5568, P/L if win: 1032
-187 betAmount: 66, IVST: 5634, P/L if win: 966
-188 betAmount: 67, IVST: 5701, P/L if win: 999
-189 betAmount: 68, IVST: 5769, P/L if win: 1031
-190 betAmount: 68, IVST: 5837, P/L if win: 963
-191 betAmount: 69, IVST: 5906, P/L if win: 994
-192 betAmount: 70, IVST: 5976, P/L if win: 1024
-193 betAmount: 70, IVST: 6046, P/L if win: 954
-194 betAmount: 71, IVST: 6117, P/L if win: 983
-195 betAmount: 72, IVST: 6189, P/L if win: 1011
-196 betAmount: 72, IVST: 6261, P/L if win: 939
-197 betAmount: 73, IVST: 6334, P/L if win: 966
-198 betAmount: 74, IVST: 6408, P/L if win: 992
-199 betAmount: 75, IVST: 6483, P/L if win: 1017
-200 betAmount: 75, IVST: 6558, P/L if win: 942
-201 betAmount: 76, IVST: 6634, P/L if win: 966
-202 betAmount: 77, IVST: 6711, P/L if win: 989
-203 betAmount: 78, IVST: 6789, P/L if win: 1011
-204 betAmount: 78, IVST: 6867, P/L if win: 933
-205 betAmount: 79, IVST: 6946, P/L if win: 954
-206 betAmount: 80, IVST: 7026, P/L if win: 974
-207 betAmount: 35, IVST: 7061, P/L if win: -3561
-208 betAmount: 35, IVST: 7096, P/L if win: -3596
-209 betAmount: 35, IVST: 7131, P/L if win: -3631
-210 betAmount: 36, IVST: 7167, P/L if win: -3567
-211 betAmount: 36, IVST: 7203, P/L if win: -3603
-212 betAmount: 37, IVST: 7240, P/L if win: -3540
-213 betAmount: 37, IVST: 7277, P/L if win: -3577
-214 betAmount: 37, IVST: 7314, P/L if win: -3614
-215 betAmount: 38, IVST: 7352, P/L if win: -3552
-216 betAmount: 38, IVST: 7390, P/L if win: -3590
-217 betAmount: 38, IVST: 7428, P/L if win: -3628
-218 betAmount: 39, IVST: 7467, P/L if win: -3567
-219 betAmount: 39, IVST: 7506, P/L if win: -3606
-220 betAmount: 40, IVST: 7546, P/L if win: -3546
-221 betAmount: 40, IVST: 7586, P/L if win: -3586
-222 betAmount: 40, IVST: 7626, P/L if win: -3626
-223 betAmount: 41, IVST: 7667, P/L if win: -3567
-224 betAmount: 41, IVST: 7708, P/L if win: -3608
-225 betAmount: 42, IVST: 7750, P/L if win: -3550
-226 betAmount: 42, IVST: 7792, P/L if win: -3592
-227 betAmount: 42, IVST: 7834, P/L if win: -3634
-228 betAmount: 43, IVST: 7877, P/L if win: -3577
-229 betAmount: 43, IVST: 7920, P/L if win: -3620
-230 betAmount: 44, IVST: 7964, P/L if win: -3564
-231 betAmount: 44, IVST: 8008, P/L if win: -3608
-232 betAmount: 45, IVST: 8053, P/L if win: -3553
-233 betAmount: 45, IVST: 8098, P/L if win: -3598
-234 betAmount: 45, IVST: 8143, P/L if win: -3643
-235 betAmount: 46, IVST: 8189, P/L if win: -3589
-236 betAmount: 46, IVST: 8235, P/L if win: -3635
-237 betAmount: 47, IVST: 8282, P/L if win: -3582
-238 betAmount: 47, IVST: 8329, P/L if win: -3629
-239 betAmount: 48, IVST: 8377, P/L if win: -3577
-240 betAmount: 48, IVST: 8425, P/L if win: -3625
-241 betAmount: 49, IVST: 8474, P/L if win: -3574
-242 betAmount: 49, IVST: 8523, P/L if win: -3623
-243 betAmount: 50, IVST: 8573, P/L if win: -3573
-244 betAmount: 50, IVST: 8623, P/L if win: -3623
-245 betAmount: 51, IVST: 8674, P/L if win: -3574
-246 betAmount: 51, IVST: 8725, P/L if win: -3625
-247 betAmount: 52, IVST: 8777, P/L if win: -3577
-248 betAmount: 52, IVST: 8829, P/L if win: -3629
-249 betAmount: 53, IVST: 8882, P/L if win: -3582
-250 betAmount: 53, IVST: 8935, P/L if win: -3635
-251 betAmount: 54, IVST: 8989, P/L if win: -3589
-252 betAmount: 54, IVST: 9043, P/L if win: -3643
-253 betAmount: 55, IVST: 9098, P/L if win: -3598
-254 betAmount: 55, IVST: 9153, P/L if win: -3653
-255 betAmount: 56, IVST: 9209, P/L if win: -3609
-256 betAmount: 57, IVST: 9266, P/L if win: -3566
-257 betAmount: 57, IVST: 9323, P/L if win: -3623
-258 betAmount: 58, IVST: 9381, P/L if win: -3581
-259 betAmount: 58, IVST: 9439, P/L if win: -3639
-260 betAmount: 59, IVST: 9498, P/L if win: -3598
-261 betAmount: 59, IVST: 9557, P/L if win: -3657
-262 betAmount: 60, IVST: 9617, P/L if win: -3617
-263 betAmount: 61, IVST: 9678, P/L if win: -3578
-264 betAmount: 61, IVST: 9739, P/L if win: -3639
-265 betAmount: 62, IVST: 9801, P/L if win: -3601
-266 betAmount: 63, IVST: 9864, P/L if win: -3564
-267 betAmount: 63, IVST: 9927, P/L if win: -3627
-268 betAmount: 64, IVST: 9991, P/L if win: -3591
-269 betAmount: 64, IVST: 10055, P/L if win: -3655
-270 betAmount: 65, IVST: 10120, P/L if win: -3620
-271 betAmount: 66, IVST: 10186, P/L if win: -3586
-272 betAmount: 66, IVST: 10252, P/L if win: -3652
-273 betAmount: 67, IVST: 10319, P/L if win: -3619
-274 betAmount: 68, IVST: 10387, P/L if win: -3587
-275 betAmount: 68, IVST: 10455, P/L if win: -3655
-276 betAmount: 69, IVST: 10524, P/L if win: -3624
-277 betAmount: 70, IVST: 10594, P/L if win: -3594
-278 betAmount: 70, IVST: 10664, P/L if win: -3664
-279 betAmount: 71, IVST: 10735, P/L if win: -3635
-280 betAmount: 72, IVST: 10807, P/L if win: -3607
-281 betAmount: 73, IVST: 10880, P/L if win: -3580
-282 betAmount: 73, IVST: 10953, P/L if win: -3653
-283 betAmount: 74, IVST: 11027, P/L if win: -3627
-284 betAmount: 75, IVST: 11102, P/L if win: -3602
-285 betAmount: 76, IVST: 11178, P/L if win: -3578
-286 betAmount: 76, IVST: 11254, P/L if win: -3654
-287 betAmount: 77, IVST: 11331, P/L if win: -3631
-288 betAmount: 78, IVST: 11409, P/L if win: -3609
-289 betAmount: 79, IVST: 11488, P/L if win: -3588
-290 betAmount: 79, IVST: 11567, P/L if win: -3667
-291 betAmount: 80, IVST: 11647, P/L if win: -3647
-292 betAmount: 81, IVST: 11728, P/L if win: -3628
-293 betAmount: 82, IVST: 11810, P/L if win: -3610
-294 betAmount: 83, IVST: 11893, P/L if win: -3593
-295 betAmount: 83, IVST: 11976, P/L if win: -3676
-296 betAmount: 84, IVST: 12060, P/L if win: -3660
-297 betAmount: 85, IVST: 12145, P/L if win: -3645
-298 betAmount: 86, IVST: 12231, P/L if win: -3631
-299 betAmount: 87, IVST: 12318, P/L if win: -3618
-300 betAmount: 88, IVST: 12406, P/L if win: -3606
-301 betAmount: 89, IVST: 12495, P/L if win: -3595
-302 betAmount: 89, IVST: 12584, P/L if win: -3684
-303 betAmount: 90, IVST: 12674, P/L if win: -3674
-304 betAmount: 91, IVST: 12765, P/L if win: -3665
-305 betAmount: 92, IVST: 12857, P/L if win: -3657
-306 betAmount: 93, IVST: 12950, P/L if win: -3650
-307 betAmount: 94, IVST: 13044, P/L if win: -3644
-308 betAmount: 95, IVST: 13139, P/L if win: -3639
-309 betAmount: 96, IVST: 13235, P/L if win: -3635
-310 betAmount: 97, IVST: 13332, P/L if win: -3632
-311 betAmount: 98, IVST: 13430, P/L if win: -3630
-312 betAmount: 99, IVST: 13529, P/L if win: -3629
-313 betAmount: 100, IVST: 13629, P/L if win: -3629
-314 betAmount: 101, IVST: 13730, P/L if win: -3630
-315 betAmount: 102, IVST: 13832, P/L if win: -3632
-316 betAmount: 103, IVST: 13935, P/L if win: -3635
-317 betAmount: 104, IVST: 14039, P/L if win: -3639
-318 betAmount: 105, IVST: 14144, P/L if win: -3644
-319 betAmount: 106, IVST: 14250, P/L if win: -3650
-320 betAmount: 107, IVST: 14357, P/L if win: -3657
-321 betAmount: 108, IVST: 14465, P/L if win: -3665
-322 betAmount: 109, IVST: 14574, P/L if win: -3674
-323 betAmount: 110, IVST: 14684, P/L if win: -3684
-324 betAmount: 111, IVST: 14795, P/L if win: -3695
-325 betAmount: 112, IVST: 14907, P/L if win: -3707
-326 betAmount: 114, IVST: 15021, P/L if win: -3621
-327 betAmount: 115, IVST: 15136, P/L if win: -3636
-328 betAmount: 116, IVST: 15252, P/L if win: -3652
-329 betAmount: 117, IVST: 15369, P/L if win: -3669
-330 betAmount: 118, IVST: 15487, P/L if win: -3687
-331 betAmount: 119, IVST: 15606, P/L if win: -3706
-332 betAmount: 121, IVST: 15727, P/L if win: -3627
-333 betAmount: 122, IVST: 15849, P/L if win: -3649
-334 betAmount: 123, IVST: 15972, P/L if win: -3672
-335 betAmount: 124, IVST: 16096, P/L if win: -3696
-336 betAmount: 125, IVST: 16221, P/L if win: -3721
-337 betAmount: 127, IVST: 16348, P/L if win: -3648
-338 betAmount: 128, IVST: 16476, P/L if win: -3676
-339 betAmount: 129, IVST: 16605, P/L if win: -3705
-340 betAmount: 131, IVST: 16736, P/L if win: -3636
-341 betAmount: 132, IVST: 16868, P/L if win: -3668
-342 betAmount: 133, IVST: 17001, P/L if win: -3701
-343 betAmount: 135, IVST: 17136, P/L if win: -3636
-344 betAmount: 136, IVST: 17272, P/L if win: -3672
-345 betAmount: 137, IVST: 17409, P/L if win: -3709
-346 betAmount: 139, IVST: 17548, P/L if win: -3648
-347 betAmount: 140, IVST: 17688, P/L if win: -3688
-348 betAmount: 141, IVST: 17829, P/L if win: -3729
-349 betAmount: 143, IVST: 17972, P/L if win: -3672
-350 betAmount: 144, IVST: 18116, P/L if win: -3716
-351 betAmount: 146, IVST: 18262, P/L if win: -3662
-352 betAmount: 147, IVST: 18409, P/L if win: -3709
-353 betAmount: 149, IVST: 18558, P/L if win: -3658
-354 betAmount: 150, IVST: 18708, P/L if win: -3708
-355 betAmount: 152, IVST: 18860, P/L if win: -3660
-356 betAmount: 153, IVST: 19013, P/L if win: -3713
-357 betAmount: 155, IVST: 19168, P/L if win: -3668
-358 betAmount: 156, IVST: 19324, P/L if win: -3724
-359 betAmount: 158, IVST: 19482, P/L if win: -3682
-360 betAmount: 159, IVST: 19641, P/L if win: -3741
-361 betAmount: 161, IVST: 19802, P/L if win: -3702
-362 betAmount: 163, IVST: 19965, P/L if win: -3665
-363 betAmount: 164, IVST: 20129, P/L if win: -3729
-364 betAmount: 166, IVST: 20295, P/L if win: -3695
-365 betAmount: 167, IVST: 20462, P/L if win: -3762
-366 betAmount: 169, IVST: 20631, P/L if win: -3731
-367 betAmount: 171, IVST: 20802, P/L if win: -3702
-368 betAmount: 173, IVST: 20975, P/L if win: -3675
-369 betAmount: 174, IVST: 21149, P/L if win: -3749
-370 betAmount: 176, IVST: 21325, P/L if win: -3725
-371 betAmount: 178, IVST: 21503, P/L if win: -3703
-372 betAmount: 180, IVST: 21683, P/L if win: -3683
-373 betAmount: 181, IVST: 21864, P/L if win: -3764
-374 betAmount: 183, IVST: 22047, P/L if win: -3747
-375 betAmount: 185, IVST: 22232, P/L if win: -3732
-376 betAmount: 187, IVST: 22419, P/L if win: -3719
-377 betAmount: 189, IVST: 22608, P/L if win: -3708
-378 betAmount: 191, IVST: 22799, P/L if win: -3699
-379 betAmount: 192, IVST: 22991, P/L if win: -3791
-380 betAmount: 194, IVST: 23185, P/L if win: -3785
-381 betAmount: 196, IVST: 23381, P/L if win: -3781
-382 betAmount: 198, IVST: 23579, P/L if win: -3779
-383 betAmount: 200, IVST: 23779, P/L if win: -3779
-384 betAmount: 202, IVST: 23981, P/L if win: -3781
-385 betAmount: 204, IVST: 24185, P/L if win: -3785
-386 betAmount: 206, IVST: 24391, P/L if win: -3791
-387 betAmount: 208, IVST: 24599, P/L if win: -3799
-388 betAmount: 210, IVST: 24809, P/L if win: -3809
-389 betAmount: 213, IVST: 25022, P/L if win: -3722
-390 betAmount: 215, IVST: 25237, P/L if win: -3737
-391 betAmount: 217, IVST: 25454, P/L if win: -3754
-392 betAmount: 219, IVST: 25673, P/L if win: -3773
-393 betAmount: 221, IVST: 25894, P/L if win: -3794
-394 betAmount: 223, IVST: 26117, P/L if win: -3817
-395 betAmount: 226, IVST: 26343, P/L if win: -3743
-396 betAmount: 228, IVST: 26571, P/L if win: -3771
-397 betAmount: 230, IVST: 26801, P/L if win: -3801
-398 betAmount: 233, IVST: 27034, P/L if win: -3734
-399 betAmount: 235, IVST: 27269, P/L if win: -3769
-400 betAmount: 237, IVST: 27506, P/L if win: -3806
-401 betAmount: 240, IVST: 27746, P/L if win: -3746
-402 betAmount: 242, IVST: 27988, P/L if win: -3788
-403 betAmount: 244, IVST: 28232, P/L if win: -3832
-404 betAmount: 247, IVST: 28479, P/L if win: -3779
-405 betAmount: 249, IVST: 28728, P/L if win: -3828
-406 betAmount: 252, IVST: 28980, P/L if win: -3780
-407 betAmount: 254, IVST: 29234, P/L if win: -3834
-408 betAmount: 257, IVST: 29491, P/L if win: -3791
-409 betAmount: 259, IVST: 29750, P/L if win: -3850
-410 betAmount: 262, IVST: 30012, P/L if win: -3812
-411 betAmount: 265, IVST: 30277, P/L if win: -3777
-412 betAmount: 267, IVST: 30544, P/L if win: -3844
-413 betAmount: 270, IVST: 30814, P/L if win: -3814
-414 betAmount: 273, IVST: 31087, P/L if win: -3787
-415 betAmount: 275, IVST: 31362, P/L if win: -3862
-416 betAmount: 278, IVST: 31640, P/L if win: -3840
-417 betAmount: 281, IVST: 31921, P/L if win: -3821
-418 betAmount: 284, IVST: 32205, P/L if win: -3805
-419 betAmount: 287, IVST: 32492, P/L if win: -3792
-420 betAmount: 289, IVST: 32781, P/L if win: -3881
-421 betAmount: 292, IVST: 33073, P/L if win: -3873
-422 betAmount: 295, IVST: 33368, P/L if win: -3868
-423 betAmount: 298, IVST: 33666, P/L if win: -3866
-424 betAmount: 301, IVST: 33967, P/L if win: -3867
-425 betAmount: 304, IVST: 34271, P/L if win: -3871
-426 betAmount: 307, IVST: 34578, P/L if win: -3878
-427 betAmount: 310, IVST: 34888, P/L if win: -3888
-428 betAmount: 313, IVST: 35201, P/L if win: -3901
-429 betAmount: 317, IVST: 35518, P/L if win: -3818
-430 betAmount: 320, IVST: 35838, P/L if win: -3838
-431 betAmount: 323, IVST: 36161, P/L if win: -3861
-432 betAmount: 326, IVST: 36487, P/L if win: -3887
-433 betAmount: 329, IVST: 36816, P/L if win: -3916
-434 betAmount: 333, IVST: 37149, P/L if win: -3849
-435 betAmount: 336, IVST: 37485, P/L if win: -3885
-436 betAmount: 339, IVST: 37824, P/L if win: -3924
-437 betAmount: 343, IVST: 38167, P/L if win: -3867
-438 betAmount: 346, IVST: 38513, P/L if win: -3913
-439 betAmount: 350, IVST: 38863, P/L if win: -3863
-440 betAmount: 353, IVST: 39216, P/L if win: -3916
-441 betAmount: 357, IVST: 39573, P/L if win: -3873
-442 betAmount: 360, IVST: 39933, P/L if win: -3933
-443 betAmount: 364, IVST: 40297, P/L if win: -3897
-444 betAmount: 367, IVST: 40664, P/L if win: -3964
-445 betAmount: 371, IVST: 41035, P/L if win: -3935
-446 betAmount: 375, IVST: 41410, P/L if win: -3910
-447 betAmount: 379, IVST: 41789, P/L if win: -3889
-448 betAmount: 382, IVST: 42171, P/L if win: -3971
-449 betAmount: 386, IVST: 42557, P/L if win: -3957
-450 betAmount: 390, IVST: 42947, P/L if win: -3947
-451 betAmount: 394, IVST: 43341, P/L if win: -3941
-452 betAmount: 398, IVST: 43739, P/L if win: -3939
-453 betAmount: 402, IVST: 44141, P/L if win: -3941
-454 betAmount: 406, IVST: 44547, P/L if win: -3947
-455 betAmount: 410, IVST: 44957, P/L if win: -3957
-456 betAmount: 414, IVST: 45371, P/L if win: -3971
-457 betAmount: 418, IVST: 45789, P/L if win: -3989
-458 betAmount: 422, IVST: 46211, P/L if win: -4011
-459 betAmount: 427, IVST: 46638, P/L if win: -3938
-460 betAmount: 431, IVST: 47069, P/L if win: -3969
-461 betAmount: 435, IVST: 47504, P/L if win: -4004
-462 betAmount: 440, IVST: 47944, P/L if win: -3944
-463 betAmount: 444, IVST: 48388, P/L if win: -3988
-464 betAmount: 448, IVST: 48836, P/L if win: -4036
-465 betAmount: 453, IVST: 49289, P/L if win: -3989
-466 betAmount: 457, IVST: 49746, P/L if win: -4046
-467 betAmount: 462, IVST: 50208, P/L if win: -4008
-468 betAmount: 252, IVST: 50460, P/L if win: -25260
-469 betAmount: 254, IVST: 50714, P/L if win: -25314
-470 betAmount: 257, IVST: 50971, P/L if win: -25271
-471 betAmount: 259, IVST: 51230, P/L if win: -25330
-472 betAmount: 262, IVST: 51492, P/L if win: -25292
-473 betAmount: 264, IVST: 51756, P/L if win: -25356
-474 betAmount: 267, IVST: 52023, P/L if win: -25323
-475 betAmount: 270, IVST: 52293, P/L if win: -25293
-476 betAmount: 272, IVST: 52565, P/L if win: -25365
-477 betAmount: 275, IVST: 52840, P/L if win: -25340
-478 betAmount: 278, IVST: 53118, P/L if win: -25318
-479 betAmount: 281, IVST: 53399, P/L if win: -25299
-480 betAmount: 283, IVST: 53682, P/L if win: -25382
-481 betAmount: 286, IVST: 53968, P/L if win: -25368
-482 betAmount: 289, IVST: 54257, P/L if win: -25357
-483 betAmount: 292, IVST: 54549, P/L if win: -25349
-484 betAmount: 295, IVST: 54844, P/L if win: -25344
-485 betAmount: 298, IVST: 55142, P/L if win: -25342
-486 betAmount: 301, IVST: 55443, P/L if win: -25343
-487 betAmount: 304, IVST: 55747, P/L if win: -25347
-488 betAmount: 307, IVST: 56054, P/L if win: -25354
-489 betAmount: 310, IVST: 56364, P/L if win: -25364
-490 betAmount: 313, IVST: 56677, P/L if win: -25377
-491 betAmount: 316, IVST: 56993, P/L if win: -25393
-492 betAmount: 319, IVST: 57312, P/L if win: -25412
-493 betAmount: 323, IVST: 57635, P/L if win: -25335
-494 betAmount: 326, IVST: 57961, P/L if win: -25361
-495 betAmount: 329, IVST: 58290, P/L if win: -25390
-496 betAmount: 332, IVST: 58622, P/L if win: -25422
-497 betAmount: 336, IVST: 58958, P/L if win: -25358
-498 betAmount: 339, IVST: 59297, P/L if win: -25397
-499 betAmount: 342, IVST: 59639, P/L if win: -25439
-500 betAmount: 346, IVST: 59985, P/L if win: -25385
-501 betAmount: 349, IVST: 60334, P/L if win: -25434
-502 betAmount: 353, IVST: 60687, P/L if win: -25387
-503 betAmount: 356, IVST: 61043, P/L if win: -25443
-504 betAmount: 360, IVST: 61403, P/L if win: -25403
-505 betAmount: 364, IVST: 61767, P/L if win: -25367
-506 betAmount: 367, IVST: 62134, P/L if win: -25434
-507 betAmount: 371, IVST: 62505, P/L if win: -25405
-508 betAmount: 375, IVST: 62880, P/L if win: -25380
-509 betAmount: 378, IVST: 63258, P/L if win: -25458
-510 betAmount: 382, IVST: 63640, P/L if win: -25440
-511 betAmount: 386, IVST: 64026, P/L if win: -25426
-512 betAmount: 390, IVST: 64416, P/L if win: -25416
-513 betAmount: 394, IVST: 64810, P/L if win: -25410
-514 betAmount: 398, IVST: 65208, P/L if win: -25408
-515 betAmount: 402, IVST: 65610, P/L if win: -25410
-516 betAmount: 406, IVST: 66016, P/L if win: -25416
-517 betAmount: 410, IVST: 66426, P/L if win: -25426
-518 betAmount: 414, IVST: 66840, P/L if win: -25440
-519 betAmount: 418, IVST: 67258, P/L if win: -25458
-520 betAmount: 422, IVST: 67680, P/L if win: -25480
-521 betAmount: 426, IVST: 68106, P/L if win: -25506
-522 betAmount: 431, IVST: 68537, P/L if win: -25437
-523 betAmount: 435, IVST: 68972, P/L if win: -25472
-524 betAmount: 439, IVST: 69411, P/L if win: -25511
-525 betAmount: 444, IVST: 69855, P/L if win: -25455
-526 betAmount: 448, IVST: 70303, P/L if win: -25503
-527 betAmount: 453, IVST: 70756, P/L if win: -25456
-528 betAmount: 457, IVST: 71213, P/L if win: -25513
-529 betAmount: 462, IVST: 71675, P/L if win: -25475
-530 betAmount: 466, IVST: 72141, P/L if win: -25541
-531 betAmount: 471, IVST: 72612, P/L if win: -25512
-532 betAmount: 476, IVST: 73088, P/L if win: -25488
-533 betAmount: 480, IVST: 73568, P/L if win: -25568
-534 betAmount: 485, IVST: 74053, P/L if win: -25553
-535 betAmount: 490, IVST: 74543, P/L if win: -25543
-536 betAmount: 495, IVST: 75038, P/L if win: -25538
-537 betAmount: 500, IVST: 75538, P/L if win: -25538
-538 betAmount: 505, IVST: 76043, P/L if win: -25543
-539 betAmount: 510, IVST: 76553, P/L if win: -25553
-540 betAmount: 515, IVST: 77068, P/L if win: -25568
-541 betAmount: 520, IVST: 77588, P/L if win: -25588
-542 betAmount: 525, IVST: 78113, P/L if win: -25613
-543 betAmount: 531, IVST: 78644, P/L if win: -25544
-544 betAmount: 536, IVST: 79180, P/L if win: -25580
-545 betAmount: 541, IVST: 79721, P/L if win: -25621
-546 betAmount: 547, IVST: 80268, P/L if win: -25568
-547 betAmount: 552, IVST: 80820, P/L if win: -25620
-548 betAmount: 558, IVST: 81378, P/L if win: -25578
-549 betAmount: 563, IVST: 81941, P/L if win: -25641
-550 betAmount: 569, IVST: 82510, P/L if win: -25610
-551 betAmount: 575, IVST: 83085, P/L if win: -25585
-552 betAmount: 580, IVST: 83665, P/L if win: -25665
-553 betAmount: 586, IVST: 84251, P/L if win: -25651
-554 betAmount: 592, IVST: 84843, P/L if win: -25643
-555 betAmount: 598, IVST: 85441, P/L if win: -25641
-556 betAmount: 604, IVST: 86045, P/L if win: -25645
-557 betAmount: 610, IVST: 86655, P/L if win: -25655
-558 betAmount: 616, IVST: 87271, P/L if win: -25671
-559 betAmount: 622, IVST: 87893, P/L if win: -25693
-560 betAmount: 628, IVST: 88521, P/L if win: -25721
-561 betAmount: 635, IVST: 89156, P/L if win: -25656
-562 betAmount: 641, IVST: 89797, P/L if win: -25697
-563 betAmount: 647, IVST: 90444, P/L if win: -25744
-564 betAmount: 654, IVST: 91098, P/L if win: -25698
-565 betAmount: 660, IVST: 91758, P/L if win: -25758
-566 betAmount: 667, IVST: 92425, P/L if win: -25725
-567 betAmount: 674, IVST: 93099, P/L if win: -25699
-568 betAmount: 680, IVST: 93779, P/L if win: -25779
-569 betAmount: 687, IVST: 94466, P/L if win: -25766
-570 betAmount: 694, IVST: 95160, P/L if win: -25760
-571 betAmount: 701, IVST: 95861, P/L if win: -25761
-572 betAmount: 708, IVST: 96569, P/L if win: -25769
-573 betAmount: 715, IVST: 97284, P/L if win: -25784
-574 betAmount: 722, IVST: 98006, P/L if win: -25806
-575 betAmount: 730, IVST: 98736, P/L if win: -25736
-576 betAmount: 737, IVST: 99473, P/L if win: -25773
-577 betAmount: 744, IVST: 100217, P/L if win: -25817
-578 betAmount: 752, IVST: 100969, P/L if win: -25769
-579 betAmount: 759, IVST: 101728, P/L if win: -25828
-580 betAmount: 767, IVST: 102495, P/L if win: -25795
-581 betAmount: 774, IVST: 103269, P/L if win: -25869
-582 betAmount: 782, IVST: 104051, P/L if win: -25851
-583 betAmount: 790, IVST: 104841, P/L if win: -25841
-584 betAmount: 798, IVST: 105639, P/L if win: -25839
-585 betAmount: 806, IVST: 106445, P/L if win: -25845
-586 betAmount: 814, IVST: 107259, P/L if win: -25859
-587 betAmount: 822, IVST: 108081, P/L if win: -25881
-588 betAmount: 830, IVST: 108911, P/L if win: -25911
-589 betAmount: 839, IVST: 109750, P/L if win: -25850
-590 betAmount: 847, IVST: 110597, P/L if win: -25897
-591 betAmount: 855, IVST: 111452, P/L if win: -25952
-592 betAmount: 864, IVST: 112316, P/L if win: -25916
-593 betAmount: 873, IVST: 113189, P/L if win: -25889
-594 betAmount: 881, IVST: 114070, P/L if win: -25970
-595 betAmount: 890, IVST: 114960, P/L if win: -25960
-596 betAmount: 899, IVST: 115859, P/L if win: -25959
-597 betAmount: 908, IVST: 116767, P/L if win: -25967
-598 betAmount: 917, IVST: 117684, P/L if win: -25984
-599 betAmount: 926, IVST: 118610, P/L if win: -26010
-600 betAmount: 936, IVST: 119546, P/L if win: -25946
+1 betAmount: 15, IVST: 15, P/L if win: 1485, total invested: 15
+2 betAmount: 16, IVST: 31, P/L if win: 1569, total invested: 31
+3 betAmount: 16, IVST: 47, P/L if win: 1553, total invested: 47
+4 betAmount: 16, IVST: 63, P/L if win: 1537, total invested: 63
+5 betAmount: 16, IVST: 79, P/L if win: 1521, total invested: 79
+6 betAmount: 16, IVST: 95, P/L if win: 1505, total invested: 95
+7 betAmount: 16, IVST: 111, P/L if win: 1489, total invested: 111
+8 betAmount: 16, IVST: 127, P/L if win: 1473, total invested: 127
+9 betAmount: 16, IVST: 143, P/L if win: 1457, total invested: 143
+10 betAmount: 16, IVST: 159, P/L if win: 1441, total invested: 159
+11 betAmount: 16, IVST: 175, P/L if win: 1425, total invested: 175
+12 betAmount: 16, IVST: 191, P/L if win: 1409, total invested: 191
+13 betAmount: 16, IVST: 207, P/L if win: 1393, total invested: 207
+14 betAmount: 17, IVST: 224, P/L if win: 1476, total invested: 224
+15 betAmount: 17, IVST: 241, P/L if win: 1459, total invested: 241
+16 betAmount: 17, IVST: 258, P/L if win: 1442, total invested: 258
+17 betAmount: 17, IVST: 275, P/L if win: 1425, total invested: 275
+18 betAmount: 17, IVST: 292, P/L if win: 1408, total invested: 292
+19 betAmount: 17, IVST: 309, P/L if win: 1391, total invested: 309
+20 betAmount: 18, IVST: 327, P/L if win: 1473, total invested: 327
+21 betAmount: 18, IVST: 345, P/L if win: 1455, total invested: 345
+22 betAmount: 18, IVST: 363, P/L if win: 1437, total invested: 363
+23 betAmount: 18, IVST: 381, P/L if win: 1419, total invested: 381
+24 betAmount: 18, IVST: 399, P/L if win: 1401, total invested: 399
+25 betAmount: 18, IVST: 417, P/L if win: 1383, total invested: 417
+26 betAmount: 19, IVST: 436, P/L if win: 1464, total invested: 436
+27 betAmount: 19, IVST: 455, P/L if win: 1445, total invested: 455
+28 betAmount: 19, IVST: 474, P/L if win: 1426, total invested: 474
+29 betAmount: 19, IVST: 493, P/L if win: 1407, total invested: 493
+30 betAmount: 19, IVST: 512, P/L if win: 1388, total invested: 512
+31 betAmount: 20, IVST: 532, P/L if win: 1468, total invested: 532
+32 betAmount: 20, IVST: 552, P/L if win: 1448, total invested: 552
+33 betAmount: 20, IVST: 572, P/L if win: 1428, total invested: 572
+34 betAmount: 20, IVST: 592, P/L if win: 1408, total invested: 592
+35 betAmount: 20, IVST: 612, P/L if win: 1388, total invested: 612
+36 betAmount: 21, IVST: 633, P/L if win: 1467, total invested: 633
+37 betAmount: 21, IVST: 654, P/L if win: 1446, total invested: 654
+38 betAmount: 21, IVST: 675, P/L if win: 1425, total invested: 675
+39 betAmount: 21, IVST: 696, P/L if win: 1404, total invested: 696
+40 betAmount: 21, IVST: 717, P/L if win: 1383, total invested: 717
+41 betAmount: 22, IVST: 739, P/L if win: 1461, total invested: 739
+42 betAmount: 22, IVST: 761, P/L if win: 1439, total invested: 761
+43 betAmount: 22, IVST: 783, P/L if win: 1417, total invested: 783
+44 betAmount: 22, IVST: 805, P/L if win: 1395, total invested: 805
+45 betAmount: 23, IVST: 828, P/L if win: 1472, total invested: 828
+46 betAmount: 23, IVST: 851, P/L if win: 1449, total invested: 851
+47 betAmount: 23, IVST: 874, P/L if win: 1426, total invested: 874
+48 betAmount: 23, IVST: 897, P/L if win: 1403, total invested: 897
+49 betAmount: 23, IVST: 920, P/L if win: 1380, total invested: 920
+50 betAmount: 24, IVST: 944, P/L if win: 1456, total invested: 944
+51 betAmount: 24, IVST: 968, P/L if win: 1432, total invested: 968
+52 betAmount: 24, IVST: 992, P/L if win: 1408, total invested: 992
+53 betAmount: 24, IVST: 1016, P/L if win: 1384, total invested: 1016
+54 betAmount: 25, IVST: 1041, P/L if win: 1459, total invested: 1041
+55 betAmount: 25, IVST: 1066, P/L if win: 1434, total invested: 1066
+56 betAmount: 25, IVST: 1091, P/L if win: 1409, total invested: 1091
+57 betAmount: 25, IVST: 1116, P/L if win: 1384, total invested: 1116
+58 betAmount: 26, IVST: 1142, P/L if win: 1458, total invested: 1142
+59 betAmount: 26, IVST: 1168, P/L if win: 1432, total invested: 1168
+60 betAmount: 26, IVST: 1194, P/L if win: 1406, total invested: 1194
+61 betAmount: 26, IVST: 1220, P/L if win: 1380, total invested: 1220
+62 betAmount: 27, IVST: 1247, P/L if win: 1453, total invested: 1247
+63 betAmount: 27, IVST: 1274, P/L if win: 1426, total invested: 1274
+64 betAmount: 27, IVST: 1301, P/L if win: 1399, total invested: 1301
+65 betAmount: 28, IVST: 1329, P/L if win: 1471, total invested: 1329
+66 betAmount: 28, IVST: 1357, P/L if win: 1443, total invested: 1357
+67 betAmount: 28, IVST: 1385, P/L if win: 1415, total invested: 1385
+68 betAmount: 28, IVST: 1413, P/L if win: 1387, total invested: 1413
+69 betAmount: 29, IVST: 1442, P/L if win: 1458, total invested: 1442
+70 betAmount: 29, IVST: 1471, P/L if win: 1429, total invested: 1471
+71 betAmount: 29, IVST: 1500, P/L if win: 1400, total invested: 1500
+72 betAmount: 30, IVST: 1530, P/L if win: 1470, total invested: 1530
+73 betAmount: 30, IVST: 1560, P/L if win: 1440, total invested: 1560
+74 betAmount: 30, IVST: 1590, P/L if win: 1410, total invested: 1590
+75 betAmount: 30, IVST: 1620, P/L if win: 1380, total invested: 1620
+76 betAmount: 31, IVST: 1651, P/L if win: 1449, total invested: 1651
+77 betAmount: 31, IVST: 1682, P/L if win: 1418, total invested: 1682
+78 betAmount: 31, IVST: 1713, P/L if win: 1387, total invested: 1713
+79 betAmount: 32, IVST: 1745, P/L if win: 1455, total invested: 1745
+80 betAmount: 32, IVST: 1777, P/L if win: 1423, total invested: 1777
+81 betAmount: 32, IVST: 1809, P/L if win: 1391, total invested: 1809
+82 betAmount: 33, IVST: 1842, P/L if win: 1458, total invested: 1842
+83 betAmount: 33, IVST: 1875, P/L if win: 1425, total invested: 1875
+84 betAmount: 33, IVST: 1908, P/L if win: 1392, total invested: 1908
+85 betAmount: 34, IVST: 1942, P/L if win: 1458, total invested: 1942
+86 betAmount: 34, IVST: 1976, P/L if win: 1424, total invested: 1976
+87 betAmount: 34, IVST: 2010, P/L if win: 1390, total invested: 2010
+88 betAmount: 35, IVST: 2045, P/L if win: 1455, total invested: 2045
+89 betAmount: 35, IVST: 2080, P/L if win: 1420, total invested: 2080
+90 betAmount: 35, IVST: 2115, P/L if win: 1385, total invested: 2115
+91 betAmount: 36, IVST: 2151, P/L if win: 1449, total invested: 2151
+92 betAmount: 36, IVST: 2187, P/L if win: 1413, total invested: 2187
+93 betAmount: 36, IVST: 2223, P/L if win: 1377, total invested: 2223
+94 betAmount: 37, IVST: 2260, P/L if win: 1440, total invested: 2260
+95 betAmount: 37, IVST: 2297, P/L if win: 1403, total invested: 2297
+96 betAmount: 37, IVST: 2334, P/L if win: 1366, total invested: 2334
+97 betAmount: 38, IVST: 2372, P/L if win: 1428, total invested: 2372
+98 betAmount: 38, IVST: 2410, P/L if win: 1390, total invested: 2410
+99 betAmount: 39, IVST: 2449, P/L if win: 1451, total invested: 2449
+100 betAmount: 39, IVST: 2488, P/L if win: 1412, total invested: 2488
+101 betAmount: 39, IVST: 2527, P/L if win: 1373, total invested: 2527
+102 betAmount: 40, IVST: 2567, P/L if win: 1433, total invested: 2567
+103 betAmount: 40, IVST: 2607, P/L if win: 1393, total invested: 2607
+104 betAmount: 41, IVST: 2648, P/L if win: 1452, total invested: 2648
+105 betAmount: 41, IVST: 2689, P/L if win: 1411, total invested: 2689
+106 betAmount: 41, IVST: 2730, P/L if win: 1370, total invested: 2730
+107 betAmount: 42, IVST: 2772, P/L if win: 1428, total invested: 2772
+108 betAmount: 42, IVST: 2814, P/L if win: 1386, total invested: 2814
+109 betAmount: 43, IVST: 2857, P/L if win: 1443, total invested: 2857
+110 betAmount: 43, IVST: 2900, P/L if win: 1400, total invested: 2900
+111 betAmount: 44, IVST: 2944, P/L if win: 1456, total invested: 2944
+112 betAmount: 44, IVST: 2988, P/L if win: 1412, total invested: 2988
+113 betAmount: 44, IVST: 3032, P/L if win: 1368, total invested: 3032
+114 betAmount: 45, IVST: 3077, P/L if win: 1423, total invested: 3077
+115 betAmount: 45, IVST: 3122, P/L if win: 1378, total invested: 3122
+116 betAmount: 46, IVST: 3168, P/L if win: 1432, total invested: 3168
+117 betAmount: 46, IVST: 3214, P/L if win: 1386, total invested: 3214
+118 betAmount: 47, IVST: 3261, P/L if win: 1439, total invested: 3261
+119 betAmount: 47, IVST: 3308, P/L if win: 1392, total invested: 3308
+120 betAmount: 48, IVST: 3356, P/L if win: 1444, total invested: 3356
+121 betAmount: 48, IVST: 3404, P/L if win: 1396, total invested: 3404
+122 betAmount: 49, IVST: 3453, P/L if win: 1447, total invested: 3453
+123 betAmount: 49, IVST: 3502, P/L if win: 1398, total invested: 3502
+124 betAmount: 50, IVST: 3552, P/L if win: 1448, total invested: 3552
+125 betAmount: 50, IVST: 3602, P/L if win: 1398, total invested: 3602
+126 betAmount: 51, IVST: 3653, P/L if win: 1447, total invested: 3653
+127 betAmount: 51, IVST: 3704, P/L if win: 1396, total invested: 3704
+128 betAmount: 52, IVST: 3756, P/L if win: 1444, total invested: 3756
+129 betAmount: 52, IVST: 3808, P/L if win: 1392, total invested: 3808
+130 betAmount: 53, IVST: 3861, P/L if win: 1439, total invested: 3861
+131 betAmount: 53, IVST: 3914, P/L if win: 1386, total invested: 3914
+132 betAmount: 54, IVST: 3968, P/L if win: 1432, total invested: 3968
+133 betAmount: 54, IVST: 4022, P/L if win: 1378, total invested: 4022
+134 betAmount: 55, IVST: 4077, P/L if win: 1423, total invested: 4077
+135 betAmount: 55, IVST: 4132, P/L if win: 1368, total invested: 4132
+136 betAmount: 56, IVST: 4188, P/L if win: 1412, total invested: 4188
+137 betAmount: 56, IVST: 4244, P/L if win: 1356, total invested: 4244
+138 betAmount: 57, IVST: 4301, P/L if win: 1399, total invested: 4301
+139 betAmount: 58, IVST: 4359, P/L if win: 1441, total invested: 4359
+140 betAmount: 58, IVST: 4417, P/L if win: 1383, total invested: 4417
+141 betAmount: 59, IVST: 4476, P/L if win: 1424, total invested: 4476
+142 betAmount: 59, IVST: 4535, P/L if win: 1365, total invested: 4535
+143 betAmount: 60, IVST: 4595, P/L if win: 1405, total invested: 4595
+144 betAmount: 60, IVST: 4655, P/L if win: 1345, total invested: 4655
+145 betAmount: 61, IVST: 4716, P/L if win: 1384, total invested: 4716
+146 betAmount: 62, IVST: 4778, P/L if win: 1422, total invested: 4778
+147 betAmount: 62, IVST: 4840, P/L if win: 1360, total invested: 4840
+148 betAmount: 63, IVST: 4903, P/L if win: 1397, total invested: 4903
+149 betAmount: 64, IVST: 4967, P/L if win: 1433, total invested: 4967
+150 betAmount: 64, IVST: 5031, P/L if win: 1369, total invested: 5031
+151 betAmount: 65, IVST: 2565, P/L if win: 3935, total invested: 5096
+152 betAmount: 40, IVST: 2605, P/L if win: 1395, total invested: 5136
+153 betAmount: 41, IVST: 2646, P/L if win: 1454, total invested: 5177
+154 betAmount: 41, IVST: 2687, P/L if win: 1413, total invested: 5218
+155 betAmount: 41, IVST: 2728, P/L if win: 1372, total invested: 5259
+156 betAmount: 42, IVST: 2770, P/L if win: 1430, total invested: 5301
+157 betAmount: 42, IVST: 2812, P/L if win: 1388, total invested: 5343
+158 betAmount: 43, IVST: 2855, P/L if win: 1445, total invested: 5386
+159 betAmount: 43, IVST: 2898, P/L if win: 1402, total invested: 5429
+160 betAmount: 43, IVST: 2941, P/L if win: 1359, total invested: 5472
+161 betAmount: 44, IVST: 2985, P/L if win: 1415, total invested: 5516
+162 betAmount: 44, IVST: 3029, P/L if win: 1371, total invested: 5560
+163 betAmount: 45, IVST: 3074, P/L if win: 1426, total invested: 5605
+164 betAmount: 45, IVST: 3119, P/L if win: 1381, total invested: 5650
+165 betAmount: 46, IVST: 3165, P/L if win: 1435, total invested: 5696
+166 betAmount: 46, IVST: 3211, P/L if win: 1389, total invested: 5742
+167 betAmount: 47, IVST: 3258, P/L if win: 1442, total invested: 5789
+168 betAmount: 47, IVST: 3305, P/L if win: 1395, total invested: 5836
+169 betAmount: 48, IVST: 3353, P/L if win: 1447, total invested: 5884
+170 betAmount: 48, IVST: 3401, P/L if win: 1399, total invested: 5932
+171 betAmount: 49, IVST: 3450, P/L if win: 1450, total invested: 5981
+172 betAmount: 49, IVST: 3499, P/L if win: 1401, total invested: 6030
+173 betAmount: 49, IVST: 3548, P/L if win: 1352, total invested: 6079
+174 betAmount: 50, IVST: 3598, P/L if win: 1402, total invested: 6129
+175 betAmount: 50, IVST: 3648, P/L if win: 1352, total invested: 6179
+176 betAmount: 51, IVST: 3699, P/L if win: 1401, total invested: 6230
+177 betAmount: 51, IVST: 3750, P/L if win: 1350, total invested: 6281
+178 betAmount: 52, IVST: 3802, P/L if win: 1398, total invested: 6333
+179 betAmount: 53, IVST: 3855, P/L if win: 1445, total invested: 6386
+180 betAmount: 53, IVST: 3908, P/L if win: 1392, total invested: 6439
+181 betAmount: 54, IVST: 3962, P/L if win: 1438, total invested: 6493
+182 betAmount: 54, IVST: 4016, P/L if win: 1384, total invested: 6547
+183 betAmount: 55, IVST: 4071, P/L if win: 1429, total invested: 6602
+184 betAmount: 55, IVST: 4126, P/L if win: 1374, total invested: 6657
+185 betAmount: 56, IVST: 4182, P/L if win: 1418, total invested: 6713
+186 betAmount: 56, IVST: 4238, P/L if win: 1362, total invested: 6769
+187 betAmount: 57, IVST: 4295, P/L if win: 1405, total invested: 6826
+188 betAmount: 57, IVST: 4352, P/L if win: 1348, total invested: 6883
+189 betAmount: 58, IVST: 4410, P/L if win: 1390, total invested: 6941
+190 betAmount: 59, IVST: 4469, P/L if win: 1431, total invested: 7000
+191 betAmount: 59, IVST: 4528, P/L if win: 1372, total invested: 7059
+192 betAmount: 60, IVST: 4588, P/L if win: 1412, total invested: 7119
+193 betAmount: 60, IVST: 4648, P/L if win: 1352, total invested: 7179
+194 betAmount: 61, IVST: 4709, P/L if win: 1391, total invested: 7240
+195 betAmount: 62, IVST: 4771, P/L if win: 1429, total invested: 7302
+196 betAmount: 62, IVST: 4833, P/L if win: 1367, total invested: 7364
+197 betAmount: 63, IVST: 4896, P/L if win: 1404, total invested: 7427
+198 betAmount: 63, IVST: 4959, P/L if win: 1341, total invested: 7490
+199 betAmount: 64, IVST: 5023, P/L if win: 1377, total invested: 7554
+200 betAmount: 65, IVST: 2565, P/L if win: 3935, total invested: 7619
+201 betAmount: 40, IVST: 2605, P/L if win: 1395, total invested: 7659
+202 betAmount: 41, IVST: 2646, P/L if win: 1454, total invested: 7700
+203 betAmount: 41, IVST: 2687, P/L if win: 1413, total invested: 7741
+204 betAmount: 41, IVST: 2728, P/L if win: 1372, total invested: 7782
+205 betAmount: 42, IVST: 2770, P/L if win: 1430, total invested: 7824
+206 betAmount: 42, IVST: 2812, P/L if win: 1388, total invested: 7866
+207 betAmount: 43, IVST: 2855, P/L if win: 1445, total invested: 7909
+208 betAmount: 43, IVST: 2898, P/L if win: 1402, total invested: 7952
+209 betAmount: 43, IVST: 2941, P/L if win: 1359, total invested: 7995
+210 betAmount: 44, IVST: 2985, P/L if win: 1415, total invested: 8039
+211 betAmount: 44, IVST: 3029, P/L if win: 1371, total invested: 8083
+212 betAmount: 45, IVST: 3074, P/L if win: 1426, total invested: 8128
+213 betAmount: 45, IVST: 3119, P/L if win: 1381, total invested: 8173
+214 betAmount: 46, IVST: 3165, P/L if win: 1435, total invested: 8219
+215 betAmount: 46, IVST: 3211, P/L if win: 1389, total invested: 8265
+216 betAmount: 47, IVST: 3258, P/L if win: 1442, total invested: 8312
+217 betAmount: 47, IVST: 3305, P/L if win: 1395, total invested: 8359
+218 betAmount: 48, IVST: 3353, P/L if win: 1447, total invested: 8407
+219 betAmount: 48, IVST: 3401, P/L if win: 1399, total invested: 8455
+220 betAmount: 49, IVST: 3450, P/L if win: 1450, total invested: 8504
+221 betAmount: 49, IVST: 3499, P/L if win: 1401, total invested: 8553
+222 betAmount: 49, IVST: 3548, P/L if win: 1352, total invested: 8602
+223 betAmount: 50, IVST: 3598, P/L if win: 1402, total invested: 8652
+224 betAmount: 50, IVST: 3648, P/L if win: 1352, total invested: 8702
+225 betAmount: 51, IVST: 3699, P/L if win: 1401, total invested: 8753
+226 betAmount: 51, IVST: 3750, P/L if win: 1350, total invested: 8804
+227 betAmount: 52, IVST: 3802, P/L if win: 1398, total invested: 8856
+228 betAmount: 53, IVST: 3855, P/L if win: 1445, total invested: 8909
+229 betAmount: 53, IVST: 3908, P/L if win: 1392, total invested: 8962
+230 betAmount: 54, IVST: 3962, P/L if win: 1438, total invested: 9016
+231 betAmount: 54, IVST: 4016, P/L if win: 1384, total invested: 9070
+232 betAmount: 55, IVST: 4071, P/L if win: 1429, total invested: 9125
+233 betAmount: 55, IVST: 4126, P/L if win: 1374, total invested: 9180
+234 betAmount: 56, IVST: 4182, P/L if win: 1418, total invested: 9236
+235 betAmount: 56, IVST: 4238, P/L if win: 1362, total invested: 9292
+236 betAmount: 57, IVST: 4295, P/L if win: 1405, total invested: 9349
+237 betAmount: 57, IVST: 4352, P/L if win: 1348, total invested: 9406
+238 betAmount: 58, IVST: 4410, P/L if win: 1390, total invested: 9464
+239 betAmount: 59, IVST: 4469, P/L if win: 1431, total invested: 9523
+240 betAmount: 59, IVST: 4528, P/L if win: 1372, total invested: 9582
+241 betAmount: 60, IVST: 4588, P/L if win: 1412, total invested: 9642
+242 betAmount: 60, IVST: 4648, P/L if win: 1352, total invested: 9702
+243 betAmount: 61, IVST: 4709, P/L if win: 1391, total invested: 9763
+244 betAmount: 62, IVST: 4771, P/L if win: 1429, total invested: 9825
+245 betAmount: 62, IVST: 4833, P/L if win: 1367, total invested: 9887
+246 betAmount: 63, IVST: 4896, P/L if win: 1404, total invested: 9950
+247 betAmount: 63, IVST: 4959, P/L if win: 1341, total invested: 10013
+248 betAmount: 64, IVST: 5023, P/L if win: 1377, total invested: 10077
+249 betAmount: 65, IVST: 2565, P/L if win: 3935, total invested: 10142
+250 betAmount: 40, IVST: 2605, P/L if win: 1395, total invested: 10182
+251 betAmount: 41, IVST: 2646, P/L if win: 1454, total invested: 10223
+252 betAmount: 41, IVST: 2687, P/L if win: 1413, total invested: 10264
+253 betAmount: 41, IVST: 2728, P/L if win: 1372, total invested: 10305
+254 betAmount: 42, IVST: 2770, P/L if win: 1430, total invested: 10347
+255 betAmount: 42, IVST: 2812, P/L if win: 1388, total invested: 10389
+256 betAmount: 43, IVST: 2855, P/L if win: 1445, total invested: 10432
+257 betAmount: 43, IVST: 2898, P/L if win: 1402, total invested: 10475
+258 betAmount: 43, IVST: 2941, P/L if win: 1359, total invested: 10518
+259 betAmount: 44, IVST: 2985, P/L if win: 1415, total invested: 10562
+260 betAmount: 44, IVST: 3029, P/L if win: 1371, total invested: 10606
+261 betAmount: 45, IVST: 3074, P/L if win: 1426, total invested: 10651
+262 betAmount: 45, IVST: 3119, P/L if win: 1381, total invested: 10696
+263 betAmount: 46, IVST: 3165, P/L if win: 1435, total invested: 10742
+264 betAmount: 46, IVST: 3211, P/L if win: 1389, total invested: 10788
+265 betAmount: 47, IVST: 3258, P/L if win: 1442, total invested: 10835
+266 betAmount: 47, IVST: 3305, P/L if win: 1395, total invested: 10882
+267 betAmount: 48, IVST: 3353, P/L if win: 1447, total invested: 10930
+268 betAmount: 48, IVST: 3401, P/L if win: 1399, total invested: 10978
+269 betAmount: 49, IVST: 3450, P/L if win: 1450, total invested: 11027
+270 betAmount: 49, IVST: 3499, P/L if win: 1401, total invested: 11076
+271 betAmount: 49, IVST: 3548, P/L if win: 1352, total invested: 11125
+272 betAmount: 50, IVST: 3598, P/L if win: 1402, total invested: 11175
+273 betAmount: 50, IVST: 3648, P/L if win: 1352, total invested: 11225
+274 betAmount: 51, IVST: 3699, P/L if win: 1401, total invested: 11276
+275 betAmount: 51, IVST: 3750, P/L if win: 1350, total invested: 11327
+276 betAmount: 52, IVST: 3802, P/L if win: 1398, total invested: 11379
+277 betAmount: 53, IVST: 3855, P/L if win: 1445, total invested: 11432
+278 betAmount: 53, IVST: 3908, P/L if win: 1392, total invested: 11485
+279 betAmount: 54, IVST: 3962, P/L if win: 1438, total invested: 11539
+280 betAmount: 54, IVST: 4016, P/L if win: 1384, total invested: 11593
+281 betAmount: 55, IVST: 4071, P/L if win: 1429, total invested: 11648
+282 betAmount: 55, IVST: 4126, P/L if win: 1374, total invested: 11703
+283 betAmount: 56, IVST: 4182, P/L if win: 1418, total invested: 11759
+284 betAmount: 56, IVST: 4238, P/L if win: 1362, total invested: 11815
+285 betAmount: 57, IVST: 4295, P/L if win: 1405, total invested: 11872
+286 betAmount: 57, IVST: 4352, P/L if win: 1348, total invested: 11929
+287 betAmount: 58, IVST: 4410, P/L if win: 1390, total invested: 11987
+288 betAmount: 59, IVST: 4469, P/L if win: 1431, total invested: 12046
+289 betAmount: 59, IVST: 4528, P/L if win: 1372, total invested: 12105
+290 betAmount: 60, IVST: 4588, P/L if win: 1412, total invested: 12165
+291 betAmount: 60, IVST: 4648, P/L if win: 1352, total invested: 12225
+292 betAmount: 61, IVST: 4709, P/L if win: 1391, total invested: 12286
+293 betAmount: 62, IVST: 4771, P/L if win: 1429, total invested: 12348
+294 betAmount: 62, IVST: 4833, P/L if win: 1367, total invested: 12410
+295 betAmount: 63, IVST: 4896, P/L if win: 1404, total invested: 12473
+296 betAmount: 63, IVST: 4959, P/L if win: 1341, total invested: 12536
+297 betAmount: 64, IVST: 5023, P/L if win: 1377, total invested: 12600
+298 betAmount: 65, IVST: 2565, P/L if win: 3935, total invested: 12665
+299 betAmount: 40, IVST: 2605, P/L if win: 1395, total invested: 12705
+300 betAmount: 41, IVST: 2646, P/L if win: 1454, total invested: 12746
+301 betAmount: 41, IVST: 2687, P/L if win: 1413, total invested: 12787
+302 betAmount: 41, IVST: 2728, P/L if win: 1372, total invested: 12828
+303 betAmount: 42, IVST: 2770, P/L if win: 1430, total invested: 12870
+304 betAmount: 42, IVST: 2812, P/L if win: 1388, total invested: 12912
+305 betAmount: 43, IVST: 2855, P/L if win: 1445, total invested: 12955
+306 betAmount: 43, IVST: 2898, P/L if win: 1402, total invested: 12998
+307 betAmount: 43, IVST: 2941, P/L if win: 1359, total invested: 13041
+308 betAmount: 44, IVST: 2985, P/L if win: 1415, total invested: 13085
+309 betAmount: 44, IVST: 3029, P/L if win: 1371, total invested: 13129
+310 betAmount: 45, IVST: 3074, P/L if win: 1426, total invested: 13174
+311 betAmount: 45, IVST: 3119, P/L if win: 1381, total invested: 13219
+312 betAmount: 46, IVST: 3165, P/L if win: 1435, total invested: 13265
+313 betAmount: 46, IVST: 3211, P/L if win: 1389, total invested: 13311
+314 betAmount: 47, IVST: 3258, P/L if win: 1442, total invested: 13358
+315 betAmount: 47, IVST: 3305, P/L if win: 1395, total invested: 13405
+316 betAmount: 48, IVST: 3353, P/L if win: 1447, total invested: 13453
+317 betAmount: 48, IVST: 3401, P/L if win: 1399, total invested: 13501
+318 betAmount: 49, IVST: 3450, P/L if win: 1450, total invested: 13550
+319 betAmount: 49, IVST: 3499, P/L if win: 1401, total invested: 13599
+320 betAmount: 49, IVST: 3548, P/L if win: 1352, total invested: 13648
+321 betAmount: 50, IVST: 3598, P/L if win: 1402, total invested: 13698
+322 betAmount: 50, IVST: 3648, P/L if win: 1352, total invested: 13748
+323 betAmount: 51, IVST: 3699, P/L if win: 1401, total invested: 13799
+324 betAmount: 51, IVST: 3750, P/L if win: 1350, total invested: 13850
+325 betAmount: 52, IVST: 3802, P/L if win: 1398, total invested: 13902
+326 betAmount: 53, IVST: 3855, P/L if win: 1445, total invested: 13955
+327 betAmount: 53, IVST: 3908, P/L if win: 1392, total invested: 14008
+328 betAmount: 54, IVST: 3962, P/L if win: 1438, total invested: 14062
+329 betAmount: 54, IVST: 4016, P/L if win: 1384, total invested: 14116
+330 betAmount: 55, IVST: 4071, P/L if win: 1429, total invested: 14171
+331 betAmount: 55, IVST: 4126, P/L if win: 1374, total invested: 14226
+332 betAmount: 56, IVST: 4182, P/L if win: 1418, total invested: 14282
+333 betAmount: 56, IVST: 4238, P/L if win: 1362, total invested: 14338
+334 betAmount: 57, IVST: 4295, P/L if win: 1405, total invested: 14395
+335 betAmount: 57, IVST: 4352, P/L if win: 1348, total invested: 14452
+336 betAmount: 58, IVST: 4410, P/L if win: 1390, total invested: 14510
+337 betAmount: 59, IVST: 4469, P/L if win: 1431, total invested: 14569
+338 betAmount: 59, IVST: 4528, P/L if win: 1372, total invested: 14628
+339 betAmount: 60, IVST: 4588, P/L if win: 1412, total invested: 14688
+340 betAmount: 60, IVST: 4648, P/L if win: 1352, total invested: 14748
+341 betAmount: 61, IVST: 4709, P/L if win: 1391, total invested: 14809
+342 betAmount: 62, IVST: 4771, P/L if win: 1429, total invested: 14871
+343 betAmount: 62, IVST: 4833, P/L if win: 1367, total invested: 14933
+344 betAmount: 63, IVST: 4896, P/L if win: 1404, total invested: 14996
+345 betAmount: 63, IVST: 4959, P/L if win: 1341, total invested: 15059
+346 betAmount: 64, IVST: 5023, P/L if win: 1377, total invested: 15123
+347 betAmount: 65, IVST: 2565, P/L if win: 3935, total invested: 15188
+348 betAmount: 40, IVST: 2605, P/L if win: 1395, total invested: 15228
+349 betAmount: 41, IVST: 2646, P/L if win: 1454, total invested: 15269
+350 betAmount: 41, IVST: 2687, P/L if win: 1413, total invested: 15310
+351 betAmount: 41, IVST: 2728, P/L if win: 1372, total invested: 15351
+352 betAmount: 42, IVST: 2770, P/L if win: 1430, total invested: 15393
+353 betAmount: 42, IVST: 2812, P/L if win: 1388, total invested: 15435
+354 betAmount: 43, IVST: 2855, P/L if win: 1445, total invested: 15478
+355 betAmount: 43, IVST: 2898, P/L if win: 1402, total invested: 15521
+356 betAmount: 43, IVST: 2941, P/L if win: 1359, total invested: 15564
+357 betAmount: 44, IVST: 2985, P/L if win: 1415, total invested: 15608
+358 betAmount: 44, IVST: 3029, P/L if win: 1371, total invested: 15652
+359 betAmount: 45, IVST: 3074, P/L if win: 1426, total invested: 15697
+360 betAmount: 45, IVST: 3119, P/L if win: 1381, total invested: 15742
+361 betAmount: 46, IVST: 3165, P/L if win: 1435, total invested: 15788
+362 betAmount: 46, IVST: 3211, P/L if win: 1389, total invested: 15834
+363 betAmount: 47, IVST: 3258, P/L if win: 1442, total invested: 15881
+364 betAmount: 47, IVST: 3305, P/L if win: 1395, total invested: 15928
+365 betAmount: 48, IVST: 3353, P/L if win: 1447, total invested: 15976
+366 betAmount: 48, IVST: 3401, P/L if win: 1399, total invested: 16024
+367 betAmount: 49, IVST: 3450, P/L if win: 1450, total invested: 16073
+368 betAmount: 49, IVST: 3499, P/L if win: 1401, total invested: 16122
+369 betAmount: 49, IVST: 3548, P/L if win: 1352, total invested: 16171
+370 betAmount: 50, IVST: 3598, P/L if win: 1402, total invested: 16221
+371 betAmount: 50, IVST: 3648, P/L if win: 1352, total invested: 16271
+372 betAmount: 51, IVST: 3699, P/L if win: 1401, total invested: 16322
+373 betAmount: 51, IVST: 3750, P/L if win: 1350, total invested: 16373
+374 betAmount: 52, IVST: 3802, P/L if win: 1398, total invested: 16425
+375 betAmount: 53, IVST: 3855, P/L if win: 1445, total invested: 16478
+376 betAmount: 53, IVST: 3908, P/L if win: 1392, total invested: 16531
+377 betAmount: 54, IVST: 3962, P/L if win: 1438, total invested: 16585
+378 betAmount: 54, IVST: 4016, P/L if win: 1384, total invested: 16639
+379 betAmount: 55, IVST: 4071, P/L if win: 1429, total invested: 16694
+380 betAmount: 55, IVST: 4126, P/L if win: 1374, total invested: 16749
+381 betAmount: 56, IVST: 4182, P/L if win: 1418, total invested: 16805
+382 betAmount: 56, IVST: 4238, P/L if win: 1362, total invested: 16861
+383 betAmount: 57, IVST: 4295, P/L if win: 1405, total invested: 16918
+384 betAmount: 57, IVST: 4352, P/L if win: 1348, total invested: 16975
+385 betAmount: 58, IVST: 4410, P/L if win: 1390, total invested: 17033
+386 betAmount: 59, IVST: 4469, P/L if win: 1431, total invested: 17092
+387 betAmount: 59, IVST: 4528, P/L if win: 1372, total invested: 17151
+388 betAmount: 60, IVST: 4588, P/L if win: 1412, total invested: 17211
+389 betAmount: 60, IVST: 4648, P/L if win: 1352, total invested: 17271
+390 betAmount: 61, IVST: 4709, P/L if win: 1391, total invested: 17332
+391 betAmount: 62, IVST: 4771, P/L if win: 1429, total invested: 17394
+392 betAmount: 62, IVST: 4833, P/L if win: 1367, total invested: 17456
+393 betAmount: 63, IVST: 4896, P/L if win: 1404, total invested: 17519
+394 betAmount: 63, IVST: 4959, P/L if win: 1341, total invested: 17582
+395 betAmount: 64, IVST: 5023, P/L if win: 1377, total invested: 17646
+396 betAmount: 65, IVST: 2565, P/L if win: 3935, total invested: 17711
+397 betAmount: 40, IVST: 2605, P/L if win: 1395, total invested: 17751
+398 betAmount: 41, IVST: 2646, P/L if win: 1454, total invested: 17792
+399 betAmount: 41, IVST: 2687, P/L if win: 1413, total invested: 17833
+400 betAmount: 41, IVST: 2728, P/L if win: 1372, total invested: 17874
+401 betAmount: 42, IVST: 2770, P/L if win: 1430, total invested: 17916
+402 betAmount: 42, IVST: 2812, P/L if win: 1388, total invested: 17958
+403 betAmount: 43, IVST: 2855, P/L if win: 1445, total invested: 18001
+404 betAmount: 43, IVST: 2898, P/L if win: 1402, total invested: 18044
+405 betAmount: 43, IVST: 2941, P/L if win: 1359, total invested: 18087
+406 betAmount: 44, IVST: 2985, P/L if win: 1415, total invested: 18131
+407 betAmount: 44, IVST: 3029, P/L if win: 1371, total invested: 18175
+408 betAmount: 45, IVST: 3074, P/L if win: 1426, total invested: 18220
+409 betAmount: 45, IVST: 3119, P/L if win: 1381, total invested: 18265
+410 betAmount: 46, IVST: 3165, P/L if win: 1435, total invested: 18311
+411 betAmount: 46, IVST: 3211, P/L if win: 1389, total invested: 18357
+412 betAmount: 47, IVST: 3258, P/L if win: 1442, total invested: 18404
+413 betAmount: 47, IVST: 3305, P/L if win: 1395, total invested: 18451
+414 betAmount: 48, IVST: 3353, P/L if win: 1447, total invested: 18499
+415 betAmount: 48, IVST: 3401, P/L if win: 1399, total invested: 18547
+416 betAmount: 49, IVST: 3450, P/L if win: 1450, total invested: 18596
+417 betAmount: 49, IVST: 3499, P/L if win: 1401, total invested: 18645
+418 betAmount: 49, IVST: 3548, P/L if win: 1352, total invested: 18694
+419 betAmount: 50, IVST: 3598, P/L if win: 1402, total invested: 18744
+420 betAmount: 50, IVST: 3648, P/L if win: 1352, total invested: 18794
+421 betAmount: 51, IVST: 3699, P/L if win: 1401, total invested: 18845
+422 betAmount: 51, IVST: 3750, P/L if win: 1350, total invested: 18896
+423 betAmount: 52, IVST: 3802, P/L if win: 1398, total invested: 18948
+424 betAmount: 53, IVST: 3855, P/L if win: 1445, total invested: 19001
+425 betAmount: 53, IVST: 3908, P/L if win: 1392, total invested: 19054
+426 betAmount: 54, IVST: 3962, P/L if win: 1438, total invested: 19108
+427 betAmount: 54, IVST: 4016, P/L if win: 1384, total invested: 19162
+428 betAmount: 55, IVST: 4071, P/L if win: 1429, total invested: 19217
+429 betAmount: 55, IVST: 4126, P/L if win: 1374, total invested: 19272
+430 betAmount: 56, IVST: 4182, P/L if win: 1418, total invested: 19328
+431 betAmount: 56, IVST: 4238, P/L if win: 1362, total invested: 19384
+432 betAmount: 57, IVST: 4295, P/L if win: 1405, total invested: 19441
+433 betAmount: 57, IVST: 4352, P/L if win: 1348, total invested: 19498
+434 betAmount: 58, IVST: 4410, P/L if win: 1390, total invested: 19556
+435 betAmount: 59, IVST: 4469, P/L if win: 1431, total invested: 19615
+436 betAmount: 59, IVST: 4528, P/L if win: 1372, total invested: 19674
+437 betAmount: 60, IVST: 4588, P/L if win: 1412, total invested: 19734
+438 betAmount: 60, IVST: 4648, P/L if win: 1352, total invested: 19794
+439 betAmount: 61, IVST: 4709, P/L if win: 1391, total invested: 19855
+440 betAmount: 62, IVST: 4771, P/L if win: 1429, total invested: 19917
+441 betAmount: 62, IVST: 4833, P/L if win: 1367, total invested: 19979
+442 betAmount: 63, IVST: 4896, P/L if win: 1404, total invested: 20042
+443 betAmount: 63, IVST: 4959, P/L if win: 1341, total invested: 20105
+444 betAmount: 64, IVST: 5023, P/L if win: 1377, total invested: 20169
+445 betAmount: 65, IVST: 2565, P/L if win: 3935, total invested: 20234
+446 betAmount: 40, IVST: 2605, P/L if win: 1395, total invested: 20274
+447 betAmount: 41, IVST: 2646, P/L if win: 1454, total invested: 20315
+448 betAmount: 41, IVST: 2687, P/L if win: 1413, total invested: 20356
+449 betAmount: 41, IVST: 2728, P/L if win: 1372, total invested: 20397
+450 betAmount: 42, IVST: 2770, P/L if win: 1430, total invested: 20439
+451 betAmount: 42, IVST: 2812, P/L if win: 1388, total invested: 20481
+452 betAmount: 43, IVST: 2855, P/L if win: 1445, total invested: 20524
+453 betAmount: 43, IVST: 2898, P/L if win: 1402, total invested: 20567
+454 betAmount: 43, IVST: 2941, P/L if win: 1359, total invested: 20610
+455 betAmount: 44, IVST: 2985, P/L if win: 1415, total invested: 20654
+456 betAmount: 44, IVST: 3029, P/L if win: 1371, total invested: 20698
+457 betAmount: 45, IVST: 3074, P/L if win: 1426, total invested: 20743
+458 betAmount: 45, IVST: 3119, P/L if win: 1381, total invested: 20788
+459 betAmount: 46, IVST: 3165, P/L if win: 1435, total invested: 20834
+460 betAmount: 46, IVST: 3211, P/L if win: 1389, total invested: 20880
+461 betAmount: 47, IVST: 3258, P/L if win: 1442, total invested: 20927
+462 betAmount: 47, IVST: 3305, P/L if win: 1395, total invested: 20974
+463 betAmount: 48, IVST: 3353, P/L if win: 1447, total invested: 21022
+464 betAmount: 48, IVST: 3401, P/L if win: 1399, total invested: 21070
+465 betAmount: 49, IVST: 3450, P/L if win: 1450, total invested: 21119
+466 betAmount: 49, IVST: 3499, P/L if win: 1401, total invested: 21168
+467 betAmount: 49, IVST: 3548, P/L if win: 1352, total invested: 21217
+468 betAmount: 50, IVST: 3598, P/L if win: 1402, total invested: 21267
+469 betAmount: 50, IVST: 3648, P/L if win: 1352, total invested: 21317
+470 betAmount: 51, IVST: 3699, P/L if win: 1401, total invested: 21368
+471 betAmount: 51, IVST: 3750, P/L if win: 1350, total invested: 21419
+472 betAmount: 52, IVST: 3802, P/L if win: 1398, total invested: 21471
+473 betAmount: 53, IVST: 3855, P/L if win: 1445, total invested: 21524
+474 betAmount: 53, IVST: 3908, P/L if win: 1392, total invested: 21577
+475 betAmount: 54, IVST: 3962, P/L if win: 1438, total invested: 21631
+476 betAmount: 54, IVST: 4016, P/L if win: 1384, total invested: 21685
+477 betAmount: 55, IVST: 4071, P/L if win: 1429, total invested: 21740
+478 betAmount: 55, IVST: 4126, P/L if win: 1374, total invested: 21795
+479 betAmount: 56, IVST: 4182, P/L if win: 1418, total invested: 21851
+480 betAmount: 56, IVST: 4238, P/L if win: 1362, total invested: 21907
+481 betAmount: 57, IVST: 4295, P/L if win: 1405, total invested: 21964
+482 betAmount: 57, IVST: 4352, P/L if win: 1348, total invested: 22021
+483 betAmount: 58, IVST: 4410, P/L if win: 1390, total invested: 22079
+484 betAmount: 59, IVST: 4469, P/L if win: 1431, total invested: 22138
+485 betAmount: 59, IVST: 4528, P/L if win: 1372, total invested: 22197
+486 betAmount: 60, IVST: 4588, P/L if win: 1412, total invested: 22257
+487 betAmount: 60, IVST: 4648, P/L if win: 1352, total invested: 22317
+488 betAmount: 61, IVST: 4709, P/L if win: 1391, total invested: 22378
+489 betAmount: 62, IVST: 4771, P/L if win: 1429, total invested: 22440
+490 betAmount: 62, IVST: 4833, P/L if win: 1367, total invested: 22502
+491 betAmount: 63, IVST: 4896, P/L if win: 1404, total invested: 22565
+492 betAmount: 63, IVST: 4959, P/L if win: 1341, total invested: 22628
+493 betAmount: 64, IVST: 5023, P/L if win: 1377, total invested: 22692
+494 betAmount: 65, IVST: 2565, P/L if win: 3935, total invested: 22757
+495 betAmount: 40, IVST: 2605, P/L if win: 1395, total invested: 22797
+496 betAmount: 41, IVST: 2646, P/L if win: 1454, total invested: 22838
+497 betAmount: 41, IVST: 2687, P/L if win: 1413, total invested: 22879
+498 betAmount: 41, IVST: 2728, P/L if win: 1372, total invested: 22920
+499 betAmount: 42, IVST: 2770, P/L if win: 1430, total invested: 22962
+500 betAmount: 42, IVST: 2812, P/L if win: 1388, total invested: 23004
+501 betAmount: 43, IVST: 2855, P/L if win: 1445, total invested: 23047
+502 betAmount: 43, IVST: 2898, P/L if win: 1402, total invested: 23090
+503 betAmount: 43, IVST: 2941, P/L if win: 1359, total invested: 23133
+504 betAmount: 44, IVST: 2985, P/L if win: 1415, total invested: 23177
+505 betAmount: 44, IVST: 3029, P/L if win: 1371, total invested: 23221
+506 betAmount: 45, IVST: 3074, P/L if win: 1426, total invested: 23266
+507 betAmount: 45, IVST: 3119, P/L if win: 1381, total invested: 23311
+508 betAmount: 46, IVST: 3165, P/L if win: 1435, total invested: 23357
+509 betAmount: 46, IVST: 3211, P/L if win: 1389, total invested: 23403
+510 betAmount: 47, IVST: 3258, P/L if win: 1442, total invested: 23450
+511 betAmount: 47, IVST: 3305, P/L if win: 1395, total invested: 23497
+512 betAmount: 48, IVST: 3353, P/L if win: 1447, total invested: 23545
+513 betAmount: 48, IVST: 3401, P/L if win: 1399, total invested: 23593
+514 betAmount: 49, IVST: 3450, P/L if win: 1450, total invested: 23642
+515 betAmount: 49, IVST: 3499, P/L if win: 1401, total invested: 23691
+516 betAmount: 49, IVST: 3548, P/L if win: 1352, total invested: 23740
+517 betAmount: 50, IVST: 3598, P/L if win: 1402, total invested: 23790
+518 betAmount: 50, IVST: 3648, P/L if win: 1352, total invested: 23840
+519 betAmount: 51, IVST: 3699, P/L if win: 1401, total invested: 23891
+520 betAmount: 51, IVST: 3750, P/L if win: 1350, total invested: 23942
+521 betAmount: 52, IVST: 3802, P/L if win: 1398, total invested: 23994
+522 betAmount: 53, IVST: 3855, P/L if win: 1445, total invested: 24047
+523 betAmount: 53, IVST: 3908, P/L if win: 1392, total invested: 24100
+524 betAmount: 54, IVST: 3962, P/L if win: 1438, total invested: 24154
+525 betAmount: 54, IVST: 4016, P/L if win: 1384, total invested: 24208
+526 betAmount: 55, IVST: 4071, P/L if win: 1429, total invested: 24263
+527 betAmount: 55, IVST: 4126, P/L if win: 1374, total invested: 24318
+528 betAmount: 56, IVST: 4182, P/L if win: 1418, total invested: 24374
+529 betAmount: 56, IVST: 4238, P/L if win: 1362, total invested: 24430
+530 betAmount: 57, IVST: 4295, P/L if win: 1405, total invested: 24487
+531 betAmount: 57, IVST: 4352, P/L if win: 1348, total invested: 24544
+532 betAmount: 58, IVST: 4410, P/L if win: 1390, total invested: 24602
+533 betAmount: 59, IVST: 4469, P/L if win: 1431, total invested: 24661
+534 betAmount: 59, IVST: 4528, P/L if win: 1372, total invested: 24720
+535 betAmount: 60, IVST: 4588, P/L if win: 1412, total invested: 24780
+536 betAmount: 60, IVST: 4648, P/L if win: 1352, total invested: 24840
+537 betAmount: 61, IVST: 4709, P/L if win: 1391, total invested: 24901
+538 betAmount: 62, IVST: 4771, P/L if win: 1429, total invested: 24963
+539 betAmount: 62, IVST: 4833, P/L if win: 1367, total invested: 25025
+540 betAmount: 63, IVST: 4896, P/L if win: 1404, total invested: 25088
+541 betAmount: 63, IVST: 4959, P/L if win: 1341, total invested: 25151
+542 betAmount: 64, IVST: 5023, P/L if win: 1377, total invested: 25215
+543 betAmount: 65, IVST: 2565, P/L if win: 3935, total invested: 25280
+544 betAmount: 40, IVST: 2605, P/L if win: 1395, total invested: 25320
+545 betAmount: 41, IVST: 2646, P/L if win: 1454, total invested: 25361
+546 betAmount: 41, IVST: 2687, P/L if win: 1413, total invested: 25402
+547 betAmount: 41, IVST: 2728, P/L if win: 1372, total invested: 25443
+548 betAmount: 42, IVST: 2770, P/L if win: 1430, total invested: 25485
+549 betAmount: 42, IVST: 2812, P/L if win: 1388, total invested: 25527
+550 betAmount: 43, IVST: 2855, P/L if win: 1445, total invested: 25570
+551 betAmount: 43, IVST: 2898, P/L if win: 1402, total invested: 25613
+552 betAmount: 43, IVST: 2941, P/L if win: 1359, total invested: 25656
+553 betAmount: 44, IVST: 2985, P/L if win: 1415, total invested: 25700
+554 betAmount: 44, IVST: 3029, P/L if win: 1371, total invested: 25744
+555 betAmount: 45, IVST: 3074, P/L if win: 1426, total invested: 25789
+556 betAmount: 45, IVST: 3119, P/L if win: 1381, total invested: 25834
+557 betAmount: 46, IVST: 3165, P/L if win: 1435, total invested: 25880
+558 betAmount: 46, IVST: 3211, P/L if win: 1389, total invested: 25926
+559 betAmount: 47, IVST: 3258, P/L if win: 1442, total invested: 25973
+560 betAmount: 47, IVST: 3305, P/L if win: 1395, total invested: 26020
+561 betAmount: 48, IVST: 3353, P/L if win: 1447, total invested: 26068
+562 betAmount: 48, IVST: 3401, P/L if win: 1399, total invested: 26116
+563 betAmount: 49, IVST: 3450, P/L if win: 1450, total invested: 26165
+564 betAmount: 49, IVST: 3499, P/L if win: 1401, total invested: 26214
+565 betAmount: 49, IVST: 3548, P/L if win: 1352, total invested: 26263
+566 betAmount: 50, IVST: 3598, P/L if win: 1402, total invested: 26313
+567 betAmount: 50, IVST: 3648, P/L if win: 1352, total invested: 26363
+568 betAmount: 51, IVST: 3699, P/L if win: 1401, total invested: 26414
+569 betAmount: 51, IVST: 3750, P/L if win: 1350, total invested: 26465
+570 betAmount: 52, IVST: 3802, P/L if win: 1398, total invested: 26517
+571 betAmount: 53, IVST: 3855, P/L if win: 1445, total invested: 26570
+572 betAmount: 53, IVST: 3908, P/L if win: 1392, total invested: 26623
+573 betAmount: 54, IVST: 3962, P/L if win: 1438, total invested: 26677
+574 betAmount: 54, IVST: 4016, P/L if win: 1384, total invested: 26731
+575 betAmount: 55, IVST: 4071, P/L if win: 1429, total invested: 26786
+576 betAmount: 55, IVST: 4126, P/L if win: 1374, total invested: 26841
+577 betAmount: 56, IVST: 4182, P/L if win: 1418, total invested: 26897
+578 betAmount: 56, IVST: 4238, P/L if win: 1362, total invested: 26953
+579 betAmount: 57, IVST: 4295, P/L if win: 1405, total invested: 27010
+580 betAmount: 57, IVST: 4352, P/L if win: 1348, total invested: 27067
+581 betAmount: 58, IVST: 4410, P/L if win: 1390, total invested: 27125
+582 betAmount: 59, IVST: 4469, P/L if win: 1431, total invested: 27184
+583 betAmount: 59, IVST: 4528, P/L if win: 1372, total invested: 27243
+584 betAmount: 60, IVST: 4588, P/L if win: 1412, total invested: 27303
+585 betAmount: 60, IVST: 4648, P/L if win: 1352, total invested: 27363
+586 betAmount: 61, IVST: 4709, P/L if win: 1391, total invested: 27424
+587 betAmount: 62, IVST: 4771, P/L if win: 1429, total invested: 27486
+588 betAmount: 62, IVST: 4833, P/L if win: 1367, total invested: 27548
+589 betAmount: 63, IVST: 4896, P/L if win: 1404, total invested: 27611
+590 betAmount: 63, IVST: 4959, P/L if win: 1341, total invested: 27674
+591 betAmount: 64, IVST: 5023, P/L if win: 1377, total invested: 27738
+592 betAmount: 65, IVST: 2565, P/L if win: 3935, total invested: 27803
+593 betAmount: 40, IVST: 2605, P/L if win: 1395, total invested: 27843
+594 betAmount: 41, IVST: 2646, P/L if win: 1454, total invested: 27884
+595 betAmount: 41, IVST: 2687, P/L if win: 1413, total invested: 27925
+596 betAmount: 41, IVST: 2728, P/L if win: 1372, total invested: 27966
+597 betAmount: 42, IVST: 2770, P/L if win: 1430, total invested: 28008
+598 betAmount: 42, IVST: 2812, P/L if win: 1388, total invested: 28050
+599 betAmount: 43, IVST: 2855, P/L if win: 1445, total invested: 28093
+600 betAmount: 43, IVST: 2898, P/L if win: 1402, total invested: 28136
+601 betAmount: 43, IVST: 2941, P/L if win: 1359, total invested: 28179
+602 betAmount: 44, IVST: 2985, P/L if win: 1415, total invested: 28223
+603 betAmount: 44, IVST: 3029, P/L if win: 1371, total invested: 28267
+604 betAmount: 45, IVST: 3074, P/L if win: 1426, total invested: 28312
+605 betAmount: 45, IVST: 3119, P/L if win: 1381, total invested: 28357
+606 betAmount: 46, IVST: 3165, P/L if win: 1435, total invested: 28403
+607 betAmount: 46, IVST: 3211, P/L if win: 1389, total invested: 28449
+608 betAmount: 47, IVST: 3258, P/L if win: 1442, total invested: 28496
+609 betAmount: 47, IVST: 3305, P/L if win: 1395, total invested: 28543
+610 betAmount: 48, IVST: 3353, P/L if win: 1447, total invested: 28591
+611 betAmount: 48, IVST: 3401, P/L if win: 1399, total invested: 28639
+612 betAmount: 49, IVST: 3450, P/L if win: 1450, total invested: 28688
+613 betAmount: 49, IVST: 3499, P/L if win: 1401, total invested: 28737
+614 betAmount: 49, IVST: 3548, P/L if win: 1352, total invested: 28786
+615 betAmount: 50, IVST: 3598, P/L if win: 1402, total invested: 28836
+616 betAmount: 50, IVST: 3648, P/L if win: 1352, total invested: 28886
+617 betAmount: 51, IVST: 3699, P/L if win: 1401, total invested: 28937
+618 betAmount: 51, IVST: 3750, P/L if win: 1350, total invested: 28988
+619 betAmount: 52, IVST: 3802, P/L if win: 1398, total invested: 29040
+620 betAmount: 53, IVST: 3855, P/L if win: 1445, total invested: 29093
+621 betAmount: 53, IVST: 3908, P/L if win: 1392, total invested: 29146
+622 betAmount: 54, IVST: 3962, P/L if win: 1438, total invested: 29200
+623 betAmount: 54, IVST: 4016, P/L if win: 1384, total invested: 29254
+624 betAmount: 55, IVST: 4071, P/L if win: 1429, total invested: 29309
+625 betAmount: 55, IVST: 4126, P/L if win: 1374, total invested: 29364
+626 betAmount: 56, IVST: 4182, P/L if win: 1418, total invested: 29420
+627 betAmount: 56, IVST: 4238, P/L if win: 1362, total invested: 29476
+628 betAmount: 57, IVST: 4295, P/L if win: 1405, total invested: 29533
+629 betAmount: 57, IVST: 4352, P/L if win: 1348, total invested: 29590
+630 betAmount: 58, IVST: 4410, P/L if win: 1390, total invested: 29648
+631 betAmount: 59, IVST: 4469, P/L if win: 1431, total invested: 29707
+632 betAmount: 59, IVST: 4528, P/L if win: 1372, total invested: 29766
+633 betAmount: 60, IVST: 4588, P/L if win: 1412, total invested: 29826
+634 betAmount: 60, IVST: 4648, P/L if win: 1352, total invested: 29886
+635 betAmount: 61, IVST: 4709, P/L if win: 1391, total invested: 29947
+636 betAmount: 62, IVST: 4771, P/L if win: 1429, total invested: 30009
+637 betAmount: 62, IVST: 4833, P/L if win: 1367, total invested: 30071
+638 betAmount: 63, IVST: 4896, P/L if win: 1404, total invested: 30134
+639 betAmount: 63, IVST: 4959, P/L if win: 1341, total invested: 30197
+640 betAmount: 64, IVST: 5023, P/L if win: 1377, total invested: 30261
+641 betAmount: 65, IVST: 2565, P/L if win: 3935, total invested: 30326
+642 betAmount: 40, IVST: 2605, P/L if win: 1395, total invested: 30366
+643 betAmount: 41, IVST: 2646, P/L if win: 1454, total invested: 30407
+644 betAmount: 41, IVST: 2687, P/L if win: 1413, total invested: 30448
+645 betAmount: 41, IVST: 2728, P/L if win: 1372, total invested: 30489
+646 betAmount: 42, IVST: 2770, P/L if win: 1430, total invested: 30531
+647 betAmount: 42, IVST: 2812, P/L if win: 1388, total invested: 30573
+648 betAmount: 43, IVST: 2855, P/L if win: 1445, total invested: 30616
+649 betAmount: 43, IVST: 2898, P/L if win: 1402, total invested: 30659
+650 betAmount: 43, IVST: 2941, P/L if win: 1359, total invested: 30702
+651 betAmount: 44, IVST: 2985, P/L if win: 1415, total invested: 30746
+652 betAmount: 44, IVST: 3029, P/L if win: 1371, total invested: 30790
+653 betAmount: 45, IVST: 3074, P/L if win: 1426, total invested: 30835
+654 betAmount: 45, IVST: 3119, P/L if win: 1381, total invested: 30880
+655 betAmount: 46, IVST: 3165, P/L if win: 1435, total invested: 30926
+656 betAmount: 46, IVST: 3211, P/L if win: 1389, total invested: 30972
+657 betAmount: 47, IVST: 3258, P/L if win: 1442, total invested: 31019
+658 betAmount: 47, IVST: 3305, P/L if win: 1395, total invested: 31066
+659 betAmount: 48, IVST: 3353, P/L if win: 1447, total invested: 31114
+660 betAmount: 48, IVST: 3401, P/L if win: 1399, total invested: 31162
+661 betAmount: 49, IVST: 3450, P/L if win: 1450, total invested: 31211
+662 betAmount: 49, IVST: 3499, P/L if win: 1401, total invested: 31260
+663 betAmount: 49, IVST: 3548, P/L if win: 1352, total invested: 31309
+664 betAmount: 50, IVST: 3598, P/L if win: 1402, total invested: 31359
+665 betAmount: 50, IVST: 3648, P/L if win: 1352, total invested: 31409
+666 betAmount: 51, IVST: 3699, P/L if win: 1401, total invested: 31460
+667 betAmount: 51, IVST: 3750, P/L if win: 1350, total invested: 31511
+668 betAmount: 52, IVST: 3802, P/L if win: 1398, total invested: 31563
+669 betAmount: 53, IVST: 3855, P/L if win: 1445, total invested: 31616
+670 betAmount: 53, IVST: 3908, P/L if win: 1392, total invested: 31669
+671 betAmount: 54, IVST: 3962, P/L if win: 1438, total invested: 31723
+672 betAmount: 54, IVST: 4016, P/L if win: 1384, total invested: 31777
+673 betAmount: 55, IVST: 4071, P/L if win: 1429, total invested: 31832
+674 betAmount: 55, IVST: 4126, P/L if win: 1374, total invested: 31887
+675 betAmount: 56, IVST: 4182, P/L if win: 1418, total invested: 31943
+676 betAmount: 56, IVST: 4238, P/L if win: 1362, total invested: 31999
+677 betAmount: 57, IVST: 4295, P/L if win: 1405, total invested: 32056
+678 betAmount: 57, IVST: 4352, P/L if win: 1348, total invested: 32113
+679 betAmount: 58, IVST: 4410, P/L if win: 1390, total invested: 32171
+680 betAmount: 59, IVST: 4469, P/L if win: 1431, total invested: 32230
+681 betAmount: 59, IVST: 4528, P/L if win: 1372, total invested: 32289
+682 betAmount: 60, IVST: 4588, P/L if win: 1412, total invested: 32349
+683 betAmount: 60, IVST: 4648, P/L if win: 1352, total invested: 32409
+684 betAmount: 61, IVST: 4709, P/L if win: 1391, total invested: 32470
+685 betAmount: 62, IVST: 4771, P/L if win: 1429, total invested: 32532
+686 betAmount: 62, IVST: 4833, P/L if win: 1367, total invested: 32594
+687 betAmount: 63, IVST: 4896, P/L if win: 1404, total invested: 32657
+688 betAmount: 63, IVST: 4959, P/L if win: 1341, total invested: 32720
+689 betAmount: 64, IVST: 5023, P/L if win: 1377, total invested: 32784
+690 betAmount: 65, IVST: 2565, P/L if win: 3935, total invested: 32849
+691 betAmount: 40, IVST: 2605, P/L if win: 1395, total invested: 32889
+692 betAmount: 41, IVST: 2646, P/L if win: 1454, total invested: 32930
+693 betAmount: 41, IVST: 2687, P/L if win: 1413, total invested: 32971
+694 betAmount: 41, IVST: 2728, P/L if win: 1372, total invested: 33012
+695 betAmount: 42, IVST: 2770, P/L if win: 1430, total invested: 33054
+696 betAmount: 42, IVST: 2812, P/L if win: 1388, total invested: 33096
+697 betAmount: 43, IVST: 2855, P/L if win: 1445, total invested: 33139
+698 betAmount: 43, IVST: 2898, P/L if win: 1402, total invested: 33182
+699 betAmount: 43, IVST: 2941, P/L if win: 1359, total invested: 33225
+700 betAmount: 44, IVST: 2985, P/L if win: 1415, total invested: 33269
 
 Process finished with exit code 0

@@ -40,13 +40,14 @@ public class DecisionMaker {
     private double balance_profit = 0;
     private int allBet = 0;
     private double betAmount = 10.0;
-    private int habc  = 10;
+    private int habc = 10;
 
     // Tracker for how many ticks/games have passed since the last 100x hit
     private int ticksSinceLastHundred = 0;
     double tracker_bal = 0;
     int active_bets_count = 0;
     double invested = 0;
+    double hinvested = 0;
     int STOP = 0; // 1 looking to stop after a win, 2 STOPPED
 
     int win_in_150 = 0;
@@ -55,29 +56,21 @@ public class DecisionMaker {
 
     public boolean decisionMaker(double latestMultiplier, String balance) {
 
-        balance_profit = Double.parseDouble(System.getProperty(DUMMY_BALANCE,"10"));
-        invested = Double.parseDouble(System.getProperty(INVESTED,"0"));
-        yet_pending = Integer.parseInt(System.getProperty(YET_PENDING,"0"));
+        balance_profit = Double.parseDouble(System.getProperty(DUMMY_BALANCE, "10"));
+        invested = Double.parseDouble(System.getProperty(INVESTED, "0"));
+        yet_pending = Integer.parseInt(System.getProperty(YET_PENDING, "0"));
 
-        // Investment control
-        int pp = process((int) invested);
-        if(pp!=-1) invested=pp;
-       double ivst = invested;
+        double ivst = invested;
 
-    // Investment control
-        if (ivst <= 100) {
-            betAmount = 10;
+        // high investment high return
+       // betAmount = 21 + (int) ((ivst - 100) / 100);
+       // if(ivst>7000) { ivst=3500; }
 
-        } else if (ivst <= 7000) {
-            betAmount = 12 + (int) ((ivst - 100) / 100);
+        // medium investment medium return
+        betAmount = 16 + (int) ((ivst - 100) / 100);
+        if(ivst>5000) {ivst=2500;}
 
-        }  else if (ivst <= 50000) {
-            betAmount = 35 + (int) ((ivst - 7000) / 100);
-        }else {
-            betAmount = 250 + (int) ((ivst - 50000) / 100);
-        }
-
-        STOP = Integer.parseInt(System.getProperty(MANUAL_STOP,"0")) == 1 ? 1 : STOP;
+        STOP = Integer.parseInt(System.getProperty(MANUAL_STOP, "0")) == 1 ? 1 : STOP;
         if (STOP == 2) {
             System.out.println("........STOPPED After a win......");
             return false;
@@ -86,15 +79,15 @@ public class DecisionMaker {
         allBet++;
         // 1. Resolve the PREVIOUS round's bet based on the newly received multiplier
         if (betButtonStatus) {
-            if(active_bets_count>300)
-                target=85;
+
             if (latestMultiplier >= target) {
                 // If won, calculate balance by multiplying betAmount by 99
-                habc = Math.max(habc,active_bets_count);
+                habc = Math.max(habc, active_bets_count);
+                hinvested = Math.max(hinvested, invested);
                 double profit = (betAmount * target) - betAmount;
                 balance_profit += profit;
                 tracker_bal += profit;
-                pAndL=(profit-invested);
+                pAndL = (profit - invested);
                 if (active_bets_count < 150)
                     win_in_150++;
                 else win_in_150 = 0;
@@ -103,16 +96,17 @@ public class DecisionMaker {
 
                 if (STOP == 1)
                     STOP = 2;
-                invested = pop();
-                log.error(allBet + " 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {}", active_bets_count, profit, balance_profit);
+                //if(invested>20000)
+                log.error(allBet + " 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {} | {} ", active_bets_count, profit, balance_profit, hinvested);
                 log.info("");
                 // System.out.println(balance_profit);
                 active_bets_count = 0;
+                invested = pop();
             } else {
                 // If lost, deduct the bet amount
                 balance_profit -= betAmount;
                 tracker_bal -= betAmount;
-                invested+=betAmount;
+                invested += betAmount;
             }
         }
 
@@ -129,7 +123,7 @@ public class DecisionMaker {
                 // If lost, deduct the bet amount
                 balance_profit -= betAmount;
                 tracker_bal -= betAmount;
-                invested+=betAmount;
+                invested += betAmount;
             }
         }
 
@@ -167,7 +161,7 @@ public class DecisionMaker {
 
         isBetting1p75 = strategy1p75.decisionMaker(latestMultiplier);
         isBettingGapTap = strategyGapTap.decisionMaker(latestMultiplier);
-        isBetting10 = strategy10.decisionMaker(latestMultiplier);
+        // isBetting10 = strategy10.decisionMaker(latestMultiplier);
         isBetting150 = strategy150.decisionMaker(latestMultiplier);
         isBetting30x = strategy30x.decisionMaker(latestMultiplier);
         isBetting50x = strategy50x.decisionMaker(latestMultiplier);
@@ -175,7 +169,7 @@ public class DecisionMaker {
 // - If bellow is commented max abc is 480
 
         isBettingTD = strategyTwoDigit.decisionMaker(latestMultiplier);
-         isBetting100 = strategy100.decisionMaker(latestMultiplier);
+        isBetting100 = strategy100.decisionMaker(latestMultiplier);
         isBetting300 = strategy300.decisionMaker(latestMultiplier);
         isBettingSS2 = strategySS2.decisionMaker(latestMultiplier);
 
@@ -249,7 +243,7 @@ public class DecisionMaker {
         }
 
         log.info(allBet + " 📊 Tick: {} | Strategy: {} | Balance: {} | L 100x ago {} | Bet is {} | Profit: {} | POD: {} | BetAmount: {} | ABC: {} | IBAW: {}",
-                tick, as, balance, ticksSinceLastHundred, statusString, balance_profit, tracker_bal, betAmount,active_bets_count, ivst);
+                tick, as, balance, ticksSinceLastHundred, statusString, balance_profit, tracker_bal, betAmount, active_bets_count, ivst);
 
         // System property update
         System.setProperty("BET_BTN_STATUS", statusString);
@@ -275,7 +269,7 @@ public class DecisionMaker {
 
     private final Queue<Integer> queue = new PriorityQueue<>();
 
-    private int nextThreshold = 50000;
+    private int nextThreshold = 20000;
     private int pushedd = 0;
     private int maxpushedd = 0;
 
@@ -286,18 +280,21 @@ public class DecisionMaker {
         }
 
         // Store one part in the queue
-        queue.offer(7000);
-        queue.offer(7000);
-        queue.offer(7000);
-        queue.offer(7000);
+        queue.offer(3000);
+        queue.offer(3000);
+        queue.offer(3000);
+        queue.offer(3000);
+        queue.offer(3000);
+        queue.offer(3000);
+        queue.offer(2000);
         //  System.out.println(" PUSHED : " + part);
-        pushedd = pushedd+2800;
+        pushedd = pushedd + 20000;
         System.out.println(" PUSHED : Total : " + pushedd);
         // Return the other part if no smaller value exists;
         // otherwise return the lowest queued value.
-        int result = 25000;
+        int result = pop();
         System.out.println(" POP : remaing : " + pushedd);
-        maxpushedd = Math.max(pushedd,maxpushedd);
+        maxpushedd = Math.max(pushedd, maxpushedd);
         System.out.println(" MAX PUSHED PUSHED : Total : " + maxpushedd);
 
         return result;
@@ -305,11 +302,11 @@ public class DecisionMaker {
 
     public int pop() {
         Integer value = queue.poll();
-        if(value==null)
-            nextThreshold=50000;
-        else
-        { pushedd=pushedd-7000;
-            System.out.println("POPPED : remaining "+ pushedd);
+        if (value == null)
+            nextThreshold = 20000;
+        else {
+            pushedd = pushedd - 3000;
+            System.out.println("POPPED : remaining " + pushedd);
         }
         return value != null ? value : -1;
     }

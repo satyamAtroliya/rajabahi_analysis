@@ -2,34 +2,24 @@ package com.raja.aviator;
 
 public class TurnTracker {
 
-    static int ivst =0;
-    static int betAmount =10;
+    static int ivst = 0;
+    static int betAmount = 10;
 //abc max till today 480.
 
     public static void main(String[] args) {
         long ivst = 0;
+        long tivst = 0;
         int magicNumber = 35;
         final long maxInvestment = 20000;
 
-        System.out.println("   Magic Number === "+magicNumber);
+        System.out.println("   Magic Number === " + magicNumber);
+        int betAmount = 10;
+        for (int i = 1; i <= 700; i++) {
 
-        for (int i = 1; i <= 600; i++) {
-            int betAmount;
+            betAmount = 16 + (int) ((ivst - 100) / 100);
+            if(ivst>5000) {ivst=2500; }
 
-            if (ivst <= 100) {
-                betAmount = 10;
-
-            } else if (ivst <= 7000) {
-                betAmount = 12 + (int) ((ivst - 100) / 100);
-
-            }  else if (ivst <= 50000) {
-                betAmount = 35 + (int) ((ivst - 7000) / 100);
-
-            }else {
-                // Continue from ₹79; increase ₹1 per ₹100 invested.
-                betAmount = 250 + (int) ((ivst - 50000) / 100);
-            }
-
+            tivst=tivst+betAmount;
             ivst += betAmount;
 
             // 100x payout includes the current bet.
@@ -40,14 +30,17 @@ public class TurnTracker {
                             + " betAmount: " + betAmount
                             + ", IVST: " + ivst
                             + ", P/L if win: " + profitLossIfWin
+                            + ", total invested: " + tivst
             );
         }
     }
+
     private double total100xCount = 0;
     private int totalTurnCount = 0;
 
     /**
      * Records a new turn number and returns the current luck/frequency score.
+     *
      * @param number The number rolled/generated this turn.
      * @return The calculated score (1.0 is average, >1.0 is unlucky/due, <1.0 is lucky).
      */
@@ -58,9 +51,9 @@ public class TurnTracker {
             total100xCount++;
         }
 
-        float expected100x = totalTurnCount/100f;
+        float expected100x = totalTurnCount / 100f;
 
-        double score = total100xCount-expected100x;
+        double score = total100xCount - expected100x;
 
         return Math.round(score * 100.0) / 100.0;
     }
