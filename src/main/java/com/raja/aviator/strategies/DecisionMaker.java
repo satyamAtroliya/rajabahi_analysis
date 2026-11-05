@@ -45,8 +45,10 @@ public class DecisionMaker {
     // Tracker for how many ticks/games have passed since the last 100x hit
     private int ticksSinceLastHundred = 0;
     double tracker_bal = 0;
+    double tracker_bal_l = 0;
     int active_bets_count = 0;
     double invested = 0;
+    double invested_real = 0;
     double hinvested = 0;
     int STOP = 0; // 1 looking to stop after a win, 2 STOPPED
 
@@ -61,14 +63,10 @@ public class DecisionMaker {
         yet_pending = Integer.parseInt(System.getProperty(YET_PENDING, "0"));
 
         double ivst = invested;
+        tracker_bal_l=Math.min(tracker_bal,tracker_bal_l);
 
-        // high investment high return
-       // betAmount = 21 + (int) ((ivst - 100) / 100);
-       // if(ivst>7000) { ivst=3500; }
-
-        // medium investment medium return
-        betAmount = 16 + (int) ((ivst - 100) / 100);
-        if(ivst>5000) {ivst=2500;}
+        betAmount = 11 + (int) ((ivst - 100) / 100);
+        int bd = (int) betAmount / 10;
 
         STOP = Integer.parseInt(System.getProperty(MANUAL_STOP, "0")) == 1 ? 1 : STOP;
         if (STOP == 2) {
@@ -78,47 +76,334 @@ public class DecisionMaker {
 
         allBet++;
         // 1. Resolve the PREVIOUS round's bet based on the newly received multiplier
-        if (betButtonStatus) {
+        if (invested > 7000) {
 
-            if (latestMultiplier >= target) {
-                // If won, calculate balance by multiplying betAmount by 99
-                habc = Math.max(habc, active_bets_count);
-                hinvested = Math.max(hinvested, invested);
-                double profit = (betAmount * target) - betAmount;
-                balance_profit += profit;
-                tracker_bal += profit;
-                pAndL = (profit - invested);
-                if (active_bets_count < 150)
-                    win_in_150++;
-                else win_in_150 = 0;
-                if (active_bets_count < 200 && active_bets_count > 110)
-                    yet_pending++;
+            if (betButtonStatus) {
+                target = 10;
+                betAmount = bd;
+                if (latestMultiplier >= target) {
+                    // If won, calculate balance by multiplying betAmount by 99
+                    habc = Math.max(habc, active_bets_count);
+                    hinvested = Math.max(hinvested, invested);
+                    double profit = (betAmount * target) - betAmount;
+                    balance_profit += profit;
+                    tracker_bal += profit;
 
-                if (STOP == 1)
-                    STOP = 2;
-                //if(invested>20000)
-                log.error(allBet + " 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {} | {} ", active_bets_count, profit, balance_profit, hinvested);
-                log.info("");
-                // System.out.println(balance_profit);
-                active_bets_count = 0;
-                invested = pop();
-            } else {
-                // If lost, deduct the bet amount
-                balance_profit -= betAmount;
-                tracker_bal -= betAmount;
-                invested += betAmount;
+                    //if(invested>20000)
+                    log.error(allBet + " 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {} | {} | {} ", latestMultiplier, profit, balance_profit, hinvested, tracker_bal_l);
+                    log.info("");
+                    // System.out.println(balance_profit);
+                    active_bets_count = 0;
+                    //invested -= profit;
+                } else {
+                    // If lost, deduct the bet amount
+                    balance_profit -= betAmount;
+                    tracker_bal -= betAmount;
+                    invested += betAmount;
+                }
             }
-        }
 
+            if (betButtonStatus) {
+                target = 20;
+                betAmount = bd;
+                if (latestMultiplier >= target) {
+                    // If won, calculate balance by multiplying betAmount by 99
+                    habc = Math.max(habc, active_bets_count);
+                    hinvested = Math.max(hinvested, invested);
+                    double profit = (betAmount * target) - betAmount;
+                    balance_profit += profit;
+                    tracker_bal += profit;
+
+                    //if(invested>20000)
+                    log.error(allBet + " 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {} | {} | {} ", latestMultiplier, profit, balance_profit, hinvested, tracker_bal);
+                    log.info("");
+                    // System.out.println(balance_profit);
+                    active_bets_count = 0;
+                    //invested -= profit;
+                } else {
+                    // If lost, deduct the bet amount
+                    balance_profit -= betAmount;
+                    tracker_bal -= betAmount;
+                    invested += betAmount;
+                }
+            }
+
+
+            if (betButtonStatus) {
+                target = 30;
+                betAmount = bd;
+                if (latestMultiplier >= target) {
+                    // If won, calculate balance by multiplying betAmount by 99
+                    habc = Math.max(habc, active_bets_count);
+                    hinvested = Math.max(hinvested, invested);
+                    double profit = (betAmount * target) - betAmount;
+                    balance_profit += profit;
+                    tracker_bal += profit;
+
+                    //if(invested>20000)
+                    log.error(allBet + " 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {} | {} | {} ", latestMultiplier, profit, balance_profit, hinvested, tracker_bal);
+                    log.info("");
+                    // System.out.println(balance_profit);
+                    active_bets_count = 0;
+                    invested -= profit;
+                } else {
+                    // If lost, deduct the bet amount
+                    balance_profit -= betAmount;
+                    tracker_bal -= betAmount;
+                    invested += betAmount;
+                }
+            }
+
+
+            if (betButtonStatus) {
+                target = 40;
+                betAmount = bd;
+                if (latestMultiplier >= target) {
+                    // If won, calculate balance by multiplying betAmount by 99
+                    habc = Math.max(habc, active_bets_count);
+                    hinvested = Math.max(hinvested, invested);
+                    double profit = (betAmount * target) - betAmount;
+                    balance_profit += profit;
+                    tracker_bal += profit;
+
+                    //if(invested>20000)
+                    log.error(allBet + " 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {} | {} | {} ", latestMultiplier, profit, balance_profit, hinvested, tracker_bal);
+                    log.info("");
+                    // System.out.println(balance_profit);
+                    active_bets_count = 0;
+                    //invested -= profit;
+                } else {
+                    // If lost, deduct the bet amount
+                    balance_profit -= betAmount;
+                    tracker_bal -= betAmount;
+                    invested += betAmount;
+                }
+            }
+
+
+            if (betButtonStatus) {
+                target = 50;
+                betAmount = bd;
+                if (latestMultiplier >= target) {
+                    // If won, calculate balance by multiplying betAmount by 99
+                    habc = Math.max(habc, active_bets_count);
+                    hinvested = Math.max(hinvested, invested);
+                    double profit = (betAmount * target) - betAmount;
+                    balance_profit += profit;
+                    tracker_bal += profit;
+
+                    //if(invested>20000)
+                    log.error(allBet + " 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {} | {} | {} ", latestMultiplier, profit, balance_profit, hinvested, tracker_bal);
+                    log.info("");
+                    // System.out.println(balance_profit);
+                    active_bets_count = 0;
+                    invested -= profit;
+                } else {
+                    // If lost, deduct the bet amount
+                    balance_profit -= betAmount;
+                    tracker_bal -= betAmount;
+                    invested += betAmount;
+                }
+            }
+
+
+            if (betButtonStatus) {
+                target = 60;
+                betAmount = bd;
+                if (latestMultiplier >= target) {
+                    // If won, calculate balance by multiplying betAmount by 99
+                    habc = Math.max(habc, active_bets_count);
+                    hinvested = Math.max(hinvested, invested);
+                    double profit = (betAmount * target) - betAmount;
+                    balance_profit += profit;
+                    tracker_bal += profit;
+
+                    //if(invested>20000)
+                    log.error(allBet + " 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {} | {} | {} ", latestMultiplier, profit, balance_profit, hinvested, tracker_bal);
+                    log.info("");
+                    // System.out.println(balance_profit);
+                    active_bets_count = 0;
+                    //invested -= profit;
+                } else {
+                    // If lost, deduct the bet amount
+                    balance_profit -= betAmount;
+                    tracker_bal -= betAmount;
+                    invested += betAmount;
+                }
+            }
+
+
+            if (betButtonStatus) {
+                target = 70;
+                betAmount = bd;
+                if (latestMultiplier >= target) {
+                    // If won, calculate balance by multiplying betAmount by 99
+                    habc = Math.max(habc, active_bets_count);
+                    hinvested = Math.max(hinvested, invested);
+                    double profit = (betAmount * target) - betAmount;
+                    balance_profit += profit;
+                    tracker_bal += profit;
+
+                    //if(invested>20000)
+                    log.error(allBet + " 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {} | {} | {} ", latestMultiplier, profit, balance_profit, hinvested, tracker_bal);
+                    log.info("");
+                    // System.out.println(balance_profit);
+                    active_bets_count = 0;
+                    invested -= profit;
+                } else {
+                    // If lost, deduct the bet amount
+                    balance_profit -= betAmount;
+                    tracker_bal -= betAmount;
+                    invested += betAmount;
+                }
+            }
+
+
+            if (betButtonStatus) {
+                target = 80;
+                betAmount = bd;
+                if (latestMultiplier >= target) {
+                    // If won, calculate balance by multiplying betAmount by 99
+                    habc = Math.max(habc, active_bets_count);
+                    hinvested = Math.max(hinvested, invested);
+                    double profit = (betAmount * target) - betAmount;
+                    balance_profit += profit;
+                    tracker_bal += profit;
+                    pAndL = (profit - invested);
+                    if (active_bets_count < 150)
+                        win_in_150++;
+                    else win_in_150 = 0;
+                    if (active_bets_count < 200 && active_bets_count > 110)
+                        yet_pending++;
+
+                    if (STOP == 1)
+                        STOP = 2;
+                    //if(invested>20000)
+                    log.error(allBet + " 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {} | {} | {} ", latestMultiplier, profit, balance_profit, hinvested, tracker_bal);
+                    log.info("");
+                    // System.out.println(balance_profit);
+                    active_bets_count = 0;
+                    //invested -= profit;
+                } else {
+                    // If lost, deduct the bet amount
+                    balance_profit -= betAmount;
+                    tracker_bal -= betAmount;
+                    invested += betAmount;
+                }
+            }
+
+            if (betButtonStatus) {
+                target = 90;
+                betAmount = bd;
+                if (latestMultiplier >= target) {
+                    // If won, calculate balance by multiplying betAmount by 99
+                    habc = Math.max(habc, active_bets_count);
+                    hinvested = Math.max(hinvested, invested);
+                    double profit = (betAmount * target) - betAmount;
+                    balance_profit += profit;
+                    tracker_bal += profit;
+                    pAndL = (profit - invested);
+                    if (active_bets_count < 150)
+                        win_in_150++;
+                    else win_in_150 = 0;
+                    if (active_bets_count < 200 && active_bets_count > 110)
+                        yet_pending++;
+
+                    if (STOP == 1)
+                        STOP = 2;
+                    //if(invested>20000)
+                    log.error(allBet + " 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {} | {} | {} ", latestMultiplier, profit, balance_profit, hinvested, tracker_bal);
+                    log.info("");
+                    // System.out.println(balance_profit);
+                    active_bets_count = 0;
+                    //invested -= profit;
+                } else {
+                    // If lost, deduct the bet amount
+                    balance_profit -= betAmount;
+                    tracker_bal -= betAmount;
+                    invested += betAmount;
+                }
+            }
+
+            if (betButtonStatus) {
+                target = 100;
+                betAmount = bd;
+                if (latestMultiplier >= target) {
+                    // If won, calculate balance by multiplying betAmount by 99
+                    habc = Math.max(habc, active_bets_count);
+                    hinvested = Math.max(hinvested, invested);
+                    double profit = (betAmount * target) - betAmount;
+                    balance_profit += profit;
+                    tracker_bal += profit;
+                    pAndL = (profit - invested);
+                    if (active_bets_count < 150)
+                        win_in_150++;
+                    else win_in_150 = 0;
+                    if (active_bets_count < 200 && active_bets_count > 110)
+                        yet_pending++;
+
+                    if (STOP == 1)
+                        STOP = 2;
+                    //if(invested>20000)
+                    log.error(allBet + " 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {} | {} | {}", latestMultiplier, profit, balance_profit, hinvested, tracker_bal);
+                    log.info("");
+                    // System.out.println(balance_profit);
+                    active_bets_count = 0;
+                    invested = 1000;
+                    tracker_bal = 0;
+                } else {
+                    // If lost, deduct the bet amount
+                    balance_profit -= betAmount;
+                    tracker_bal -= betAmount;
+                    invested += betAmount;
+                }
+            }
+        } else {
+
+            if (betButtonStatus) {
+                target = 100;
+                if (latestMultiplier >= target) {
+                    // If won, calculate balance by multiplying betAmount by 99
+                    habc = Math.max(habc, active_bets_count);
+                    hinvested = Math.max(hinvested, invested);
+                    double profit = (betAmount * target) - betAmount;
+                    balance_profit += profit;
+                    tracker_bal += profit;
+                    pAndL = (profit - invested);
+                    if (active_bets_count < 150)
+                        win_in_150++;
+                    else win_in_150 = 0;
+                    if (active_bets_count < 200 && active_bets_count > 110)
+                        yet_pending++;
+
+                    if (STOP == 1)
+                        STOP = 2;
+                    //if(invested>20000)
+                    log.error(allBet + " 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {} | {} | {}", latestMultiplier, profit, balance_profit, hinvested, tracker_bal_l);
+                    log.info("");
+                    // System.out.println(balance_profit);
+                    active_bets_count = 0;
+                    invested = pop();
+                    tracker_bal = 0;
+                } else {
+                    // If lost, deduct the bet amount
+                    balance_profit -= betAmount;
+                    tracker_bal -= betAmount;
+                    invested += betAmount;
+                }
+            }
+
+        }
         if (betButtonStatus10) {
             if (latestMultiplier >= FIFTEEN) {
                 // If won, calculate balance by multiplying betAmount by 99
                 double profit = (betAmount * FIFTEEN) - betAmount;
                 balance_profit += profit;
                 tracker_bal += profit;
-                log.info(allBet + " 💰💰💰 WIN! " + STRATEGYO10 + " Multiplier: {}x | Profit: +{} | New Balance: {}", latestMultiplier, profit, balance_profit);
+                log.info(allBet + " 💰💰💰 WIN! " + STRATEGYO10 + " Multiplier: {}x | Profit: +{} | New Balance: {} | {}", latestMultiplier, profit, balance_profit, tracker_bal);
                 log.info("");
                 //   System.out.println(balance_profit);
+                tracker_bal = 0;
             } else {
                 // If lost, deduct the bet amount
                 balance_profit -= betAmount;
