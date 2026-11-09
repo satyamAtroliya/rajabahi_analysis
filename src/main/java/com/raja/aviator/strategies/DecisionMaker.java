@@ -66,7 +66,7 @@ public class DecisionMaker {
         tracker_bal_l=Math.min(tracker_bal,tracker_bal_l);
 
         betAmount = 11 + (int) ((ivst - 100) / 100);
-        int bd = (int) betAmount / 10;
+        int bd = (int) (betAmount / 10);
 
         STOP = Integer.parseInt(System.getProperty(MANUAL_STOP, "0")) == 1 ? 1 : STOP;
         if (STOP == 2) {
