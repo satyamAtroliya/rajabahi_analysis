@@ -3,6 +3,8 @@ package com.city.detective.model;
 
 public class ButtonController {
 
+    private ButtonCtr buttonCtr;
+
     private boolean autoBetOn;
     private boolean autoBetOff;
 
@@ -14,15 +16,12 @@ public class ButtonController {
     public boolean isAutoBetOn() {
         return autoBetOn;
     }
-
     public void setAutoBetOn(boolean autoBetOn) {
         this.autoBetOn = autoBetOn;
     }
-
     public boolean isAutoBetOff() {
         return autoBetOff;
     }
-
     public void setAutoBetOff(boolean autoBetOff) {
         this.autoBetOff = autoBetOff;
     }

@@ -65,7 +65,7 @@ public class DecisionMaker {
         double ivst = invested;
         tracker_bal_l=Math.min(tracker_bal,tracker_bal_l);
 
-        betAmount = 11 + (int) ((ivst - 100) / 100);
+        betAmount = 17 + (int) ((ivst - 100) / 100);
         int bd = (int) (betAmount / 4);
 
         STOP = Integer.parseInt(System.getProperty(MANUAL_STOP, "0")) == 1 ? 1 : STOP;
@@ -79,8 +79,8 @@ public class DecisionMaker {
         if (invested > 7000) {
             if (betButtonStatus) {
                 betAmount=bd;
-                calculate(latestMultiplier, 10, true);
                 calculate(latestMultiplier, 20, true);
+                calculate(latestMultiplier, 10, true);
                // calculate(latestMultiplier, 30, false);
                // calculate(latestMultiplier, 40, false);
                // calculate(latestMultiplier, 70, false);
@@ -155,8 +155,9 @@ public class DecisionMaker {
                     invested += betAmount;
                 }
             }
-
         }
+
+
         if (betButtonStatus10) {
             if (latestMultiplier >= FIFTEEN) {
                 // If won, calculate balance by multiplying betAmount by 99
@@ -368,7 +369,7 @@ public class DecisionMaker {
             balance_profit += profit;
             tracker_bal += profit;
 
-            log.error(allBet + " 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {} | {} | {} ", latestMultiplier, profit, balance_profit, hinvested, tracker_bal_l);
+            log.error(allBet + " 💰💰💰 WIN! Multiplier: {}x | Profit: +{} | New Balance: {} | {} | {} | {}", latestMultiplier, profit, balance_profit, hinvested, tracker_bal_l, betAmount*4);
             log.info("");
             // System.out.println(balance_profit);
             active_bets_count = 0;
